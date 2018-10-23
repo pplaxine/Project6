@@ -1,4 +1,4 @@
-package com.philippe75.p6.consumer;
+package com.philippe75.p6.technical;
 
 /**
  * Hello world!

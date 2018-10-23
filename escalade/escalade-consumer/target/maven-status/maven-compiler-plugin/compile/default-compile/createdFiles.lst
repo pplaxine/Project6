@@ -1,1 +1,3 @@
-com\philippe75\p6\consumer\App.class
+com\philippe75\p6\consumer\contract\dao\TestDao.class
+com\philippe75\p6\consumer\impl\dao\TestDaoImpl.class
+com\philippe75\p6\consumer\impl\dao\AbstractDaoImpl.class

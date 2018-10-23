@@ -25,6 +25,7 @@
     <module>escalade-business</module>
     <module>escalade-consumer</module>
     <module>escalade-model</module>
+    <module>escalade-technical</module>
   </modules>
 
   <!-- DEPENDENCIES -->
@@ -51,8 +52,13 @@
   			<artifactId>escalade-model</artifactId>
   			<version>${project.version}</version>
   		</dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>escalade-technical</artifactId>
+        <version>${project.version}</version>
+      </dependency>
   		
-  		<!-- Bilbi tièrces -->
+  		<!-- Bilbi tierces -->
   		<dependency>
       		<groupId>junit</groupId>
       		<artifactId>junit</artifactId>
