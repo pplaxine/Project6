@@ -6,7 +6,7 @@ import com.philippe75.p6.model.beans.Test;
 
 public interface TestDao {
 	
-	Test getTest(Integer id);
+	int getCountTest();
 	
 	List<Test> getAllTest();
 }

@@ -1,4 +1,7 @@
-com\philippe75\p6\business\impl\ManagerFactoryImpl.class
+com\philippe75\p6\business\impl\manager\AbstractManager.class
 com\philippe75\p6\business\impl\manager\TestManagerImpl.class
+com\philippe75\p6\business\impl\DaoFactoryImpl.class
+com\philippe75\p6\business\impl\ManagerFactoryImpl.class
 com\philippe75\p6\business\contract\ManagerFactory.class
 com\philippe75\p6\business\contract\impl\TestManager.class
+com\philippe75\p6\business\contract\DaoFactory.class

@@ -5,19 +5,48 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+
     <!-- ===== Déclaration des Managers ===== -->
     <bean id="testManager" class="com.philippe75.p6.business.impl.manager.TestManagerImpl"/>
-    
 
     <!-- ===== ManagerFactory ===== -->
     <bean id="managerFactory" class="com.philippe75.p6.business.impl.ManagerFactoryImpl">
         <property name="tm" ref="testManager"/>
     </bean>
-
-    <!-- ==== AbstractResource ===== -->
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="org.example.demo.ticket.webapp.rest.resource.AbstractResource"/>
-        <property name="targetMethod" value="setManagerFactory"/>
-        <property name="arguments" ref="managerFactory"/>
+    
+    <!-- ===== Déclaration des DAO ===== -->
+    <bean id="testDao" class="com.philippe75.p6.consumer.impl.dao.TestDaoImpl">
     </bean>
+
+	<!-- ===== DaoFactory ===== -->
+    <bean id="daoFactory" class="com.philippe75.p6.business.impl.DaoFactoryImpl">
+        <property name="td" ref="testDao"/>
+    </bean>
+    
+    <!-- ==== AbstractManager ===== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.philippe75.p6.business.impl.manger.AbstractManager"/>
+        <property name="targetMethod" value="setDaoFactory"/>
+        <property name="arguments" ref="daoFactory"/>
+    </bean>
+    
+    <!-- ====================================================================================================== -->
+    
+    
+    <!-- ===== Déclaration dataSource ===== -->
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:comp/env/jdbc/ESCALADE_6"/>
+	</bean>
+   
+    <!-- ==== AbstractDao ==== -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.philippe75.p6.consumer.AbstractDaoImpl"/>
+        <property name="targetMethod" value="setDataSource"/>
+        <property name="arguments" ref="dataSource"/>
+    </bean>
+    
+     <!-- ====================================================================================================== -->
+     
+
 </beans>

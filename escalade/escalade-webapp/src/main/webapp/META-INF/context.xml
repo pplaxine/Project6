@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <Resource name="jdbc/ESCALADE6"
+    <Resource name="jdbc/ESCALADE_6"
               auth="Container"
               type="javax.sql.DataSource"
 

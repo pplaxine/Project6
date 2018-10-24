@@ -6,6 +6,11 @@ public class Test {
 	private String prenom;
 	private String nom;
 	
+	public Test() {}
+	
+	public Test(int id) {
+		this.id=id;
+	}
 	
 	public int getId() {
 		return id;

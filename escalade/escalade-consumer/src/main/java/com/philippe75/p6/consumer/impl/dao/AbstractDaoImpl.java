@@ -1,14 +1,16 @@
 package com.philippe75.p6.consumer.impl.dao;
 
-import javax.activation.DataSource;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.sql.DataSource;
 
 public abstract class AbstractDaoImpl {
 
-	private DataSource dataSource;
+	private static DataSource dataSource;
 	
-	protected DataSource getDataSource() {
+	protected static DataSource getDataSource() {
 		return dataSource;
+	}
+	
+	public static void setDataSource(DataSource dataSource) {
+		AbstractDaoImpl.dataSource = dataSource;
 	}
 }
