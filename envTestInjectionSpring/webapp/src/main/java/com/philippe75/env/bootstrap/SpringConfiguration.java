@@ -4,11 +4,13 @@ package com.philippe75.env.bootstrap;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
-//@ImportResource("classpath*:applicationContext*.xml")
+
 
 @Configuration
 @ComponentScan("com.philippe75.env")
+@ImportResource("classpath*:applicationContext*.xml")
 public class SpringConfiguration {
 
 }

@@ -1,11 +1,27 @@
 package com.philippe75.env.beans;
 
-public class TestBean {
+import javax.inject.Named;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@Named("blop")
+public class TestBean extends AbstractConnector{
 	
 	
-	private String prenom;
+	private String prenom ="Philippe" ;
 	private String nom;
 	
+	
+	public int getNumberOfTest() {
+		
+		String sQL ="SELECT COUNT(*) FROM public.test";
+		JdbcTemplate jT = new JdbcTemplate(getDataSource());
+		
+		int nbre = jT.queryForObject(sQL, Integer.class);
+		
+		
+		return nbre;
+	}
 	
 	
 	public String getPrenom() {

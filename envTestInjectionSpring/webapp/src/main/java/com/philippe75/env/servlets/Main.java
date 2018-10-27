@@ -34,9 +34,6 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
-		
 		String test2 = testManager.getString();
 		
 	

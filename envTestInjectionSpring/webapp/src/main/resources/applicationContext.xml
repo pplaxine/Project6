@@ -11,17 +11,34 @@
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
-	<context:component-scan base-package="com.philippe75.env"></context:component-scan>
+	<!--  <context:component-scan base-package="com.philippe75.env"></context:component-scan>
 	<context:annotation-config/>
+	-->
+	
 	<context:spring-configured/>
 
-     
+     <!-- 
      <bean id="testManager" class="com.philippe75.env.manager.TestManager">
      </bean>
     
      <bean id="main" class="com.philippe75.env.servlets.Main">
         <property name="testManager" ref="testManager"/>
     </bean>
-    
+     -->
+     
+     <!-- DataSource -->
+     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="java:comp/env/jdbc/ESCALADE_6"/>
+	 </bean>
+	
+	 <!-- AbstractDao -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.philippe75.env.beans.AbstractConnector"/>
+        <property name="targetMethod" value="setDataSource"/>
+        <property name="arguments" ref="dataSource"/>
+    </bean>
+	
+     
+     
 
 </beans>
