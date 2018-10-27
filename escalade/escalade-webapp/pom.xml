@@ -35,13 +35,13 @@
     </dependency>
     
     <dependency>
-      <groupId>postgresql</groupId>
+      <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>javax.servlet</groupId>         
-      <artifactId>servlet-api</artifactId>
+      <groupId>javax.servlet</groupId>	 		
+	  <artifactId>javax.servlet-api</artifactId>
     </dependency>
        
     <dependency>
@@ -50,4 +50,6 @@
     </dependency>
     
   </dependencies>
+  
+ 
 </project>

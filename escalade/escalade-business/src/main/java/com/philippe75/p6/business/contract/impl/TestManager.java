@@ -8,6 +8,7 @@ public interface TestManager {
 	
 	int getCountTest();
 	
+	String getCountTest2();
 	
 	List<Test> getAllTest();
 }

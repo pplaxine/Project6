@@ -23,4 +23,11 @@ public class TestManagerImpl extends AbstractManager implements TestManager{
 	}
 
 
+	@Override
+	public String getCountTest2() {
+		String str = getDaoFactory().getTestDao().getCountTest2();
+		return str;
+	}
+
+
 }

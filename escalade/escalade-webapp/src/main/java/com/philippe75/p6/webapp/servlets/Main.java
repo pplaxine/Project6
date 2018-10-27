@@ -1,38 +1,51 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.philippe75.p6.business.contract.ManagerFactory;
-import com.philippe75.p6.business.impl.ManagerFactoryImpl;
-import com.philippe75.p6.model.beans.Test;
+import com.philippe75.p6.consumer.contract.dao.TestDao;
 
 
 
 public class Main extends HttpServlet {
-	
-	
-	
+
+	@Inject
+	TestDao testDao;
+
+
+
+	public void setTestDao(TestDao testDao) {
+		this.testDao = testDao;
+	}
+
+
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//try {   Class.forName("org.postgresql.Driver"); } 
-		
-		//catch(ClassNotFoundException e) { }
 		
 		
 		
-		// à injecter ? 
-	//	/ManagerFactory mf = new ManagerFactoryImpl();
+		//String test2 = testDao.getCountTest2();
+		//if(test2 != null) {
+			//System.out.println(test2);
+		//}else {
+			System.out.println("Empty!!!!!");
+		//}
+	
+		//request.setAttribute( "test2", test2 );
 		
-	//	List<Test> listTest = mf.getTestManager().getAllTest();
+		String message = "Transmission de variables : OK !";
+		request.setAttribute( "test", message );
+		
+		
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
-		
 	}
 
 

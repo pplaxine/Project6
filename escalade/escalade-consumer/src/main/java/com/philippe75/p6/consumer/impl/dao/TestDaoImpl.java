@@ -4,15 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.inject.Named;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.philippe75.p6.consumer.contract.dao.TestDao;
 import com.philippe75.p6.model.beans.Test;
 
-
+@Named("testDao")
 public class TestDaoImpl extends AbstractDaoImpl implements TestDao{
 
 	@Override
@@ -43,6 +44,13 @@ public class TestDaoImpl extends AbstractDaoImpl implements TestDao{
 		List<Test> listTest = jT.query(SQL, rm);
 		
 		return listTest;
+	}
+
+
+	@Override
+	public String getCountTest2() {
+		 String str = "Ca rame !!! ";
+		return str;
 	}
 
 

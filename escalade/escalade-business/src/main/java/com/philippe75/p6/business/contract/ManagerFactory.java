@@ -6,5 +6,5 @@ public interface ManagerFactory {
 	
 	TestManager getTestManager();
 	
-	void setTestManager(TestManager tm);
+	void setTestManager(TestManager testManager);
 }
