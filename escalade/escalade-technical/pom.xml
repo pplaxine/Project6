@@ -13,10 +13,17 @@
   <name>${projectName}-technical</name>
 
   <!-- DEPENDENCIES -->
+  
+   <!-- Bilbi tièrces -->
   <dependencies>
     <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-context</artifactId>
+    </dependency>
+    
+     <dependency>
+    	<groupId>org.springframework</groupId>
+   	 	<artifactId>spring-aspects</artifactId>
     </dependency>
 
     <dependency>                      <!-- Annotations 250 -->
@@ -28,8 +35,7 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
-
-     <!-- Bilbi tièrces -->
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

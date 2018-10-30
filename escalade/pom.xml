@@ -16,7 +16,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <projectName>Escalade</projectName>
-    <spring.version>4.3.10.RELEASE</spring.version>
+    <spring.version>5.1.1.RELEASE</spring.version>
   </properties>
 
   <!-- MODULES -->
@@ -86,7 +86,7 @@
 		<dependency>
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
-    		<version>42.2.5</version>
+    		<version>9.4.1212</version>
     		<scope>runtime</scope>
 		</dependency>
 
@@ -144,7 +144,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.2.0</version>
         </plugin>
 
         <plugin>

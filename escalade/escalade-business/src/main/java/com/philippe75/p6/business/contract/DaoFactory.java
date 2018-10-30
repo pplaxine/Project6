@@ -6,5 +6,6 @@ public interface DaoFactory {
 
 	TestDao getTestDao();
 	void setTestDao(TestDao testDao);
+
 	
 }

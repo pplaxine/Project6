@@ -1,15 +1,18 @@
 package com.philippe75.p6.business.impl;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import com.philippe75.p6.business.contract.DaoFactory;
 import com.philippe75.p6.consumer.contract.dao.TestDao;
-import com.philippe75.p6.consumer.impl.dao.TestDaoImpl;
 
+@Named("daoFactory")
 public class DaoFactoryImpl implements DaoFactory{
 
-		
-		//private TestDao testDao;
-		private TestDao testDao = new TestDaoImpl();
-	
+	@Inject
+	private TestDao testDao;
+
+
 	@Override
 	public TestDao getTestDao() {
 		return testDao;

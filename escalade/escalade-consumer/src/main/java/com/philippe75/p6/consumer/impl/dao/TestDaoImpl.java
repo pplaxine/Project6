@@ -8,18 +8,22 @@ import javax.inject.Named;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import com.philippe75.p6.consumer.contract.dao.TestDao;
 import com.philippe75.p6.model.beans.Test;
+
 
 @Named("testDao")
 public class TestDaoImpl extends AbstractDaoImpl implements TestDao{
 
 	@Override
 	public int getCountTest() {
+		String sQL = "SELECT COUNT(*) FROM public.test";
+		int nbreTest;
+	
 		JdbcTemplate jT = new JdbcTemplate(getDataSource());
-		int nbreTest = jT.queryForObject("SELECT COUNT(*) FROM public.test", Integer.class);
+		nbreTest = jT.queryForObject(sQL, Integer.class);
+		
 		
 		return nbreTest;
 	}
@@ -49,7 +53,7 @@ public class TestDaoImpl extends AbstractDaoImpl implements TestDao{
 
 	@Override
 	public String getCountTest2() {
-		 String str = "Ca rame !!! ";
+		 String str = "Ca rame un peu moins!!! ";
 		return str;
 	}
 

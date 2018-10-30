@@ -1,20 +1,22 @@
 package com.philippe75.p6.business.impl.manager;
 
+import javax.inject.Inject;
+
 import com.philippe75.p6.business.contract.DaoFactory;
-import com.philippe75.p6.business.impl.DaoFactoryImpl;
+
 
 public abstract class AbstractManager {
 	
+	@Inject
+	private DaoFactory daoFactory;
 	
-	//private static DaoFactory daoFactory;
-	private static DaoFactory daoFactory = new DaoFactoryImpl();
 
-	protected static DaoFactory getDaoFactory() {
+	protected DaoFactory getDaoFactory() {
 		return daoFactory;
 	}
-
-	public static void setDaoFactory(DaoFactory daoFactory) {
-		AbstractManager.daoFactory = daoFactory;
+	
+	public void setDaoFactory(DaoFactory daoFactory) {
+		this.daoFactory = daoFactory;
 	}
 	
 	

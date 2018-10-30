@@ -10,9 +10,10 @@
         <p>Ceci est une page générée depuis une JSP.</p>
         <p>
             <% 
-            String attribut2 = (String) request.getAttribute("test2");
+            
             String attribut = (String) request.getAttribute("test");
-            out.println( attribut + " " + attribut2 );
+            String attribut3 = (String) request.getAttribute("test3");
+            out.println( attribut + " "+ attribut3 );
             
             %>
         </p>

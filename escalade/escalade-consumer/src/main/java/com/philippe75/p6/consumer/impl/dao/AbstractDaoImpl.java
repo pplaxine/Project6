@@ -2,11 +2,15 @@ package com.philippe75.p6.consumer.impl.dao;
 
 import javax.sql.DataSource;
 
-public abstract class AbstractDaoImpl {
+import org.springframework.beans.factory.annotation.Autowired;
 
+
+public abstract class AbstractDaoImpl {
+	
+	
 	private static DataSource dataSource;
 	
-	protected static DataSource getDataSource() {
+	public DataSource getDataSource() {
 		return dataSource;
 	}
 	
