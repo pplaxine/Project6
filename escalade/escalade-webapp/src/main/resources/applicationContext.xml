@@ -12,7 +12,7 @@
             
              
 	<context:spring-configured/>
-   	
+	
     <!-- ====================================================================================================== -->
     
      
@@ -21,16 +21,7 @@
     	<property name="jndiName" value="java:comp/env/jdbc/ESCALADE_6"/>
 	</bean>
 	 
-	 <!--  
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/escalade6" />
-		<property name="username" value="adm_escalade" />
-		<property name="password" value="mdp" />
-	</bean>
-	-->
-	
+	 	
     <!-- ==== AbstractDao ==== -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetClass" value="com.philippe75.p6.consumer.impl.dao.AbstractDaoImpl"/>
@@ -38,8 +29,6 @@
         <property name="arguments" ref="dataSource"/>
     </bean>
   	
-  	 
-  	 
      <!-- ====================================================================================================== -->
      
 

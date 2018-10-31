@@ -38,12 +38,15 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String test3 = " Dans la BDD : " + managerFactory.getTestManager().getCountTest();
-		request.setAttribute( "test3", test3 );
-		
-		
 		String message = "Transmission de variables : OK !";
 		request.setAttribute( "test", message );
+		
+		String nbreTest = " Nombre de test dans la BDD : " + managerFactory.getTestManager().getCountTest();
+		request.setAttribute( "nbreTest", nbreTest );
+		
+		String nbreCompteUtilisateur = Integer.toString(managerFactory.getCompteUtilisateurManager().getCountCompteUtilisateur());
+		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
+
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 	}

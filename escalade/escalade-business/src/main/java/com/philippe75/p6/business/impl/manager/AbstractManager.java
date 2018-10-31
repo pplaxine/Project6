@@ -9,7 +9,6 @@ public abstract class AbstractManager {
 	
 	@Inject
 	private DaoFactory daoFactory;
-	
 
 	protected DaoFactory getDaoFactory() {
 		return daoFactory;

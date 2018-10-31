@@ -11,9 +11,13 @@
         <p>
             <% 
             
-            String attribut = (String) request.getAttribute("test");
-            String attribut3 = (String) request.getAttribute("test3");
-            out.println( attribut + " "+ attribut3 );
+            String att1 = (String) request.getAttribute("test");
+            String att2 = (String) request.getAttribute("nbreTest");
+            String att3 = (String) request.getAttribute("nbreCompteUtilisateur");
+            
+            out.println( att1 + " "+ att2 + ". Nombre de compte utilisateur en BDD : " + att3 );
+            
+            
             
             %>
         </p>
