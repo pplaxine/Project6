@@ -1,6 +1,8 @@
 
+CREATE SEQUENCE public.compte_utilisateur_id_seq;
+
 CREATE TABLE public.compte_utilisateur (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.compte_utilisateur_id_seq'),
                 nom VARCHAR(70) NOT NULL,
                 prenom VARCHAR(70) NOT NULL,
                 pseudo VARCHAR(50) NOT NULL,
@@ -10,6 +12,8 @@ CREATE TABLE public.compte_utilisateur (
                 CONSTRAINT compte_utilisateur_pk PRIMARY KEY (id)
 );
 
+
+ALTER SEQUENCE public.compte_utilisateur_id_seq OWNED BY public.compte_utilisateur.id;
 
 CREATE TABLE public.cotation (
                 id INTEGER NOT NULL,
@@ -25,8 +29,10 @@ CREATE TABLE public.dept (
 );
 
 
+CREATE SEQUENCE public.site_id_seq;
+
 CREATE TABLE public.site (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.site_id_seq'),
                 nom VARCHAR(80) NOT NULL,
                 lieu VARCHAR(300) NOT NULL,
                 description VARCHAR(500),
@@ -37,8 +43,12 @@ CREATE TABLE public.site (
 );
 
 
+ALTER SEQUENCE public.site_id_seq OWNED BY public.site.id;
+
+CREATE SEQUENCE public.commentaire_id_seq;
+
 CREATE TABLE public.commentaire (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.commentaire_id_seq'),
                 date_creation TIMESTAMP NOT NULL,
                 contenu VARCHAR(5000) NOT NULL,
                 site_id INTEGER NOT NULL,
@@ -47,6 +57,8 @@ CREATE TABLE public.commentaire (
 );
 
 
+ALTER SEQUENCE public.commentaire_id_seq OWNED BY public.commentaire.id;
+
 CREATE TABLE public.commentaire_associe (
                 commentaire_id INTEGER NOT NULL,
                 commentaire_associe_id INTEGER NOT NULL,
@@ -54,16 +66,22 @@ CREATE TABLE public.commentaire_associe (
 );
 
 
+CREATE SEQUENCE public.secteur_id_seq;
+
 CREATE TABLE public.secteur (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.secteur_id_seq'),
                 nom VARCHAR(80),
                 site_id INTEGER NOT NULL,
                 CONSTRAINT secteur_pk PRIMARY KEY (id)
 );
 
 
+ALTER SEQUENCE public.secteur_id_seq OWNED BY public.secteur.id;
+
+CREATE SEQUENCE public.voie_id_seq;
+
 CREATE TABLE public.voie (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.voie_id_seq'),
                 nom VARCHAR(80) NOT NULL,
                 hauteur NUMERIC(7,2) NOT NULL,
                 nombre_points INTEGER,
@@ -74,19 +92,27 @@ CREATE TABLE public.voie (
 );
 
 
+ALTER SEQUENCE public.voie_id_seq OWNED BY public.voie.id;
+
+CREATE SEQUENCE public.topo_id_seq;
+
 CREATE TABLE public.topo (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.topo_id_seq'),
                 nom VARCHAR(80) NOT NULL,
                 disponible BOOLEAN NOT NULL,
                 date_Retour TIMESTAMP,
                 preteur_id INTEGER NOT NULL,
-                emprunteur_id INTEGER NOT NULL,
+                emprunteur_id INTEGER,
                 CONSTRAINT topo_pk PRIMARY KEY (id)
 );
 
 
+ALTER SEQUENCE public.topo_id_seq OWNED BY public.topo.id;
+
+CREATE SEQUENCE public.site_topo_id_seq;
+
 CREATE TABLE public.site_topo (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.site_topo_id_seq'),
                 nom VARCHAR(80) NOT NULL,
                 topo_id INTEGER NOT NULL,
                 dept_id INTEGER NOT NULL,
@@ -94,13 +120,19 @@ CREATE TABLE public.site_topo (
 );
 
 
+ALTER SEQUENCE public.site_topo_id_seq OWNED BY public.site_topo.id;
+
+CREATE SEQUENCE public.secteur_topo_id_seq;
+
 CREATE TABLE public.secteur_topo (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.secteur_topo_id_seq'),
                 nom VARCHAR(80),
                 site_id INTEGER NOT NULL,
                 CONSTRAINT secteur_topo_pk PRIMARY KEY (id)
 );
 
+
+ALTER SEQUENCE public.secteur_topo_id_seq OWNED BY public.secteur_topo.id;
 
 ALTER TABLE public.site ADD CONSTRAINT compte_utilisateur_site_fk
 FOREIGN KEY (compte_utilisateur_id)
