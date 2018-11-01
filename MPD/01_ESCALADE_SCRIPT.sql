@@ -45,8 +45,10 @@ CREATE TABLE public.topo (
 
 ALTER SEQUENCE public.topo_id_seq OWNED BY public.topo.id;
 
+CREATE SEQUENCE public.site_id_seq;
+
 CREATE TABLE public.site (
-                id INTEGER NOT NULL,
+                id INTEGER NOT NULL DEFAULT nextval('public.site_id_seq'),
                 nom VARCHAR(80) NOT NULL,
                 lieu VARCHAR(300) NOT NULL,
                 description VARCHAR(1000),
@@ -57,6 +59,8 @@ CREATE TABLE public.site (
                 CONSTRAINT site_pk PRIMARY KEY (id)
 );
 
+
+ALTER SEQUENCE public.site_id_seq OWNED BY public.site.id;
 
 CREATE SEQUENCE public.commentaire_id_seq;
 

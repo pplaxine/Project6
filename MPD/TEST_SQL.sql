@@ -28,9 +28,9 @@ INSERT INTO public.cotation (id,note) VALUES (13,'6C+');
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id) VALUES ('Auban','A gauche de la forêt des pins','2018-03-01 00:00:00',2,2);
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id) VALUES ('Argent','Après la ferme des 3 cochons','2018-03-01 18:17:15',5,1);
 
-INSERT INTO public.secteur (nom,site_id) VALUES ('Zone51',3);
+INSERT INTO public.secteur (nom,site_id) VALUES ('Zone51',1);
 INSERT INTO public.secteur (nom,site_id) VALUES ('',2);
-INSERT INTO public.secteur (nom,site_id) VALUES ('Zone Interdite',3);
+INSERT INTO public.secteur (nom,site_id) VALUES ('Zone Interdite',1);
 
 INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blop',11.27,'18','3',1,1);
 INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blip',18.27,'23','4',1,2);
@@ -46,5 +46,5 @@ INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,2);
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,3);
 
-INSERT INTO public.topo (nom,disponible,date_retour,preteur_id,emprunteur_id) VALUES ('Milles est une dune', FALSE,'2018-11-03 18:00:00',1,3);
-INSERT INTO public.topo (nom,disponible,preteur_id) VALUES (E'Escale\'add', TRUE,1);
+INSERT INTO public.topo (nom,presentation,disponible, date_debut_location, date_fin_location ,preteur_id,emprunteur_id) VALUES ('Milles est une dune','Site superbe au milieu des dunes', FALSE,'2018-11-03 09:00:00','2018-11-03 18:00:00', 1,3);
+INSERT INTO public.topo (nom,presentation,disponible,preteur_id) VALUES (E'Escal\'add','Grimpez des panneaux publicitaires en plein Paris!',3);
