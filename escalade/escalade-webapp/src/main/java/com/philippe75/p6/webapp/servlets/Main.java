@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.model.bean.site.Cotation;
 
 
 
@@ -38,7 +39,10 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String message = "Transmission de variables : OK !";
+		Cotation cotation = Cotation.COTATION_9B_PLUS;
+		
+		
+		String message = "Transmission de variables : OK ! " + cotation;
 		request.setAttribute( "test", message );
 		
 		String nbreTest = " Nombre de test dans la BDD : " + managerFactory.getTestManager().getCountTest();

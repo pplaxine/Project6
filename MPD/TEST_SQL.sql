@@ -25,6 +25,7 @@ INSERT INTO public.cotation (id,note) VALUES (12,'6C');
 INSERT INTO public.cotation (id,note) VALUES (13,'6C+');
 
 
+
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id) VALUES ('Auban','A gauche de la forêt des pins','2018-03-01 00:00:00',2,2);
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id) VALUES ('Argent','Après la ferme des 3 cochons','2018-03-01 18:17:15',5,1);
 
