@@ -1,5 +1,7 @@
 BEGIN TRANSACTION;
 
+
+
 --- ===== Purge des tables
 DELETE FROM public.commentaire;
 DELETE FROM public.commentaire_associe;

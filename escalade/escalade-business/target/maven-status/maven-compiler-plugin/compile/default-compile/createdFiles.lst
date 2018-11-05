@@ -5,3 +5,5 @@ com\philippe75\p6\business\impl\ManagerFactoryImpl.class
 com\philippe75\p6\business\contract\ManagerFactory.class
 com\philippe75\p6\business\contract\impl\TestManager.class
 com\philippe75\p6\business\contract\DaoFactory.class
+com\philippe75\p6\business\contract\impl\CompteUtilisateurManager.class
+com\philippe75\p6\business\impl\manager\CompteUtilisateurManagerImpl.class

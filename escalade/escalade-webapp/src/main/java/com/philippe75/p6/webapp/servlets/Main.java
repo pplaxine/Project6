@@ -17,6 +17,8 @@ import com.philippe75.p6.model.bean.site.Cotation;
 
 
 public class Main extends HttpServlet {
+	
+	public static final String VUE_MAIN ="/WEB-INF/main.jsp";
 
 	@Inject
 	ManagerFactory managerFactory;
@@ -50,7 +52,15 @@ public class Main extends HttpServlet {
 		
 		String nbreCompteUtilisateur = Integer.toString(managerFactory.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
+		
+		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
+	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 	}

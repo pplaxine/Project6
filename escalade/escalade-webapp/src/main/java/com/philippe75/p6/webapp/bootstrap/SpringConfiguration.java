@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @Configuration
 @ComponentScan("com.philippe75.p6")
-@ImportResource("classpath*:applicationContext*.xml")
+@ImportResource({"classpath*:applicationContext*.xml","classpath*:securityContext*.xml" })
 public class SpringConfiguration {
 
 }

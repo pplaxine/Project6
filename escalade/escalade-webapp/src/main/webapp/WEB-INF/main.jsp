@@ -4,43 +4,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
         
         <meta charset="utf-8" />
    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	
-    	<c:import url="/inc/bootstrapAndJQueryImport.jsp"></c:import>
+    	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
     	
         <title>Main</title>
     </head>
     
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  			<a class="navbar-brand" href="#">Escale'add</a>
-  			
-  			<div class="collapse navbar-collapse" id="navbarNav">
-    			<ul class="navbar-nav">
-      				<li class="nav-item">
-        				<a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      				</li>
-      				<li class="nav-item">
-        				<a class="nav-link" href="#">Espace prêt de topo</a>
-     				</li>
-      				<li class="nav-item">
-        				<a class="nav-link" href="#">sign in</a>
-      				</li>
-    			</ul>
-  			</div>
-		</nav>
-	
+		<c:import url="/inc/navBar.jsp"/>
+	   
+        </br>
         
-               
+       <p>
+       	<h1>Welcome to Escale'add website !</h1>
+       	<h2>Le site qui vous permet de partager sur l'escalde</h2>
+       </p> 
+       
+        </br>
         <p>
-        </br>
-        </br>
-        </br>
-        </br>
             <% 
             
             String att1 = (String) request.getAttribute("test");
@@ -54,7 +39,7 @@
             %>
         </p>
         
-        <!-- BOOTSTRAP AND JQUERY  -->
+      
             
     </body>
 </html>

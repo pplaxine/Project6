@@ -5,10 +5,10 @@ INSERT INTO public.dept (id,nom) VALUES (4,'Alpes-de-Haute-Provence');
 INSERT INTO public.dept (id,nom) VALUES (5,'Hautes-alpes');
 
 
-INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Gallian','Laure','petitChat','lauregallian@gmail.com','test01','7');
+INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Gallian','Laure','petitChat','lauregallian@gmail.com','test01','ROLE_USER');
 
-INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Plaxine','Philippe','mdp','philippe.plaxine02@gmail.com','test02','99');
-INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Millaya','Wouf','chien','Millaya@gmail.com','test03','7');
+INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Plaxine','Philippe','mdp','philippe.plaxine02@gmail.com','test02','ROLE_ADMIN');
+INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Millaya','Wouf','chien','Millaya@gmail.com','test03','ROLE_USER');
 
 INSERT INTO public.cotation (id,note) VALUES (1,'1');
 INSERT INTO public.cotation (id,note) VALUES (2,'2');
@@ -36,16 +36,12 @@ INSERT INTO public.secteur (nom,site_id) VALUES ('Zone Interdite',1);
 INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blop',11.27,'18','3',1,1);
 INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blip',18.27,'23','4',1,2);
 
-SELECT * FROM public.secteur where site_id=(SELECT public.site.id FROM public.site WHERE site.nom='Argent');
-
-SELECT public.site.id FROM public.site WHERE site.nom='Auban';
-
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:09:18',E'Je n\'ai pas vraiment aimé ce site, je l\'ai trouvé vraiment difficile',3,2); 
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'As-tu utilisé le bon matériel ?',3,1); 
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'Oui Laure a raison, un bon matériel est essentiel',3,3); 
+INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:09:18',E'Je n\'ai pas vraiment aimé ce site, je l\'ai trouvé vraiment difficile',1,2); 
+INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'As-tu utilisé le bon matériel ?',2,1); 
+INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'Oui Laure a raison, un bon matériel est essentiel',1,3); 
 
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,2);
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,3);
 
 INSERT INTO public.topo (nom,presentation,disponible, date_debut_location, date_fin_location ,preteur_id,emprunteur_id) VALUES ('Milles est une dune','Site superbe au milieu des dunes', FALSE,'2018-11-03 09:00:00','2018-11-03 18:00:00', 1,3);
-INSERT INTO public.topo (nom,presentation,disponible,preteur_id) VALUES (E'Escal\'add','Grimpez des panneaux publicitaires en plein Paris!',3);
+INSERT INTO public.topo (nom,presentation,disponible,preteur_id) VALUES (E'Escal\'add','Grimpez des panneaux publicitaires en plein Paris!',TRUE,3);

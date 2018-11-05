@@ -9,6 +9,7 @@ public class CompteUtilisateur {
 	private String pseudo;
 	private String email;
 	private String mdp;
+	private String role;
 	
 	
 	public int getId() {
@@ -47,6 +48,14 @@ public class CompteUtilisateur {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	
 	
 	
 }

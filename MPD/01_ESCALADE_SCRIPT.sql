@@ -7,7 +7,7 @@ CREATE TABLE public.compte_utilisateur (
                 pseudo VARCHAR(50) NOT NULL,
                 email VARCHAR(50) NOT NULL,
                 mdp VARCHAR NOT NULL,
-                acces NUMERIC(2) NOT NULL,
+                acces VARCHAR NOT NULL,
                 CONSTRAINT compte_utilisateur_pk PRIMARY KEY (id)
 );
 

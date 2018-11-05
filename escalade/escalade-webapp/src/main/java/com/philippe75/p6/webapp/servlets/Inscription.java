@@ -11,16 +11,16 @@ import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 public class Inscription extends HttpServlet {
 	
-	public static final String VUE_INSCRIPTION_FORM ="/WEB-INF/inscriptionPage.jsp";
+	public static final String VUE_INSCRIPTION_FORM ="/WEB-INF/inscription.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION_FORM).forward(request, response);
 	}
 
-
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		//récupération des info du formulaire
 		String nom = request.getParameter("nomCompteUtilisateur");
@@ -37,7 +37,7 @@ public class Inscription extends HttpServlet {
 		cu.setPseudo(pseudo);
 		cu.setEmail(email);
 		cu.setMdp(mdp);
-		
+		cu.setRole("ROLE_USER");
 		
 		//----------------------------------------------------------------------
 		String resultat; 
