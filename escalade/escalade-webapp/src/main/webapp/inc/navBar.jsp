@@ -36,7 +36,8 @@
       			<c:when test="${authenticatedVar}">
 					<li class="nav-item ">
 			      		<p class="navbar-text">
-			      			Vous êtes connecté en tant que <span class="text-warning"><sec:authentication property="name"/></span> >
+			      			<sec:authentication property="name" var="authVar"/>
+			      			<c:if test="${authVar != null }"> Vous êtes connecté en tant que  <span class="text-warning">${authVar }</span> </c:if>
 			      			
 			      			<a id="logout" href="#">Logout</a>
 			      		</p>

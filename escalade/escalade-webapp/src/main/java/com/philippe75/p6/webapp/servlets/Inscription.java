@@ -1,17 +1,37 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
 public class Inscription extends HttpServlet {
 	
 	public static final String VUE_INSCRIPTION_FORM ="/WEB-INF/inscription.jsp";
+	public static final String VUE_INSCRIPTION_SUCCES = "/WEB-INF/main.jsp";
+	
+	@Inject
+	CompteUtilisateurDao compteUtilisteurDao;
+
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -21,6 +41,8 @@ public class Inscription extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		
 		//récupération des info du formulaire
 		String nom = request.getParameter("nomCompteUtilisateur");
@@ -37,22 +59,31 @@ public class Inscription extends HttpServlet {
 		cu.setPseudo(pseudo);
 		cu.setEmail(email);
 		cu.setMdp(mdp);
-		cu.setRole("ROLE_USER");
+		cu.setAcces("ROLE_USER");
 		
 		//----------------------------------------------------------------------
 		String resultat; 
 		if (mdp.trim() !="" && mdp.equals(mdpConf)) {
-			resultat="enregistrement effectué avec succès";
+			
+			compteUtilisteurDao.createCompteUtilisateur(cu);
+			
+			Authentication auth = new UsernamePasswordAuthenticationToken(cu, cu.getMdp(), cu.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(auth);
+			
+		
+			this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION_SUCCES).forward(request, response);
+			
+			
 		}else {
 			resultat="Les champs n'ont pas été correctement remplis";
-		}
+		
 		//-------------------------------------------------------------------------
 		
 		request.setAttribute("cu", cu);
 		request.setAttribute("resultat", resultat);
 			
 		this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION_FORM).forward(request, response);
-		
+		}
 		
 	}
 	

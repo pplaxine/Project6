@@ -1,6 +1,13 @@
 package com.philippe75.p6.model.bean.utilisateur;
 
-public class CompteUtilisateur {
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class CompteUtilisateur implements UserDetails{
 	
 	private int id;
 	
@@ -9,7 +16,9 @@ public class CompteUtilisateur {
 	private String pseudo;
 	private String email;
 	private String mdp;
-	private String role;
+	private String acces;
+	
+	
 	
 	
 	public int getId() {
@@ -48,12 +57,44 @@ public class CompteUtilisateur {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	public String getRole() {
-		return role;
+	public String getAcces() {
+		return acces;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setAcces(String acces) {
+		this.acces = acces;
 	}
+	
+	
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return AuthorityUtils.createAuthorityList(this.acces);
+	}
+	@Override
+	public String getPassword() {
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		return null;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	
 
 	
 	

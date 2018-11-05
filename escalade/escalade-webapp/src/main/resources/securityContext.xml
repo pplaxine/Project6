@@ -18,17 +18,12 @@
     	
     	<security:logout logout-url="/logout" logout-success-url="/main?logout=true" />
     	
-    	<security:intercept-url pattern="/pret/*" access="ROLE_1"/>
-    	<security:intercept-url pattern="/apropos/*" access="ROLE_99"/>
+    	<security:intercept-url pattern="/#" access="ROLE_ADMIN"/>
+    	<security:intercept-url pattern="/pret/*" access="ROLE_USER, ROLE_ADMIN"/>
     </security:http>
     
     <security:authentication-manager>
-    	<security:authentication-provider>
-    		<security:user-service>
-    			<security:user name="philippe" password="mdp" authorities="ROLE_1"/>
-    			<security:user name="admin" password="admin" authorities="ROLE_1,ROLE_99"/>
-    		</security:user-service>
-    	</security:authentication-provider>
+    	<security:authentication-provider  user-service-ref="customUserDetailService"  />
     </security:authentication-manager> 
         
 </beans>
