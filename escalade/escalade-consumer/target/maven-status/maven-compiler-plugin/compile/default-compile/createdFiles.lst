@@ -1,4 +1,5 @@
 com\philippe75\p6\consumer\contract\dao\TestDao.class
+com\philippe75\p6\consumer\impl\rowmapper\compteUtilisateur\CompteUtilisateurRM.class
 com\philippe75\p6\consumer\impl\dao\TestDaoImpl$1.class
 com\philippe75\p6\consumer\impl\dao\AbstractDaoImpl.class
 com\philippe75\p6\consumer\impl\dao\CompteUtilisateurDaoImpl.class

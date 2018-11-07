@@ -2,6 +2,7 @@ package com.philippe75.p6.consumer.impl.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -31,19 +32,20 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 		return jT.queryForObject(sQl, Integer.class);
 	}
 
+	
 	@Override
 	public int createCompteUtilisateur(CompteUtilisateur compteUtilisateur) {
 		
-		String sQL = "BEGIN TRANSACTION; INSERT INTO compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES (:nom, :prenom, :pseudo, :email, :mdp, :acces); COMMIT";
+		String sQL = " INSERT INTO compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES (:nom, :prenom, :pseudo, :email, :mdp, :acces); COMMIT";
 			
 			SqlParameterSource sPS = new BeanPropertySqlParameterSource(compteUtilisateur);
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			return nPJT.update(sQL, sPS); // update renvoie le nombre de ligne affectée par la requête 
 	}
 
+	
 	@Override
 	public CompteUtilisateur findCompteUtilisateur(String pseudo) {
-		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
 		
 			String sQL = "SELECT * FROM public.compte_utilisateur WHERE pseudo=:pseudo";
 			
@@ -58,12 +60,17 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 			RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
 			
 			return nPJT.queryForObject(sQL, mSPS, rm);
-			
-		
 	}
-	
-	
-	
-	
+
+
+	@Override
+	public List<CompteUtilisateur> getAllCompteUtilisateur() {
+		String sQL = "SELECT * FROM public.compte_utilisateur";
+		JdbcTemplate jT = new JdbcTemplate(getDataSource());
+		RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
+		List<CompteUtilisateur> listCompteUtilisateur = jT.query(sQL, rm);
+		
+		return listCompteUtilisateur;
+	}
 
 }

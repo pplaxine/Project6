@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
@@ -24,7 +26,7 @@ public class Inscription extends HttpServlet {
 	public static final String VUE_INSCRIPTION_SUCCES = "/WEB-INF/main.jsp";
 	
 	@Inject
-	CompteUtilisateurDao compteUtilisteurDao;
+	ManagerFactory managerFactory;
 
 	
 	@Override
@@ -42,45 +44,21 @@ public class Inscription extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		CompteUtilisateurManager cum = managerFactory.getCompteUtilisateurManager();
+		CompteUtilisateur compteUtilisateur = cum.creerNouveauCompte(request);
 		
-		
-		//récupération des info du formulaire
-		String nom = request.getParameter("nomCompteUtilisateur");
-		String prenom = request.getParameter("prenomCompteUtilisateur");
-		String pseudo = request.getParameter("pseudoCompteUtilisateur");
-		String email = request.getParameter("emailCompteUtilisateur");
-		String mdp = request.getParameter("mdpCompteUtilisateur");
-		String mdpConf = request.getParameter("mdpCompteUtilisateurConf");
-		
-		//création du bean 
-		CompteUtilisateur cu = new CompteUtilisateur();
-		cu.setNom(nom);
-		cu.setPrenom(prenom);
-		cu.setPseudo(pseudo);
-		cu.setEmail(email);
-		cu.setMdp(mdp);
-		cu.setAcces("ROLE_USER");
-		
-		//----------------------------------------------------------------------
-		String resultat; 
-		if (mdp.trim() !="" && mdp.equals(mdpConf)) {
-			
-			compteUtilisteurDao.createCompteUtilisateur(cu);
-			
-			Authentication auth = new UsernamePasswordAuthenticationToken(cu, cu.getMdp(), cu.getAuthorities());
+		if (cum.getErreurs().isEmpty()) {
+
+			//authentification 
+			Authentication auth = new UsernamePasswordAuthenticationToken(compteUtilisateur, compteUtilisateur.getMdp(), compteUtilisateur.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			
-		
-			this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION_SUCCES).forward(request, response);
-			
-			
+			response.sendRedirect(request.getContextPath() + "/");
+
 		}else {
-			resultat="Les champs n'ont pas été correctement remplis";
 		
-		//-------------------------------------------------------------------------
-		
-		request.setAttribute("cu", cu);
-		request.setAttribute("resultat", resultat);
+		request.setAttribute("cu", compteUtilisateur);
+		request.setAttribute("cum", cum);
 			
 		this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION_FORM).forward(request, response);
 		}

@@ -1,4 +1,5 @@
 com\philippe75\p6\business\impl\manager\AbstractManager.class
+com\philippe75\p6\business\exception\FormValidationException.class
 com\philippe75\p6\business\impl\manager\TestManagerImpl.class
 com\philippe75\p6\business\impl\DaoFactoryImpl.class
 com\philippe75\p6\business\impl\ManagerFactoryImpl.class

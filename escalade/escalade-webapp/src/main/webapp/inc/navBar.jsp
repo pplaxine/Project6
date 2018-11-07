@@ -12,7 +12,7 @@
        			<a class="nav-link" href="<c:url value="/" />">Home<span class="sr-only">(current)</span></a>
      		</li>
      		<li class="nav-item">
-      			<a class="nav-link" href="<c:url value="#" />">Ajout de site</a>
+      			<a class="nav-link" href="<c:url value="/sites/" />">Sites</a>
      		</li>
       		<li class="nav-item">
       			<a class="nav-link" href="<c:url value="/pret/" />">Espace prêt de topo</a>
@@ -29,15 +29,19 @@
         				<a class="nav-link" href="<c:url value="/login" />">Sign in</a>
       				</li>
       			</c:when>
+      			<c:otherwise>
+      				<li class="nav-item">
+        				<a class="nav-link" href="<c:url value="#" />">Votre espace personnel</a>
+      				</li>
+      			</c:otherwise>
       		</c:choose>
     	</ul>
     	<ul class="navbar-nav ml-auto ">
-    		<c:choose>
-      			<c:when test="${authenticatedVar}">
+      			<c:if test="${authenticatedVar}">
 					<li class="nav-item ">
 			      		<p class="navbar-text">
 			      			<sec:authentication property="name" var="authVar"/>
-			      			<c:if test="${authVar != null }"> Vous êtes connecté en tant que  <span class="text-warning">${authVar }</span> </c:if>
+			      			<c:if test="${authVar != null}"> Vous êtes connecté en tant que  <span class="text-warning">${authVar}</span> </c:if>
 			      			
 			      			<a id="logout" href="#">Logout</a>
 			      		</p>
@@ -48,8 +52,7 @@
 			      			<sec:csrfInput/>
 			      		</form>
       				</li>
-      			</c:when>
-      		</c:choose>
+      			</c:if>
       		<!-- param /main?logout=true passé lors du logout -->
       		<c:if test="${param.logout != null }">
 				<p class="text-success">You have successfully been logged out.</p>

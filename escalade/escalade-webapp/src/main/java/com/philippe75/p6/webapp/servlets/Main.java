@@ -23,10 +23,6 @@ public class Main extends HttpServlet {
 	@Inject
 	ManagerFactory managerFactory;
 	
-	public void setManagerFactory(ManagerFactory managerFactory) {
-		this.managerFactory = managerFactory;
-	}
-
 	//----------------------------------------------------------------------------
 	
 	@Override
@@ -41,15 +37,6 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Cotation cotation = Cotation.COTATION_9B_PLUS;
-		
-		
-		String message = "Transmission de variables : OK ! " + cotation;
-		request.setAttribute( "test", message );
-		
-		String nbreTest = " Nombre de test dans la BDD : " + managerFactory.getTestManager().getCountTest();
-		request.setAttribute( "nbreTest", nbreTest );
-		
 		String nbreCompteUtilisateur = Integer.toString(managerFactory.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
 		
@@ -58,11 +45,7 @@ public class Main extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-	
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 
 	

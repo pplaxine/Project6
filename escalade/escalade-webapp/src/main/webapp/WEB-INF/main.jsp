@@ -21,25 +21,13 @@
         
        <p>
        	<h1>Welcome to Escale'add website !</h1>
-       	<h2>Le site qui vous permet de partager sur l'escalde</h2>
+       	<h2>Le site qui vous permet de partager sur l'escalade</h2>
        </p> 
        
         </br>
         <p>
-            <% 
-            
-            String att1 = (String) request.getAttribute("test");
-            String att2 = (String) request.getAttribute("nbreTest");
-            String att3 = (String) request.getAttribute("nbreCompteUtilisateur");
-            
-            out.println( att1 + " "+ att2 + ". Nombre de compte utilisateur en BDD : " + att3 );
-            
-            
-            
-            %>
+        	Nombre de compte utilisateur en BDD : ${nbreCompteUtilisateur}
         </p>
         
-      
-            
     </body>
 </html>
