@@ -1,11 +1,13 @@
 package com.philippe75.p6.model.bean.site;
 
+import java.util.List;
+
 public class Secteur {
 	
 	private int id;
 	
 	private String nom;
-	private Voie voie;
+	private List<Voie> voie;
 	
 	
 	public int getId() {
@@ -20,10 +22,10 @@ public class Secteur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Voie getVoie() {
+	public List<Voie> getVoie() {
 		return voie;
 	}
-	public void setVoie(Voie voie) {
+	public void setVoie(List<Voie> voie) {
 		this.voie = voie;
 	}
 

@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
-import com.philippe75.p6.consumer.impl.rowmapper.compteUtilisateur.CompteUtilisateurRM;
+import com.philippe75.p6.consumer.impl.rowmapper.CompteUtilisateurRM;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("compteUtilisateurDao")

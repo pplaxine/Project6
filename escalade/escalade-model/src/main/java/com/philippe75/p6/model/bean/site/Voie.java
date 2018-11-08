@@ -7,6 +7,7 @@ public class Voie {
 	private String nom; 
 	private long hauteur;
 	private int nombrePoints;
+	private int nombreLongueur;
 	private Cotation cotation;
 	
 	public int getId() {
@@ -35,6 +36,12 @@ public class Voie {
 	}
 	public Cotation getCotation() {
 		return cotation;
+	}
+	public int getNombreLongueur() {
+		return nombreLongueur;
+	}
+	public void setNombreLongueur(int nombreLongueur) {
+		this.nombreLongueur = nombreLongueur;
 	}
 	public void setCotation(Cotation cotation) {
 		this.cotation = cotation;

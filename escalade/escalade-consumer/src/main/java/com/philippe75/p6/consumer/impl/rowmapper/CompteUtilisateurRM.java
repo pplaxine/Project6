@@ -1,4 +1,4 @@
-package com.philippe75.p6.consumer.impl.rowmapper.compteUtilisateur;
+package com.philippe75.p6.consumer.impl.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

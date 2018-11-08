@@ -38,7 +38,8 @@ public enum Cotation {
 	Cotation(String cotation){
 		this.cotation=cotation;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return cotation;

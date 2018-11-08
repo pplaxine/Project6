@@ -18,7 +18,15 @@ import com.philippe75.p6.model.bean.site.Cotation;
 
 public class Sites extends HttpServlet {
 	
+	
+	
 	public static final String VUE_MAIN ="/WEB-INF/sites.jsp";
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

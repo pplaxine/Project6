@@ -27,6 +27,31 @@
         </br>
         <p>
         	Nombre de compte utilisateur en BDD : ${nbreCompteUtilisateur}
+        	Nom de la voie : ${voie.nom}. Nombre de longueurs ${ voie.nombreLongueur }
+        </p>
+        <p>
+        	<c:forEach items="${voies}" var="voieVar">
+        		<c:out value="${voieVar.nom}"></c:out>
+        	</c:forEach>
+        </p>
+        <p>
+        		Nom du secteur : <c:out value="${secteur.nom }"></c:out>
+        		<p>
+        		Nom des voies :
+        		<ul>
+        			<c:forEach items="${secteur.voie}" var="voieVar2">
+        				<li>
+        				 <c:out value="${voieVar2.nom}"/>
+        				 	<ul>
+        				 		<li>${voieVar2.hauteur}</li>
+        				 		<li>${voieVar2.nombrePoints}</li>
+        				 		<li>${voieVar2.nombreLongueur}</li>
+        				 		<li>${voieVar2.cotation}</li>
+        				 	</ul>
+        				</li>
+        			</c:forEach>
+        		</ul>
+        		</p>
         </p>
         
     </body>
