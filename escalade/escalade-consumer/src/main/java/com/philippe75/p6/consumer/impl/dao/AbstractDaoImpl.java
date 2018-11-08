@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDaoImpl {
 	
-	
 	private static DataSource dataSource;
 	
 	public DataSource getDataSource() {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.model.bean.site.Cotation;
 
 

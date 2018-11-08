@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.philippe75.p6.business.contract.DaoFactory;
-import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.business.contract.ManagerHandler;
+import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 import com.philippe75.p6.model.bean.site.Cotation;
@@ -27,7 +27,7 @@ public class Main extends HttpServlet {
 	public static final String VUE_MAIN ="/WEB-INF/main.jsp";
 
 	@Inject
-	ManagerFactory managerFactory;
+	ManagerHandler managerHandler;
 	
 	@Inject
 	VoieDao voieDao;
@@ -49,7 +49,7 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nbreCompteUtilisateur = Integer.toString(managerFactory.getCompteUtilisateurManager().getCountCompteUtilisateur());
+		String nbreCompteUtilisateur = Integer.toString(managerHandler.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
 		
 		

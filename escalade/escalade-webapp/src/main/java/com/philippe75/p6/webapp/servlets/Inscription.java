@@ -14,7 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
@@ -26,7 +26,7 @@ public class Inscription extends HttpServlet {
 	public static final String VUE_INSCRIPTION_SUCCES = "/WEB-INF/main.jsp";
 	
 	@Inject
-	ManagerFactory managerFactory;
+	ManagerHandler managerFactory;
 
 	
 	@Override

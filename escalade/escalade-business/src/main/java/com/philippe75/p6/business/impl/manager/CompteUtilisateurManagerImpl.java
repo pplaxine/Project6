@@ -35,12 +35,12 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 
 	@Override
 	public int getCountCompteUtilisateur() {
-		return getDaoFactory().getCompteUtilisateurDao().getCountCompteUtilisateur();
+		return getDaoHandler().getCompteUtilisateurDao().getCountCompteUtilisateur();
 	}
 
 	@Override
 	public CompteUtilisateur findCompteUtilisteurByUserPseudo(String pseudo) {	
-		return getDaoFactory().getCompteUtilisateurDao().findCompteUtilisateur(pseudo);
+		return getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(pseudo);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 		CompteUtilisateur compteUtilisateur = new CompteUtilisateur();
 	
 		//récupération des info du formulaire
-		String nom = getValeurChamp(CHAMP_NOM, request); 
-		String prenom = getValeurChamp(CHAMP_PRENOM, request);
+		String nom = capitaliser(getValeurChamp(CHAMP_NOM, request)); 
+		String prenom = capitaliser(getValeurChamp(CHAMP_PRENOM, request));
 		String pseudo = getValeurChamp(CHAMP_PSEUDO, request);
 		String email = getValeurChamp(CHAMP_EMAIL, request);
 		String mdp = getValeurChamp(CHAMP_MDP, request);
@@ -67,7 +67,7 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 		compteUtilisateur.setAcces("ROLE_USER");
 		
 		if(erreurs.isEmpty()) {
-			int succes = getDaoFactory().getCompteUtilisateurDao().createCompteUtilisateur(compteUtilisateur);
+			int succes = getDaoHandler().getCompteUtilisateurDao().createCompteUtilisateur(compteUtilisateur);
 			if(succes > 0) {
 				result ="Inscription réalisée avec succès";  
 			}else {
@@ -153,8 +153,8 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 	
 	private void validationPseudo(String pseudo) throws FormValidationException{
 		if(pseudo != null ) {
-			for (CompteUtilisateur compteUtilisateur : getDaoFactory().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
-				if(compteUtilisateur.getPseudo().equals(pseudo)) {
+			for (CompteUtilisateur compteUtilisateur : getDaoHandler().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
+				if(compteUtilisateur.getPseudo().toLowerCase().equals(pseudo.toLowerCase())) {
 					throw new FormValidationException("Ce pseudonyme est déjà utilisé par un autre utilisateur.");
 				}
 			}
@@ -165,7 +165,7 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 	
 	private void validationEmail(String email) throws FormValidationException{
 		if(email != null ) {
-			for (CompteUtilisateur compteUtilisateur : getDaoFactory().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
+			for (CompteUtilisateur compteUtilisateur : getDaoHandler().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
 				if(compteUtilisateur.getEmail().equals(email)) {
 					throw new FormValidationException("Cet adresse email est déjà rattaché à un compte utilisateur.");
 				}
@@ -200,5 +200,10 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 
 	private void setErreur(String nomChamp, String erreurMessage) {
 		erreurs.put(nomChamp, erreurMessage);
+	}
+	
+	private String capitaliser(String str) {
+		String cap = str.substring(0,1).toUpperCase() + str.substring(1);
+		return cap;
 	}
 }

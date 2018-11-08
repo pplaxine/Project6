@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.philippe75.p6.business.contract.ManagerFactory;
+import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
@@ -17,7 +17,7 @@ import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 public class CustomUserDetailService implements UserDetailsService {
 
 	@Inject
-	private ManagerFactory managerFactory;
+	private ManagerHandler managerFactory;
 	
 	@Override
 	public UserDetails loadUserByUsername(String pseudo) throws UsernameNotFoundException {
