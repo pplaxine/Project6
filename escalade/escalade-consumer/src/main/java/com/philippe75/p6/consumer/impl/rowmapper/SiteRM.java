@@ -19,7 +19,6 @@ public class SiteRM implements RowMapper<Site> {
 		site.setLieu(rs.getString("lieu"));
 		site.setDescription(rs.getString("description"));
 		site.setDateCreation(rs.getDate("date_creation"));
-		site.setDept(Dept.ALLIER);
 		
 		return site;
 	}

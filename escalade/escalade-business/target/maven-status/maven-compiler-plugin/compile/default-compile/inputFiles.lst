@@ -1,10 +1,8 @@
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\impl\TestManager.java
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\ManagerFactory.java
+C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\ManagerHandler.java
 C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\impl\CompteUtilisateurManager.java
 C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\manager\AbstractManager.java
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\DaoFactoryImpl.java
 C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\exception\FormValidationException.java
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\manager\TestManagerImpl.java
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\ManagerFactoryImpl.java
+C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\manager\SiteManagerImpl.java
+C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\ManagerHandlerImpl.java
 C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\impl\manager\CompteUtilisateurManagerImpl.java
-C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\DaoFactory.java
+C:\Users\Windows\Desktop\P6\escaladeGit\escalade\escalade-business\src\main\java\com\philippe75\p6\business\contract\impl\SiteManager.java

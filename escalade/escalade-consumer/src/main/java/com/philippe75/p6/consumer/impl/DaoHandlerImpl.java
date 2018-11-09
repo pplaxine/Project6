@@ -6,9 +6,11 @@ import javax.inject.Named;
 import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.consumer.contract.dao.CotationDao;
+import com.philippe75.p6.consumer.contract.dao.DeptDao;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
+import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 
 @Named("daoHandler")
@@ -28,6 +30,9 @@ public class DaoHandlerImpl implements DaoHandler{
 	
 	@Inject
 	private CotationDao cotationDao;
+	
+	@Inject
+	private DeptDao deptDao;
 	
 
 	@Override
@@ -54,7 +59,11 @@ public class DaoHandlerImpl implements DaoHandler{
 	public CotationDao getCotationDao() {
 		return cotationDao;
 	}
-	
+
+	@Override
+	public DeptDao getDeptDao() {
+		return deptDao;
+	}
 	
 
 		

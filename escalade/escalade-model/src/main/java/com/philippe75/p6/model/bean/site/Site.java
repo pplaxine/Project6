@@ -11,10 +11,10 @@ public class Site {
 	private int id;
 	
 	private String nom;
+	private Dept dept;
 	private String lieu;
 	private String description;
 	private Date dateCreation;
-	private Dept dept;
 	private List<Secteur> secteurs;
 	
 	

@@ -41,9 +41,9 @@
 						
 						
 						<tr>
-							<td><a href="#">${allSitesVar.nom}</a></td>
-							<td>${allSitesVar.dept}</td>
-							<td>${allSitesVar.lieu}</td>
+							<td><a href="/escalade-webapp/sites/site?site_id=${allSitesVar.id}"><c:out value=" ${allSitesVar.nom}"/></a></td>
+							<td><c:out value="${allSitesVar.dept}"/></td>
+							<td><c:out value="${allSitesVar.lieu}"/></td>
 							<td>
 								<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
 									<c:set var="secteurCounter" value="${ allSecteursVS.count }"/>
@@ -58,6 +58,8 @@
 								</c:forEach>
 								<c:out value="${voieCounter}"/>
 							</td>
+							
+						
 						</tr>
 					</c:forEach>
 				</tbody>      		

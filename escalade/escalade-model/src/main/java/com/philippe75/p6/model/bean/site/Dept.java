@@ -42,7 +42,7 @@ public enum Dept {
 	ISERE("38 Isère");
 	
 	
-	String dept="";
+	private String dept="";
 	
 	Dept(String dept){
 		this.dept = dept;

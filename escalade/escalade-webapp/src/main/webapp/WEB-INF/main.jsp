@@ -40,14 +40,14 @@
         	<c:forEach items="${allSites}" var="allSitesVar" >
 		        <div>
 		        	Nom du site : <c:out value="${ allSitesVar.nom }"/></br>
-		        	Lieu : <c:out value="${ site.lieu }"/></br>
-		        	<c:if test="${ site.description != null }">
-		        		Description : <c:out value="${ site.description }"/></br>
+		        	Département : <c:out value="${ allSitesVar.dept }"/></br>
+		        	Lieu : <c:out value="${ allSitesVar.lieu }"/></br>
+		        	<c:if test="${ allSitesVar.description != null }">
+		        		Description : <c:out value="${ allSitesVar.description }"/></br>
 		        	</c:if>
-		        	Département : <c:out value="${ site.dept }"/></br>
-		        	Date de création : <c:out value="${ site.dateCreation }"/>
+		        	Date de création : <c:out value="${ allSitesVar.dateCreation }"/>
 		        	<div>
-		        		<c:forEach items="${site.secteurs}" var="secteursVar">
+		        		<c:forEach items="${allSitesVar.secteurs}" var="secteursVar">
 					        <ul>
 					       		<li>
 					    			Secteur : <c:out value="${secteursVar.nom}"/>
@@ -75,9 +75,9 @@
 					        	</li>
 					        </ul>
 				        </c:forEach>
-					</div>    
+					</div> 
+	
 		        </div>
-		        
         	</c:forEach>  
         
         </p>

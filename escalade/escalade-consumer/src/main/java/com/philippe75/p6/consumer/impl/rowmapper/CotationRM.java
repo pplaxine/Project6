@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.philippe75.p6.model.bean.site.Cotation;
-import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.site.Voie;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 public class CotationRM implements RowMapper<Cotation> {
 	
@@ -15,6 +12,7 @@ public class CotationRM implements RowMapper<Cotation> {
 	public Cotation mapRow(ResultSet rs, int rn) throws SQLException {		
 		
 		Cotation cotation = Cotation.valueOf(rs.getString("note"));
+		
 		
 		//String str = cotation.name();	<-- memo pour les entrées en bdd 
 		

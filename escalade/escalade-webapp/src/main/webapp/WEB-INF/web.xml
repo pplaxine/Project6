@@ -32,6 +32,10 @@
     <servlet-name>Sites</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.Sites</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SiteSolo</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.SiteSolo</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
@@ -57,6 +61,12 @@
     <servlet-name>Sites</servlet-name>
     <url-pattern>/sites/</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SiteSolo</servlet-name>
+    <url-pattern>/sites/site</url-pattern>
+  </servlet-mapping>
+  
+  
   <display-name>Escalade</display-name>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

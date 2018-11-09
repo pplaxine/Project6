@@ -212,11 +212,11 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 /*DATA INJECTION*/
-INSERT INTO public.dept (id,nom) VALUES (1,'Ain');
-INSERT INTO public.dept (id,nom) VALUES (2,'Aines');
-INSERT INTO public.dept (id,nom) VALUES (3,'Allier');
-INSERT INTO public.dept (id,nom) VALUES (4,'Alpes-de-Haute-Provence');
-INSERT INTO public.dept (id,nom) VALUES (5,'Hautes-alpes');
+INSERT INTO public.dept (id,nom) VALUES (1,'AIN');
+INSERT INTO public.dept (id,nom) VALUES (2,'AISNE');
+INSERT INTO public.dept (id,nom) VALUES (3,'ALLIER');
+INSERT INTO public.dept (id,nom) VALUES (4,'ALPES_DE_HAUTE_PROVENCE'); 
+INSERT INTO public.dept (id,nom) VALUES (5,'HAUTES_ALPES');	
 
 
 INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Gallian','Laure','petitChat','lauregallian@gmail.com','test01','ROLE_USER');
