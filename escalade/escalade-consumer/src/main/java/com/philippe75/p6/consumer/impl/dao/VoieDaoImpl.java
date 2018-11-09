@@ -22,7 +22,10 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		
 		RowMapper<Voie> rm = new VoieRM();
 		
-		return (Voie)jT.queryForObject(sQL, new Object[] {id}, rm);
+		Voie voie = (Voie)jT.queryForObject(sQL, new Object[] {id}, rm);
+		voie.setCotation(getDaoHandler().getCotationDao().findCotation(id) );
+		
+		return voie;
 	}
 
 	@Override
@@ -34,7 +37,11 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		
 		RowMapper<Voie> rm = new VoieRM();		
 		
-		List<Voie> listVoie = (List<Voie>)jT.query(sQL, new Object[] {secteur_id}, rm);	
+		List<Voie> listVoie = (List<Voie>)jT.query(sQL, new Object[] {secteur_id}, rm);
+		for (Voie voie : listVoie) {
+			voie.setCotation(getDaoHandler().getCotationDao().findCotation(voie.getId()));
+		}
+		
 		return listVoie;
 	
 	}

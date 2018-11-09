@@ -1,6 +1,7 @@
 package com.philippe75.p6.model.bean.site;
 
 import java.util.Date;
+import java.util.List;
 
 import com.philippe75.p6.model.bean.topo.Topo;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
@@ -14,7 +15,7 @@ public class Site {
 	private String description;
 	private Date dateCreation;
 	private Dept dept;
-	private Secteur secteur;
+	private List<Secteur> secteurs;
 	
 	
 	public int getId() {
@@ -53,12 +54,11 @@ public class Site {
 	public void setDept(Dept dept) {
 		this.dept = dept;
 	}
-	public Secteur getSecteur() {
-		return secteur;
+	public List<Secteur> getSecteurs() {
+		return secteurs;
 	}
-	public void setSecteur(Secteur secteur) {
-		this.secteur = secteur;
+	public void setSecteurs(List<Secteur> secteurs) {
+		this.secteurs = secteurs;
 	}
-
 
 }

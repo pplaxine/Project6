@@ -21,10 +21,47 @@
         
        	<p>
 			<h3>Espace sites</h3>
-       	</p>
-      	<div class="container">
 			
-		
+       	</p>
+       	
+      	<div class="container">
+      		<table class="table table-dark ">
+				<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Département</th>
+						<th scope="col">Lieu</th>
+						<th scope="col">Nombre de secteurs</th>
+						<th scope="col">Nombre de voies</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<c:forEach items="${allSites}" var="allSitesVar">
+						
+						
+						<tr>
+							<td><a href="#">${allSitesVar.nom}</a></td>
+							<td>${allSitesVar.dept}</td>
+							<td>${allSitesVar.lieu}</td>
+							<td>
+								<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+									<c:set var="secteurCounter" value="${ allSecteursVS.count }"/>
+								</c:forEach>
+								<c:out value="${secteurCounter}"/>
+							</td>
+							<td>
+								<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+									<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
+										<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+									</c:forEach>
+								</c:forEach>
+								<c:out value="${voieCounter}"/>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>      		
+      		</table>
 		</div>
 		
     </body>

@@ -32,7 +32,7 @@ ALTER SEQUENCE public.compte_utilisateur_id_seq OWNED BY public.compte_utilisate
 
 CREATE TABLE public.cotation (
                 id INTEGER NOT NULL,
-                note VARCHAR(3) NOT NULL,
+                note VARCHAR(30) NOT NULL,
                 CONSTRAINT cotation_pk PRIMARY KEY (id)
 );
 
@@ -224,11 +224,11 @@ INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES
 INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Plaxine','Philippe','mdp','philippe.plaxine02@gmail.com','test02','ROLE_ADMIN');
 INSERT INTO public.compte_utilisateur (nom,prenom,pseudo,email,mdp,acces) VALUES ('Millaya','Wouf','chien','Millaya@gmail.com','test03','ROLE_USER');
 
-INSERT INTO public.cotation (id,note) VALUES (1,'1');
-INSERT INTO public.cotation (id,note) VALUES (2,'2');
-INSERT INTO public.cotation (id,note) VALUES (3,'3');
-INSERT INTO public.cotation (id,note) VALUES (4,'4');
-INSERT INTO public.cotation (id,note) VALUES (5,'5A');
+INSERT INTO public.cotation (id,note) VALUES (1,'COTATION_1');
+INSERT INTO public.cotation (id,note) VALUES (2,'COTATION_2');
+INSERT INTO public.cotation (id,note) VALUES (3,'COTATION_3');
+INSERT INTO public.cotation (id,note) VALUES (4,'COTATION_4');
+INSERT INTO public.cotation (id,note) VALUES (5,'COTATION_5');
 INSERT INTO public.cotation (id,note) VALUES (6,'5B');
 INSERT INTO public.cotation (id,note) VALUES (7,'5C');
 INSERT INTO public.cotation (id,note) VALUES (8,'6A');
@@ -247,8 +247,9 @@ INSERT INTO public.secteur (nom,site_id) VALUES ('Zone51',1);
 INSERT INTO public.secteur (nom,site_id) VALUES ('',2);
 INSERT INTO public.secteur (nom,site_id) VALUES ('Zone Interdite',1);
 
-INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blop',11.27,'18','3',1,1);
-INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blip',18.27,'23','4',1,2);
+INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blop',11.27,'18','3',3,1);
+INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blip',18.27,'23','4',4,2);
+INSERT INTO public.voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id,secteur_id) VALUES ('Blap',17.46,'14','2',2,1);
 
 SELECT * FROM public.secteur where site_id=(SELECT public.site.id FROM public.site WHERE site.nom='Argent');
 

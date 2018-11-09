@@ -15,9 +15,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
+import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Secteur;
+import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
 
 
@@ -30,10 +32,8 @@ public class Main extends HttpServlet {
 	ManagerHandler managerHandler;
 	
 	@Inject
-	VoieDao voieDao;
+	SiteDao siteDao;
 	
-	@Inject
-	SecteurDao secteurDao;
 	
 	//----------------------------------------------------------------------------
 	
@@ -52,16 +52,14 @@ public class Main extends HttpServlet {
 		String nbreCompteUtilisateur = Integer.toString(managerHandler.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
 		
+	
+		Site site = managerHandler.getSiteManager().findSite(1);
+		request.setAttribute("site", site);
+		
+		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
+		request.setAttribute("allSites", allSites);
 		
 		
-		Voie voie = voieDao.findVoie(2);
-		request.setAttribute("voie", voie);
-		
-		List<Voie> voies = voieDao.listVoie(1);
-		request.setAttribute("voies", voies);
-		
-		Secteur secteur = secteurDao.findSecteur(1);
-		request.setAttribute("secteur", secteur);
 		
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);

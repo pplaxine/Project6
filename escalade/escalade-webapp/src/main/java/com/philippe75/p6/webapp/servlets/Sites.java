@@ -1,6 +1,7 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
@@ -12,13 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
-import com.philippe75.p6.model.bean.site.Cotation;
+import com.philippe75.p6.model.bean.site.Site;
 
 
 
 public class Sites extends HttpServlet {
 	
-	
+	@Inject
+	ManagerHandler managerHandler;
 	
 	public static final String VUE_MAIN ="/WEB-INF/sites.jsp";
 	
@@ -30,6 +32,10 @@ public class Sites extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
+		request.setAttribute("allSites", allSites);
+ 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 

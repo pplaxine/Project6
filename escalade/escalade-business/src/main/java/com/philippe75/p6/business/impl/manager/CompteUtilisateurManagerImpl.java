@@ -10,7 +10,7 @@ import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.business.exception.FormValidationException;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
-@Named("CompteUtilisateurManager")
+@Named("compteUtilisateurManager")
 public class CompteUtilisateurManagerImpl extends AbstractManager implements CompteUtilisateurManager{
 	
 	public static final String CHAMP_NOM = "nomCompteUtilisateur";

@@ -16,11 +16,12 @@ public class VoieRM implements RowMapper<Voie> {
 		
 		Voie voie = new Voie(); 
 		
+		voie.setId(rs.getInt("id"));
 		voie.setNom(rs.getString("nom"));
-		voie.setHauteur(rs.getLong("hauteur"));
+		voie.setHauteur(rs.getFloat("hauteur"));
 		voie.setNombrePoints(rs.getInt("nombre_points"));
 		voie.setNombreLongueur(rs.getInt("nombre_longueurs"));
-		voie.setCotation( Cotation.COTATION_1);
+		
 		
 		return voie;		// l'ojet a maitenant ses 2 att et devient un bean singulier 
 	}

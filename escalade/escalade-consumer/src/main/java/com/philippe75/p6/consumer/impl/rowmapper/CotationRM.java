@@ -14,7 +14,9 @@ public class CotationRM implements RowMapper<Cotation> {
 	@Override	
 	public Cotation mapRow(ResultSet rs, int rn) throws SQLException {		
 		
-		Cotation cotation = Cotation.COTATION_1;
+		Cotation cotation = Cotation.valueOf(rs.getString("note"));
+		
+		//String str = cotation.name();	<-- memo pour les entrées en bdd 
 		
 		return cotation;		
 	}

@@ -5,12 +5,16 @@ import javax.inject.Named;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
+import com.philippe75.p6.business.contract.impl.SiteManager;
 
 @Named("managerHandler")
 public class ManagerHandlerImpl implements ManagerHandler {
 	
 	@Inject
 	private CompteUtilisateurManager compteUtilisateurManager;
+	
+	@Inject
+	private SiteManager siteManager;
 
 	
 	@Override
@@ -18,9 +22,11 @@ public class ManagerHandlerImpl implements ManagerHandler {
 		return compteUtilisateurManager;
 	}
 
-	@Override
-	public void setCompteUtilisateurManager(CompteUtilisateurManager compteUtilisateurManager) {
-		this.compteUtilisateurManager=compteUtilisateurManager;
+
+	public SiteManager getSiteManager() {
+		return siteManager;
 	}
+	
+	
 
 }

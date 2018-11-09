@@ -7,7 +7,7 @@ public class Secteur {
 	private int id;
 	
 	private String nom;
-	private List<Voie> voie;
+	private List<Voie> voies;
 	
 	
 	public int getId() {
@@ -22,11 +22,11 @@ public class Secteur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public List<Voie> getVoie() {
-		return voie;
+	public List<Voie> getVoies() {
+		return voies;
 	}
-	public void setVoie(List<Voie> voie) {
-		this.voie = voie;
+	public void setVoies(List<Voie> voies) {
+		this.voies = voies;
 	}
 
 }

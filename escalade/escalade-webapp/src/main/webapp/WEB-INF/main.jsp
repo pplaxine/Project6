@@ -27,32 +27,67 @@
         </br>
         <p>
         	Nombre de compte utilisateur en BDD : ${nbreCompteUtilisateur}
-        	Nom de la voie : ${voie.nom}. Nombre de longueurs ${ voie.nombreLongueur }
         </p>
+
+
+		<p>	
+        	----------------------------------------------------------------------
+        </p>
+        
+        
         <p>
-        	<c:forEach items="${voies}" var="voieVar">
-        		<c:out value="${voieVar.nom}"></c:out>
-        	</c:forEach>
+        	<h3>Tous les sites</h3>
+        	<c:forEach items="${allSites}" var="allSitesVar" >
+		        <div>
+		        	Nom du site : <c:out value="${ allSitesVar.nom }"/></br>
+		        	Lieu : <c:out value="${ site.lieu }"/></br>
+		        	<c:if test="${ site.description != null }">
+		        		Description : <c:out value="${ site.description }"/></br>
+		        	</c:if>
+		        	Département : <c:out value="${ site.dept }"/></br>
+		        	Date de création : <c:out value="${ site.dateCreation }"/>
+		        	<div>
+		        		<c:forEach items="${site.secteurs}" var="secteursVar">
+					        <ul>
+					       		<li>
+					    			Secteur : <c:out value="${secteursVar.nom}"/>
+					        		<c:forEach items="${secteursVar.voies}" var="voiesVar3">
+					        			<ul>
+					        				<li>
+					        					Voie : <c:out value="${voiesVar3.nom}"></c:out>
+					        					<ul>
+					        						<li>
+					        							Hauteur : <c:out value="${voiesVar3.hauteur }"/>
+					        						</li>
+					        						<li>
+					        							Nombre de points : <c:out value="${voiesVar3.nombrePoints }"/>
+					        						</li>
+					        						<li>
+					        							Nombre de longueurs : <c:out value="${voiesVar3.nombreLongueur}"/>
+					        						</li>
+					        						<li>
+					        							Cotation : <c:out value="${voiesVar3.cotation }"/>
+					        						</li>
+					        					</ul>
+					        				</li>
+					        			</ul>
+					        		</c:forEach>
+					        	</li>
+					        </ul>
+				        </c:forEach>
+					</div>    
+		        </div>
+		        
+        	</c:forEach>  
+        
         </p>
-        <p>
-        		Nom du secteur : <c:out value="${secteur.nom }"></c:out>
-        		<p>
-        		Nom des voies :
-        		<ul>
-        			<c:forEach items="${secteur.voie}" var="voieVar2">
-        				<li>
-        				 <c:out value="${voieVar2.nom}"/>
-        				 	<ul>
-        				 		<li>${voieVar2.hauteur}</li>
-        				 		<li>${voieVar2.nombrePoints}</li>
-        				 		<li>${voieVar2.nombreLongueur}</li>
-        				 		<li>${voieVar2.cotation}</li>
-        				 	</ul>
-        				</li>
-        			</c:forEach>
-        		</ul>
-        		</p>
+        
+       	<p>	
+        	----------------------------------------------------------------------
         </p>
+        
+        <c:out value="${ site.nom }"></c:out>
+        
         
     </body>
 </html>
