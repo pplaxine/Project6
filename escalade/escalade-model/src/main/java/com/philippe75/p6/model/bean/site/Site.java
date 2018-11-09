@@ -17,6 +17,8 @@ public class Site {
 	private Date dateCreation;
 	private List<Secteur> secteurs;
 	
+	private Boolean topo;
+	
 	
 	public int getId() {
 		return id;
@@ -60,5 +62,13 @@ public class Site {
 	public void setSecteurs(List<Secteur> secteurs) {
 		this.secteurs = secteurs;
 	}
+	public Boolean getTopo() {
+		return topo;
+	}
+	public void setTopo(Boolean topo) {
+		this.topo = topo;
+	}
+	
+	
 
 }

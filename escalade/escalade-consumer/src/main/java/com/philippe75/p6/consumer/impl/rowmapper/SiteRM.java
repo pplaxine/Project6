@@ -19,6 +19,7 @@ public class SiteRM implements RowMapper<Site> {
 		site.setLieu(rs.getString("lieu"));
 		site.setDescription(rs.getString("description"));
 		site.setDateCreation(rs.getDate("date_creation"));
+		site.setTopo((rs.getInt("topo_id")!=0)?true:false);
 		
 		return site;
 	}

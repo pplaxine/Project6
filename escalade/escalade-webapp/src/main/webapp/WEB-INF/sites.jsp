@@ -33,6 +33,8 @@
 						<th scope="col">Lieu</th>
 						<th scope="col">Nombre de secteurs</th>
 						<th scope="col">Nombre de voies</th>
+						<th scope="col">Topo</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -58,7 +60,12 @@
 								</c:forEach>
 								<c:out value="${voieCounter}"/>
 							</td>
-							
+							<td>
+								<c:choose>
+									<c:when test="${allSitesVar.topo}">Topo disponible</c:when>
+									<c:otherwise>Pas de topo disponible</c:otherwise>
+								</c:choose>
+							</td>
 						
 						</tr>
 					</c:forEach>

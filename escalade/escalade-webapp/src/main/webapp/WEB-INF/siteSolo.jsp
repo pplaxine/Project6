@@ -17,18 +17,22 @@
     <body>
     <c:import url="/inc/navBar.jsp"/>
 	   
-       	</br>
+       	<br/>
         
        	<p>
 			<h3>Site <c:out value="${site.nom}"/> </h3>
        	</p>
        	
        	<div>
-			Nom du site : <c:out value="${site.nom}"/></br>
-		   	Département : <c:out value="${site.dept}"/></br>
-		    Lieu : <c:out value="${site.lieu}"/></br>
+			Nom du site : <c:out value="${site.nom}"/><br/>
+			<c:choose>
+				<c:when test="${site.topo}">Topo disponible</c:when>
+				<c:otherwise>Pas de topo disponible</c:otherwise>
+			</c:choose><br/>
+		   	Département : <c:out value="${site.dept}"/><br/>
+		    Lieu : <c:out value="${site.lieu}"/><br/>
 		    <c:if test="${ site.description != null }">
-				Description : <c:out value="${ site.description }"/></br>
+				Description : <c:out value="${ site.description }"/><br/>
 		   	</c:if>
 		   	Date de création : <c:out value="${ site.dateCreation }"/>
 		        	<div>

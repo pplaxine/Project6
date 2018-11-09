@@ -5,7 +5,6 @@ public enum Cotation {
 	COTATION_2("2"),
 	COTATION_3("3"),
 	COTATION_4("4"),
-	COTATION_5("5"),
 	COTATION_5A("5a"),
 	COTATION_5B("5b"),
 	COTATION_5C("5c"),
