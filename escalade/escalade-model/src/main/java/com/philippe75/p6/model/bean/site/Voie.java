@@ -6,8 +6,8 @@ public class Voie {
 	
 	private String nom; 
 	private float hauteur;
-	private int nombrePoints;
 	private int nombreLongueur;
+	private int nombrePoints;
 	private Cotation cotation;
 	
 	public int getId() {

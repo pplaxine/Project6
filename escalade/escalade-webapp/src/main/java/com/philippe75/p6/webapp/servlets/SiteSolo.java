@@ -31,7 +31,7 @@ public class SiteSolo extends HttpServlet {
 	}
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		int site_id = Integer.parseInt(request.getParameter("site_id"));
 		Site site = managerHandler.getSiteManager().findSite(site_id);

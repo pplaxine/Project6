@@ -153,6 +153,9 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 	
 	private void validationPseudo(String pseudo) throws FormValidationException{
 		if(pseudo != null ) {
+			if(pseudo.length() < 2) {
+				throw new FormValidationException("Le nom de l'utilisateur doit contenir au moins 2 caractères.");
+			}
 			for (CompteUtilisateur compteUtilisateur : getDaoHandler().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
 				if(compteUtilisateur.getPseudo().toLowerCase().equals(pseudo.toLowerCase())) {
 					throw new FormValidationException("Ce pseudonyme est déjà utilisé par un autre utilisateur.");
@@ -203,7 +206,10 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 	}
 	
 	private String capitaliser(String str) {
-		String cap = str.substring(0,1).toUpperCase() + str.substring(1);
-		return cap;
+		if(str != null) {
+			String cap = str.substring(0,1).toUpperCase() + str.substring(1);
+			return cap;
+		}
+		return null;
 	}
 }

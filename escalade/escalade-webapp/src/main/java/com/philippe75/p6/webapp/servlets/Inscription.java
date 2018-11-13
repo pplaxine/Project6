@@ -26,7 +26,7 @@ public class Inscription extends HttpServlet {
 	public static final String VUE_INSCRIPTION_SUCCES = "/WEB-INF/main.jsp";
 	
 	@Inject
-	ManagerHandler managerFactory;
+	ManagerHandler managerHandler;
 
 	
 	@Override
@@ -44,7 +44,7 @@ public class Inscription extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		CompteUtilisateurManager cum = managerFactory.getCompteUtilisateurManager();
+		CompteUtilisateurManager cum = managerHandler.getCompteUtilisateurManager();
 		CompteUtilisateur compteUtilisateur = cum.creerNouveauCompte(request);
 		
 		if (cum.getErreurs().isEmpty()) {

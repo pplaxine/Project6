@@ -1,5 +1,8 @@
 package com.philippe75.p6.model.bean.site;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Cotation {
 	COTATION_1("1"),
 	COTATION_2("2"),
@@ -44,6 +47,21 @@ public enum Cotation {
 		return cotation;
 	}
 
+    private static final Map<String, Cotation> lookup = new HashMap<>();
+    
+    static
+    {
+        for(Cotation cot : Cotation.values())
+        {
+            lookup.put(cot.toString(), cot);
+        }
+    }
+  
+ 
+    public static Cotation get(String cot)
+    {
+        return lookup.get(cot);
+    }
 	
 	
 	

@@ -5,21 +5,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.site.Voie;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
-public interface SiteManager {
+public interface DeptManager {
 	
-	Site creerNouveauSite(HttpServletRequest request);
-	
-	Site findSite(int id);
-	
-	List<Site> listAllSite ();
-	
-	Map<String, String> getErreurs();
-	String getResult();
-	
-	
+	List<Dept> listAllDepts();
 	
 }

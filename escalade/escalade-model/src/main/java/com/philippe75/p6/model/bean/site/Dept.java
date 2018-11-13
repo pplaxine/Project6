@@ -1,5 +1,8 @@
 package com.philippe75.p6.model.bean.site;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Dept {
 	AIN("01 Ain"),
 	AISNE("02 Aisne"),
@@ -109,6 +112,22 @@ public enum Dept {
 	public String toString() {
 		return dept;
 	}
+	
+    private static final Map<String, Dept> lookup = new HashMap<>();
+    
+    static
+    {
+        for(Dept dept : Dept.values())
+        {
+            lookup.put(dept.toString(), dept);
+        }
+    }
+  
+ 
+    public static Dept get(String dept)
+    {
+        return lookup.get(dept);
+    }
 	
 	
 }
