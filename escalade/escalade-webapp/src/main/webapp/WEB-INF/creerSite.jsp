@@ -24,10 +24,82 @@
 			<h3>Créer un nouveau site</h3>
        	</p>
        	
+       	
        	<div class="container">
-			<form method="POST" action="<c:url value="/sites/creersite/"/>"> 
+			 
 				
 					<h3>Informations Site</h3>
+					<c:if test="${not empty sessionScope.voiesSite}">
+						
+				      		<table class="table  table-striped table-sm">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">Nom</th>
+										<th scope="col">Hauteur</th>
+										<th scope="col">Nombre Longueurs</th>
+										<th scope="col">Nombre Points</th>
+										<th scope="col">Cotation</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${sessionScope.voiesSite}" var="voiesSiteVar">
+										<tr>
+											<td><c:out value="${voiesSiteVar.value.nom }"/></td>
+											<td><c:out value="${voiesSiteVar.value.hauteur }"/></td>
+											<td><c:out value="${voiesSiteVar.value.nombreLongueur }"/></td>
+											<td><c:out value="${voiesSiteVar.value.nombrePoints }"/></td>
+											<td><c:out value="${voiesSiteVar.value.cotation }"/></td>
+													
+											<td class="text-center"><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesSiteVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
+											
+										</tr>
+										
+									</c:forEach>
+								</tbody>
+				      		</table>
+					
+					</c:if>
+					<c:if test="${not empty sessionScope.secteurs}">
+					
+				      		<table class="table table-striped table-sm">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">Nom</th>
+										<th scope="col">Voie</th>
+										<th scope="col"></th>
+									</tr>
+								</thead >
+								<tbody>
+									<c:forEach items="${sessionScope.secteurs}" var="secteursVar">
+										<tr>
+											<td><c:out value="${secteursVar.value.nom }"/></td>
+											<td>
+												<c:forEach items="${secteursVar.value.voies}" var="voiesVar">
+													<c:out value="${voiesVar.nom}"/>
+												</c:forEach>
+											</td>
+											<td class="text-center"><a href="<c:url value="/sites/creersite/supprimersecteur"><c:param name="secteurSupp" value="${secteursVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
+										</tr>
+										
+									</c:forEach>
+								</tbody>
+				      		</table>
+					</c:if>
+			
+				<form method="POST" action="<c:url value="/sites/creersite/"/>">
+					<p>
+						
+						<c:if test="${empty sessionScope.voiesSite}">
+							<c:out value="Vous pouvez ajouter un ou plusieurs secteurs à votre site"/><br/>
+							<a href="<c:url value="/sites/creersite/creersecteur/" />" class="btn btn-warning" role="button">Ajouter un secteur</a>
+						</c:if><br/><br/>	
+						<c:if test="${empty sessionScope.secteurs }">
+							<c:out value="Si votre site ne possède pas de secteurs vous pouvez créer directement vos voies"/><br/>			
+							<a href="<c:url value="/sites/creersite/creervoie/" />" class="btn btn-warning" role="button">Ajouter une voie</a>
+						</c:if>
+					</p>
+					<br/>
 					
 					<div class="form-group">
 						<label for="nomSite">Nom <span class="requis">*</span></label>
@@ -37,7 +109,7 @@
 					
 					<div class="form-group">
 						<label for="deptSite">Département<span class="requis">*</span></label>
-						<select id="deptSite" class="form-control" name="deptSite">
+						<select  class="form-control" name="deptSite" id="deptSite">
 							<c:forEach items="${listDept}" var="listDeptVar">
 								<option value="${ listDeptVar }"><c:out value="${listDeptVar}"/></option>
 							</c:forEach>
@@ -56,61 +128,14 @@
 						<span class="text-danger">${sm.erreurs['descriptionSite']}</span>
 					</div>
 					<sec:csrfInput/>
-					<c:if test="${not empty sessionScope.voiesSite}">
-						<div class="container">
-				      		<table class="table table-dark">
-								<thead>
-									<tr>
-										<th scope="col">Nom</th>
-										<th scope="col">Hauteur</th>
-										<th scope="col">Nombre Longueurs</th>
-										<th scope="col">Nombre Points</th>
-										<th scope="col">Cotation</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${sessionScope.voiesSite}" var="voiesSiteVar">
-										<tr>
-											<td><c:out value="${voiesSiteVar.value.nom }"/></td>
-											<td><c:out value="${voiesSiteVar.value.hauteur }"/></td>
-											<td><c:out value="${voiesSiteVar.value.nombreLongueur }"/></td>
-											<td><c:out value="${voiesSiteVar.value.nombrePoints }"/></td>
-											<td><c:out value="${voiesSiteVar.value.cotation }"/></td>${voiesVar.value.nom}
-													
-											<td><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesSiteVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
-											
-										</tr>
-										
-									</c:forEach>
-								</tbody>
-				      		</table>
-						</div>
-					</c:if>
-					<p>
-						<c:forEach items="${sessionScope.secteurs}" var="secteursVar">
-							<strong>Secteur : </strong><c:out value="${secteursVar.value.nom }"/>
-							
-							<c:forEach items="${secteursVar.value.voies}" var="voiesVar">
-								<strong>voie : </strong><c:out value="${voiesVar.nom}"/>
-							</c:forEach>
-							
-							<br/>
-						</c:forEach>
-					</p>
-					<p>
-						<c:if test="${empty sessionScope.voiesSite}">
-							<a href="<c:url value="/sites/creersite/creersecteur/" />" class="btn btn-warning" role="button">Ajouter un secteur</a>
-						</c:if>					
-						<a href="<c:url value="/sites/creersite/creervoie/" />" class="btn btn-warning" role="button">Ajouter une voie</a>
-					</p>
-					<br/>
+					
 				
-				<button type="submit" class="btn btn-warning">Valider</button>
-				<button type="reset"  class="btn btn-primary">Annuler</button>
-				
-				<c:url value="/" var="retourVar"/>
-				<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
-			</form>	
+					<button type="submit" class="btn btn-warning">Valider</button>
+					<button type="reset"  class="btn btn-primary">Annuler</button>
+					
+					<c:url value="/" var="retourVar"/>
+					<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
+				</form>	
 			<p class="info"> ${ sm.result } </p>
 		</div>
 		

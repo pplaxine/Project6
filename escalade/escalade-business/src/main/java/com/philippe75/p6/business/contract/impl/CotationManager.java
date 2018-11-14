@@ -14,4 +14,6 @@ public interface CotationManager {
 	
 	List<Cotation> listAllCotation();
 	
+	Cotation findCotation(int voie_id);
+	int getCotationId(Cotation cotation);
 }

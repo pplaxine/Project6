@@ -32,7 +32,7 @@ public class Main extends HttpServlet {
 	ManagerHandler managerHandler;
 	
 	@Inject
-	SiteDao siteDao;
+	DaoHandler daoHandler; 
 	
 	
 	//----------------------------------------------------------------------------
@@ -59,8 +59,8 @@ public class Main extends HttpServlet {
 		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
 		request.setAttribute("allSites", allSites);
 		
-		
-		
+		//---------------------------------------------------------------
+	
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}

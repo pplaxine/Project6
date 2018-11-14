@@ -62,8 +62,16 @@
 			<p>
 				<button type="submit" class="btn btn-warning ">Ajouter voie</button>
 				<button type="reset"  class="btn btn-primary ">Annuler</button>
-				<c:url value="/sites/creersite/" var="retourVar"/>
-				<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
+				<c:url value="/sites/creersite/" var="retourSiteVar"/>
+				<c:url value="/sites/creersite/creersecteur/" var="retourSecteurVar"/>
+				<c:choose>
+					<c:when test="${ not empty testSecteur }">
+						<a href="${retourSecteurVar}" class="btn btn-info float-right" role="button">Retour</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${retourSiteVar}" class="btn btn-info float-right" role="button">Retour</a>
+					</c:otherwise>
+				</c:choose>
 			</p>
 			
 			</form>

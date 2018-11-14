@@ -1,6 +1,7 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,10 @@ import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.business.contract.impl.SiteManager;
 import com.philippe75.p6.business.contract.impl.VoieManager;
+import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Dept;
+import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
@@ -31,6 +34,9 @@ public class CreerSite extends HttpServlet {
 	
 	@Inject
 	ManagerHandler managerHandler;
+	
+	@Inject
+	DaoHandler daoHandler; 
 	
 	public static final String VUE_MAIN ="/WEB-INF/creerSite.jsp";
 	
@@ -58,7 +64,19 @@ public class CreerSite extends HttpServlet {
 
 		if(sm.getErreurs().isEmpty()) {
 			
-			// Création de secteur vide (par default) et y ajouté les voies crées  
+			HttpSession session = request.getSession();
+			List<Secteur> secteurList;
+			if(session.getAttribute("secteurs") != null) {
+				Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
+				secteurList = new ArrayList<Secteur>(secteursMap.values());
+				site.setSecteurs(secteurList);
+				
+				int str = managerHandler.getSiteManager().saveSite(site); 
+				if(str != 0 ) {
+					secteursMap = new HashMap<String,Secteur>();
+					session.setAttribute("secteurs", secteursMap);
+				}
+			}
 			
 			response.sendRedirect(request.getContextPath() + "/sites/");
 		}else {

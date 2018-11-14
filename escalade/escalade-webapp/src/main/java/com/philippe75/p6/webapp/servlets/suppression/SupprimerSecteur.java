@@ -27,12 +27,12 @@ import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
 
-public class SupprimerVoie extends HttpServlet {
+public class SupprimerSecteur extends HttpServlet {
 	
 
-	public static final String PARAM_DELETE_VOIE ="voieSupp";
-	public static final String REDIRECT_SUCCESS_SECTEUR ="/sites/creersite/creersecteur/";
+	public static final String PARAM_DELETE_SECTEUR ="secteurSupp";
 	public static final String REDIRECT_SUCCESS_SITE ="/sites/creersite/";
+
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -43,29 +43,16 @@ public class SupprimerVoie extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String voieToDelete	= request.getParameter(PARAM_DELETE_VOIE);		// verif à faire 
+		String secteurToDelete	= request.getParameter(PARAM_DELETE_SECTEUR);		// verif à faire 
 		HttpSession session = request.getSession();
-		
-		Map<String,Secteur> secteurs = (Map<String,Secteur>)(session.getAttribute("secteurs"));
 
-		if( secteurs.size() > 1 ) {
-			Map<String,Voie> voies = (Map<String,Voie>)session.getAttribute("voies");
-			if(voies != null) {
-				voies.remove(voieToDelete);
-			}
-			
-			session.setAttribute("voies", voies);
-			response.sendRedirect(request.getContextPath() + REDIRECT_SUCCESS_SECTEUR);
-		}else {
-			Map<String,Voie> voiesSite = (Map<String,Voie>)session.getAttribute("voiesSite");
-			if(voiesSite != null) {
-				voiesSite.remove(voieToDelete);
-			}
-			
-			session.setAttribute("voiesSite", voiesSite);
-			response.sendRedirect(request.getContextPath() + REDIRECT_SUCCESS_SITE);
+		Map<String,Secteur> secteurs = (Map<String,Secteur>)session.getAttribute("secteurs");
+		if(secteurs != null) {
+			secteurs.remove(secteurToDelete);
 		}
-		
-	}
+			
+		session.setAttribute("secteurs", secteurs);
+		response.sendRedirect(request.getContextPath() + REDIRECT_SUCCESS_SITE);
+		}
 
 }

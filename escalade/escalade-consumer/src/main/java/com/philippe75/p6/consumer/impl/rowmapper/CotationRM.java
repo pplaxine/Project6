@@ -13,9 +13,6 @@ public class CotationRM implements RowMapper<Cotation> {
 		
 		Cotation cotation = Cotation.valueOf(rs.getString("note"));
 		
-		
-		//String str = cotation.name();	<-- memo pour les entrées en bdd 
-		
 		return cotation;		
 	}
 }

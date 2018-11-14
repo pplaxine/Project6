@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.philippe75.p6.consumer.contract.dao.DeptDao;
 import com.philippe75.p6.consumer.impl.rowmapper.DeptRM;
+import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Dept;
 
 @Named("deptDao")
@@ -28,6 +29,22 @@ String sQL = "SELECT * FROM public.dept WHERE dept.id IN (SELECT site.dept_id FR
 		RowMapper<Dept> rm = new DeptRM();
 		
 		return nPJT.queryForObject(sQL, mSPS, rm);
+	}
+	
+	@Override
+	public int getDeptId(Dept dept) {
+		
+		String sQL = "SELECT dept.id FROM dept WHERE nom = :nom";
+				
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		
+		mSPS.addValue("nom", dept.name() );
+		
+		int dept_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
+
+		return dept_id;
+		
 	}
 
 }

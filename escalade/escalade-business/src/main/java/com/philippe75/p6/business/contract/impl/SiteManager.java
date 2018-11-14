@@ -13,6 +13,8 @@ public interface SiteManager {
 	
 	Site creerNouveauSite(HttpServletRequest request);
 	
+	Integer saveSite(Site site);
+	
 	Site findSite(int id);
 	
 	List<Site> listAllSite ();

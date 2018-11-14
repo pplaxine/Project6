@@ -26,29 +26,21 @@
  	
 		<div class="container">
 		
-		<form method="POST" action="<c:url value="/sites/creersite/creersecteur/"/>"> 
 		
-			<h3>Informations Secteur</h3>
-							
-			<div class="form-group" >
-				<label for="nomSecteur">Nom<span class="requis">*</span></label>
-				<input type="text" class="form-control" id="nomSecteur" name="nomSecteur" placeholder="Nom du secteur" value="<c:out value="${secteur.nom}"/>" size="20" maxlength="20"/>
-				<span class="text-danger">${secM.erreurs['nomSecteur']}</span>
-			</div>
-			
-			<h4>Voies</h4>
-			<sec:csrfInput/>
+		<h3>Informations Secteur</h3>
 			<c:if test="${not empty sessionScope.voies}">
-				<div class="container">
-					
-		      		<table class="table table-dark">
-						<thead>
+				
+				
+					<h5>Voies</h5>
+		      		<table class="table table-striped table-sm">
+						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Nom</th>
 								<th scope="col">Hauteur</th>
 								<th scope="col">Nombre Longueurs</th>
 								<th scope="col">Nombre Points</th>
 								<th scope="col">Cotation</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,31 +50,33 @@
 									<td><c:out value="${voiesVar.value.hauteur }"/></td>
 									<td><c:out value="${voiesVar.value.nombreLongueur }"/></td>
 									<td><c:out value="${voiesVar.value.nombrePoints }"/></td>
-									<td><c:out value="${voiesVar.value.cotation }"/></td>${voiesVar.value.nom}
+									<td><c:out value="${voiesVar.value.cotation }"/></td>
 											
-									<td><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
-									
+									<td class="text-center"><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
 								</tr>
-								
 							</c:forEach>
 						</tbody>
 		      		</table>
-				</div>
-			</c:if>
+			</c:if>	
+							
+		<form method="POST" action="<c:url value="/sites/creersite/creersecteur/"/>"> 
 			<p>
-				<a href="<c:url value="/sites/creersite/creervoie/" />" class="btn btn-warning" role="button">Ajouter une voie</a>
+				
+				<a href="<c:url value="/sites/creersite/creervoie/"><c:param name="testSecteur" value="true"/></c:url>" class="btn btn-warning" role="button">Ajouter une voie</a>
 			</p>
+			<div class="form-group" >
+				<label for="nomSecteur">Nom<span class="requis">*</span></label>
+				<input type="text" class="form-control" id="nomSecteur" name="nomSecteur" placeholder="Nom du secteur" value="<c:out value="${secteur.nom}"/>" size="20" maxlength="20"/>
+				<span class="text-danger">${secM.erreurs['nomSecteur']}</span>
+			</div>
 			<p>
 				<button type="submit" class="btn btn-warning ">Créer secteur</button>
 				<button type="reset"  class="btn btn-primary ">Annuler</button>
 				<c:url value="/sites/creersite/" var="retourVar"/>
 				<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
 			</p>
-			
+				<sec:csrfInput/>
 			</form>
-			
-			
-		
 			<p class="info"> ${ secM.result } </p> 
 		</div>
     </body>

@@ -113,20 +113,20 @@ public enum Dept {
 		return dept;
 	}
 	
-    private static final Map<String, Dept> lookup = new HashMap<>();
+    private static final Map<String, Dept> lookup2 = new HashMap<>();
     
     static
     {
-        for(Dept dept : Dept.values())
+        for(Dept dept2 : Dept.values())
         {
-            lookup.put(dept.toString(), dept);
+            lookup2.put(dept2.toString(), dept2);
         }
     }
   
  
-    public static Dept get(String dept)
+    public static Dept get(String dept2)
     {
-        return lookup.get(dept);
+        return lookup2.get(dept2);
     }
 	
 	

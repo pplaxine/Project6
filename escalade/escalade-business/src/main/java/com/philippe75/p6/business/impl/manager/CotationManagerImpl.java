@@ -26,4 +26,16 @@ public class CotationManagerImpl extends AbstractManager implements CotationMana
 	}
 
 	
+	public Cotation findCotation(int voie_id) {
+		Cotation cotation = getDaoHandler().getCotationDao().findCotation(voie_id);
+		return cotation;
+	}
+
+
+	@Override
+	public int getCotationId(Cotation cotation) {
+		int cotationId = getDaoHandler().getCotationDao().getCotationId(cotation);
+		return cotationId;
+	}
+	
 }

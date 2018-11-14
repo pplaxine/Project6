@@ -16,6 +16,7 @@ import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
+import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("siteManager")
 public class SiteManagerImpl extends AbstractManager implements SiteManager{
@@ -47,6 +48,12 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 	public Site findSite(int id) {
 		return getDaoHandler().getSiteDao().findSite(id);
 	}
+	
+	@Override
+	public Integer saveSite(Site site) {
+		int result = getDaoHandler().getSiteDao().saveSite(site);
+		return result;
+	}
 
 	@Override
 	public Site creerNouveauSite(HttpServletRequest request) {
@@ -58,7 +65,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		String deptSite = getValeurChamp(CHAMP_DEPT, request);
 		String lieuSite = capitaliser(getValeurChamp(CHAMP_LIEU, request));
 		String descSite = getValeurChamp(CHAMP_DESCRIPTION, request);
-	
+		
 		
 		//test des informations fournies dans les champs et création du bean
 		traiterNomSite(nomSite, site);
@@ -76,6 +83,8 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		return site;
 	}
 	
+	
+	
 	//-------- METHODES VALIDATION DES VALEUR DES CHAMPS DU FORMULAIRE ---------------------------------------
 	
 	private void traiterNomSite(String nomSite, Site site) {
@@ -89,7 +98,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 	
 	private void traiterDeptSite(String deptSite, Site site) {
 		if(deptSite != null) {
-			site.setDept(Dept.get(deptSite));
+			site.setDept(Dept.valueOf(deptSite));
 		}
 	}
 	
@@ -115,6 +124,11 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		if(nomSite != null ) {
 			if(nomSite.length() < 2) {
 				throw new FormValidationException("Le nom du site doit contenir au moins 2 caractères.");
+			}
+			for (Site site : getDaoHandler().getSiteDao().listAllSite()) {
+				if(site.getNom().toLowerCase().equals(nomSite.toLowerCase())) {
+					throw new FormValidationException("Ce site est déjà présent dans notre base de donnée.");
+				}
 			}
 		}else {
 			throw new FormValidationException("Merci d'entrer un nom de site.");

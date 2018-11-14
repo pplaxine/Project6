@@ -125,12 +125,10 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 			Map<String,Secteur> secteurs = (Map<String,Secteur>)session.getAttribute("secteurs");
 			for (Map.Entry<String, Secteur> secteur : secteurs.entrySet()) {
 				if(secteur.getKey().equals(nomSecteur)) {
-					System.out.println("Secteur existant");
 					return true;
 				}
 			}
 		}
-		 System.out.println("Secteur non existant");
 		return false; 
 	}
 

@@ -34,6 +34,7 @@ public class CreerVoie extends HttpServlet {
 	public static final String VUE_MAIN ="/WEB-INF/creerVoie.jsp";
 	public static final String REDIRECT_SUCCESS_SECTEUR ="/sites/creersite/creersecteur/";
 	public static final String REDIRECT_SUCCESS_SITE ="/sites/creersite/";
+	private String testSecteur; 
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -48,6 +49,15 @@ public class CreerVoie extends HttpServlet {
 		List<Cotation> listCotation = managerHandler.getCotationManager().listAllCotation();
 		this.getServletContext().setAttribute("listCotation", listCotation);
 		
+		String testSecteur = request.getParameter("testSecteur");
+		if(testSecteur != null) {
+			this.testSecteur = testSecteur;
+			request.setAttribute("testSecteur", testSecteur);
+		}else {
+			this.testSecteur = null;
+		}
+
+		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 
@@ -58,9 +68,10 @@ public class CreerVoie extends HttpServlet {
 		Voie voie = vm.creerNouvelleVoie(request);
 			
 		if(vm.getErreurs().isEmpty()) {
+			
 			HttpSession session = request.getSession();
 			
-			if(session.getAttribute("secteurs") != null ) {
+			if(testSecteur != null) {
 				Map<String,Voie> voies = (Map<String,Voie>)session.getAttribute("voies");
 				if(voies == null) {
 					voies = new HashMap<String,Voie>();

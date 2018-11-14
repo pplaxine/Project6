@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
+import com.philippe75.p6.consumer.contract.DaoHandler;
+import com.philippe75.p6.model.bean.site.Cotation;
+import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Site;
+import com.philippe75.p6.model.bean.site.Voie;
 
 
 
@@ -21,6 +25,9 @@ public class Sites extends HttpServlet {
 	
 	@Inject
 	ManagerHandler managerHandler;
+	
+	@Inject
+	DaoHandler daoHandler; 
 	
 	public static final String VUE_MAIN ="/WEB-INF/sites.jsp";
 	
@@ -32,10 +39,11 @@ public class Sites extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
 		request.setAttribute("allSites", allSites);
- 		
+		
+		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 
