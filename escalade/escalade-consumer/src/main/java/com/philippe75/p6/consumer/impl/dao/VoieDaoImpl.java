@@ -57,24 +57,32 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 	}
 
 	@Override
-	public int saveVoie(Voie voie, int secteur_id) {
+	public int saveVoie(Voie voie, int id, boolean hasSecteur ) {
 		
-		if(voie != null && secteur_id != 0){
-			String sQL = "INSERT INTO voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id, secteur_id) VALUES (:nom, :hauteur, :nombre_points, :nombre_longueurs, :cotation_id, :secteur_id); COMMIT";
+		if(voie != null && id != 0){
+			
+			String sQLVoieSite = "INSERT INTO voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id, site_id) VALUES (:nom, :hauteur, :nombre_points, :nombre_longueurs, :cotation_id, :site_id); COMMIT";
+			String sQLVoieSecteur = "INSERT INTO voie (nom,hauteur,nombre_points,nombre_longueurs,cotation_id, secteur_id) VALUES (:nom, :hauteur, :nombre_points, :nombre_longueurs, :cotation_id, :secteur_id); COMMIT";
 			
 			MapSqlParameterSource mSPS = new MapSqlParameterSource();
+			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			
 			mSPS.addValue("nom", voie.getNom());
 			mSPS.addValue("hauteur", voie.getHauteur());
 			mSPS.addValue("nombre_points", voie.getNombrePoints());
 			mSPS.addValue("nombre_longueurs", voie.getNombreLongueur());
 			mSPS.addValue("cotation_id", getDaoHandler().getCotationDao().getCotationId(voie.getCotation()));
-			mSPS.addValue("secteur_id", secteur_id);
 			
-			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-			
-			int result = nPJT.update(sQL, mSPS);
-			return result;
+			if(hasSecteur) {
+				mSPS.addValue("secteur_id", id);
+				int result = nPJT.update(sQLVoieSecteur, mSPS);
+				return result;
+				
+			}else {
+				mSPS.addValue("site_id", id);
+				int result = nPJT.update(sQLVoieSite, mSPS);
+				return result;
+			}
 		}
 		return 0; 
 	}

@@ -26,6 +26,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 	public static final String CHAMP_DEPT = "deptSite";
 	public static final String CHAMP_LIEU = "lieuSite";
 	public static final String CHAMP_DESCRIPTION = "descriptionSite";
+	public static final String ATT_VOIE_SITE = "voieSite";
 	
 	private Map<String, String> erreurs; 
 	private String result;
@@ -74,7 +75,6 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		traiterDescSite(descSite, site);
 		
 		if(erreurs.isEmpty()) {
-	
 			result ="Création du site réalisée avec succès";  
 		}else {
 			result ="Echec de création de site";

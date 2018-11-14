@@ -91,10 +91,10 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 			int result = nPJT.update(sQL, mSPS);
 			
 			if(result != 0 && secteur.getVoies() != null) {
-				int secteur_id = getSecteurId(secteur.getNom(), site_id); // récupération du nom du secteur 
+				int secteur_id = getSecteurId(secteur.getNom(), site_id); 
 						
 				for (Voie voie : secteur.getVoies()) {
-					getDaoHandler().getVoieDao().saveVoie(voie, secteur_id); 
+					getDaoHandler().getVoieDao().saveVoie(voie, secteur_id, true); 
 				}
 					
 				return result;

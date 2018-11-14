@@ -17,6 +17,7 @@ import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
 import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
+import com.philippe75.p6.model.bean.site.Voie;
 
 @Named("siteDao")
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
@@ -86,7 +87,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			mSPS.addValue("description", site.getDescription());
 			mSPS.addValue("date_creation", new Date());
 			mSPS.addValue("dept_id", getDaoHandler().getDeptDao().getDeptId(site.getDept()));
-			mSPS.addValue("compte_utilisateur_id", 2);
+			mSPS.addValue("compte_utilisateur_id", 2);				// trouver l'id de l'utilisateur !!!! 
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			int result = nPJT.update(sQL, mSPS);
@@ -95,6 +96,15 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 				int site_id = getSiteId(site.getNom());
 				for (Secteur secteur : site.getSecteurs()) {
 					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+				}
+					
+				return result;
+			}
+			
+			if(result != 0 && site.getVoies() != null) {
+				int site_id = getSiteId(site.getNom());
+				for (Voie voie : site.getVoies()) {
+					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
 				}
 					
 				return result;

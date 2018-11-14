@@ -16,6 +16,7 @@ public class Site {
 	private String description;
 	private Date dateCreation;
 	private List<Secteur> secteurs;
+	private List<Voie> voies;
 	
 	private Boolean topo;
 	
@@ -61,6 +62,12 @@ public class Site {
 	}
 	public void setSecteurs(List<Secteur> secteurs) {
 		this.secteurs = secteurs;
+	}
+	public List<Voie> getVoies() {
+		return voies;
+	}
+	public void setVoies(List<Voie> voies) {
+		this.voies = voies;
 	}
 	public Boolean getTopo() {
 		return topo;

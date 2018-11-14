@@ -8,7 +8,7 @@ public interface VoieDao {
 	
 	Voie findVoie(int id);
 	
-	int saveVoie(Voie voie, int secteur_id);
+	int saveVoie(Voie voie, int id, boolean hasSecteur);
 	
 	List<Voie> listVoie(int secteur_id);
 }

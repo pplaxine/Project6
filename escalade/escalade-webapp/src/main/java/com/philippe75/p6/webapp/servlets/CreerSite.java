@@ -66,6 +66,8 @@ public class CreerSite extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			List<Secteur> secteurList;
+			List<Voie> voieList;
+			
 			if(session.getAttribute("secteurs") != null) {
 				Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
 				secteurList = new ArrayList<Secteur>(secteursMap.values());
@@ -75,6 +77,17 @@ public class CreerSite extends HttpServlet {
 				if(str != 0 ) {
 					secteursMap = new HashMap<String,Secteur>();
 					session.setAttribute("secteurs", secteursMap);
+				}
+			}
+			if(session.getAttribute("voiesSite") != null) {
+				Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
+				voieList = new ArrayList<Voie>(voiesMap.values());
+				site.setVoies(voieList);
+				
+				int str = managerHandler.getSiteManager().saveSite(site); 
+				if(str != 0 ) {
+					voiesMap = new HashMap<String,Voie>();
+					session.setAttribute("voiesSite", voiesMap);
 				}
 			}
 			
