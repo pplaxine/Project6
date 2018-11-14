@@ -120,7 +120,8 @@ CREATE TABLE public.voie (
                 nombre_points INTEGER,
                 nombre_longueurs INTEGER,
                 cotation_id INTEGER NOT NULL,
-                secteur_id INTEGER NOT NULL,
+                site_id INTEGER,
+                secteur_id INTEGER,
                 CONSTRAINT voie_pk PRIMARY KEY (id)
 );
 
@@ -184,6 +185,13 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.commentaire ADD CONSTRAINT site_commentaire_fk
+FOREIGN KEY (site_id)
+REFERENCES public.site (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.voie ADD CONSTRAINT site_voie_fk
 FOREIGN KEY (site_id)
 REFERENCES public.site (id)
 ON DELETE NO ACTION

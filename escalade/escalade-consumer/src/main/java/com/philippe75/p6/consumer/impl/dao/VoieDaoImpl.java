@@ -74,8 +74,6 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			
 			int result = nPJT.update(sQL, mSPS);
-			
-			System.out.println(result);
 			return result;
 		}
 		return 0; 
