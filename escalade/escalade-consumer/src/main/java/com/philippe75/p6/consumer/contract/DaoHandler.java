@@ -1,5 +1,6 @@
 package com.philippe75.p6.consumer.contract;
 
+import com.philippe75.p6.consumer.contract.dao.CommentaireDao;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.consumer.contract.dao.CotationDao;
 import com.philippe75.p6.consumer.contract.dao.DeptDao;
@@ -21,6 +22,6 @@ public interface DaoHandler {
 	
 	DeptDao getDeptDao();
 	
-	
+	CommentaireDao getCommentaireDao();
 	
 }

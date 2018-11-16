@@ -37,7 +37,7 @@
 			</div>
 			<div class="form-group">
 				<label for="hauteurVoie">Hauteur (en mètre)<span class="requis">*</span></label>
-				<input type="number" step="0.01" min="0" class="form-control" id="hauteurVoie" name="hauteurVoie" placeholder="11.18" value="<c:out value="${voie.hauteur}"/>" size="20" maxlength="20"/>	<%-- value="<c:out value="${voie.hauteur}"/>"  --%>
+				<input type="number" step="0.01" min="0" class="form-control" id="hauteurVoie" name="hauteurVoie" placeholder="11.18" value="<c:out value="${voie.hauteur}"/>" size="20" maxlength="20"/>	
 				<span class="text-danger">${vm.erreurs['hauteurVoie']}</span>
 			</div>
 			<div class="form-group">

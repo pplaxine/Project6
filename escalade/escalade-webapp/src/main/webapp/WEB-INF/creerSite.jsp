@@ -51,7 +51,7 @@
 											<td><c:out value="${voiesSiteVar.value.nombrePoints }"/></td>
 											<td><c:out value="${voiesSiteVar.value.cotation }"/></td>
 													
-											<td class="text-center"><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesSiteVar.value.nom }" /></c:url>" ><c:out value="supprimer"/></a></td>
+											<td class="text-center"><a href="<c:url value="/sites/creersite/creersecteur/supprimervoie"><c:param name="voieSupp" value="${voiesSiteVar.value.nom}" /></c:url>" ><c:out value="supprimer"/></a></td>
 											
 										</tr>
 										

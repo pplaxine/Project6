@@ -37,6 +37,8 @@ public class SiteSolo extends HttpServlet {
 		Site site = managerHandler.getSiteManager().findSite(site_id);
 		request.setAttribute("site", site);
 		
+	
+		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 

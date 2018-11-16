@@ -10,5 +10,5 @@ public interface VoieDao {
 	
 	int saveVoie(Voie voie, int id, boolean hasSecteur);
 	
-	List<Voie> listVoie(int secteur_id);
+	List<Voie> listVoie(int secteur_id, boolean hasSecteur);
 }

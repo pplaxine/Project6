@@ -39,21 +39,27 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 	
 
 	@Override
-	public List<Voie> listVoie(int secteur_id) {
+	public List<Voie> listVoie(int id, boolean hasSecteur) {
 		
-		String sQL = "SELECT * FROM public.voie WHERE secteur_id=?";		
+		String sQLSecteur = "SELECT * FROM public.voie WHERE secteur_id=?";		
+		String sQLSite = "SELECT * FROM public.voie WHERE site_id=?";
 		
 		JdbcTemplate jT = new JdbcTemplate(getDataSource());
-		
+		List<Voie> listVoie;
 		RowMapper<Voie> rm = new VoieRM();		
 		
-		List<Voie> listVoie = (List<Voie>)jT.query(sQL, new Object[] {secteur_id}, rm);
-		for (Voie voie : listVoie) {
-			voie.setCotation(getDaoHandler().getCotationDao().findCotation(voie.getId()));
+		if(hasSecteur) {
+			listVoie = (List<Voie>)jT.query(sQLSecteur, new Object[] {id}, rm);
+			for (Voie voie : listVoie) {
+				voie.setCotation(getDaoHandler().getCotationDao().findCotation(voie.getId()));
+			}
+		}else {
+			 listVoie = (List<Voie>)jT.query(sQLSite, new Object[] {id}, rm);
+			for (Voie voie : listVoie) {
+				voie.setCotation(getDaoHandler().getCotationDao().findCotation(voie.getId()));
+			}
 		}
-		
 		return listVoie;
-	
 	}
 
 	@Override

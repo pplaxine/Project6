@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
@@ -18,6 +21,7 @@ import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
+import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("siteDao")
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
@@ -35,7 +39,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		
 		site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
 		site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
-		
+		site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
 		return site;
 	}
 
@@ -53,6 +57,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		for (Site site : listSite) {
 			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
 			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
 		}
 		
 		return listSite;
@@ -80,6 +85,11 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		String sQL = "INSERT INTO site (nom, lieu, description, date_creation, dept_id, compte_utilisateur_id) VALUES (:nom, :lieu, :description, :date_creation, :dept_id, :compte_utilisateur_id); COMMIT";
 		if(site != null) {
 			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String userPseudo = auth.getName();
+			CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
+			//---------------
+			
 			MapSqlParameterSource mSPS = new MapSqlParameterSource();
 			
 			mSPS.addValue("nom", site.getNom());
@@ -87,7 +97,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			mSPS.addValue("description", site.getDescription());
 			mSPS.addValue("date_creation", new Date());
 			mSPS.addValue("dept_id", getDaoHandler().getDeptDao().getDeptId(site.getDept()));
-			mSPS.addValue("compte_utilisateur_id", 2);				// trouver l'id de l'utilisateur !!!! 
+			mSPS.addValue("compte_utilisateur_id", cu.getId());				// trouver l'id de l'utilisateur !!!! 
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			int result = nPJT.update(sQL, mSPS);

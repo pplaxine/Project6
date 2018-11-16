@@ -11,6 +11,7 @@ public interface CompteUtilisateurDao {
 	int createCompteUtilisateur(CompteUtilisateur compteUtilisateur);
 	
 	CompteUtilisateur findCompteUtilisateur(String userName);
+	CompteUtilisateur findCompteUtilisateur(int user_id);
 	
 	List<CompteUtilisateur> getAllCompteUtilisateur(); 
 }

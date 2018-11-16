@@ -14,6 +14,7 @@ public class CompteUtilisateurRM implements RowMapper<CompteUtilisateur> {
 		compteUtilisateur.setNom(rs.getString("nom"));
 		compteUtilisateur.setPseudo(rs.getString("pseudo"));
 		compteUtilisateur.setEmail(rs.getString("email"));
+		compteUtilisateur.setId(rs.getInt("id"));
 		compteUtilisateur.setMdp(rs.getString("mdp"));
 		compteUtilisateur.setAcces(rs.getString("acces"));
 		

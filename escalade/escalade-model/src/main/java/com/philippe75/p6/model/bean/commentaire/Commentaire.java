@@ -1,18 +1,35 @@
 package com.philippe75.p6.model.bean.commentaire;
 
 import java.util.Date;
+import java.util.List;
 
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
-public class Commentaire {
+public class Commentaire implements Comparable<Commentaire>{
 	
 	private int id;
 	
+	private int site_id;
+	private String auteur;
 	private Date dateCreation; 
 	private String contenu;
+	private List<Commentaire> commentaires;
 	
 	
+
+	public int getSite_id() {
+		return site_id;
+	}
+	public void setSite_id(int site_id) {
+		this.site_id = site_id;
+	}
+	public String getAuteur() {
+		return auteur;
+	}
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
+	}
 	public int getId() {
 		return id;
 	}
@@ -31,5 +48,15 @@ public class Commentaire {
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	} 
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+	@Override
+	public int compareTo(Commentaire com) {
+		return getDateCreation().compareTo(com.getDateCreation());
+	}
 	
 }

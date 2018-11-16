@@ -35,36 +35,60 @@
 				Description : <c:out value="${ site.description }"/><br/>
 		   	</c:if>
 		   	Date de création : <c:out value="${ site.dateCreation }"/>
-		        	<div>
-		        		<c:forEach items="${site.secteurs}" var="secteursVar">
-					        <ul>
-					       		<li>
-					    			Secteur : <c:out value="${secteursVar.nom}"/>
-					        		<c:forEach items="${secteursVar.voies}" var="voiesVar3">
+		        	
+		    <div>
+		        <c:forEach items="${site.secteurs}" var="secteursVar">
+					<ul>
+						<li>
+					    Secteur : <c:out value="${secteursVar.nom}"/>
+					    	<c:forEach items="${secteursVar.voies}" var="voiesVar3">
+					        	<ul>
+					        		<li>
+					        			Voie : <c:out value="${voiesVar3.nom}"></c:out>
 					        			<ul>
 					        				<li>
-					        					Voie : <c:out value="${voiesVar3.nom}"></c:out>
-					        					<ul>
-					        						<li>
-					        							Hauteur : <c:out value="${voiesVar3.hauteur }"/>
-					        						</li>
-					        						<li>
-					        							Nombre de points : <c:out value="${voiesVar3.nombrePoints }"/>
-					        						</li>
-					        						<li>
-					        							Nombre de longueurs : <c:out value="${voiesVar3.nombreLongueur}"/>
-					        						</li>
-					        						<li>
-					        							Cotation : <c:out value="${voiesVar3.cotation }"/>
-					        						</li>
-					        					</ul>
+					        					Hauteur : <c:out value="${voiesVar3.hauteur }"/>
+					        				</li>
+					        				<li>
+					        					Nombre de points : <c:out value="${voiesVar3.nombrePoints }"/>
+					        				</li>
+					        				<li>
+					        					Nombre de longueurs : <c:out value="${voiesVar3.nombreLongueur}"/>
+					        				</li>
+					        				<li>
+					        					Cotation : <c:out value="${voiesVar3.cotation }"/>
 					        				</li>
 					        			</ul>
-					        		</c:forEach>
-					        	</li>
-					        </ul>
-				        </c:forEach>
-					</div> 
+					        		</li>
+					        	</ul>
+					        </c:forEach>
+					  	</li>
+					</ul>
+				</c:forEach>
+			</div> 
+			<div>
+				<c:forEach items="${site.voies}" var="voiesListVar">
+					<ul>
+						<li>
+					     		Voie : <c:out value="${voiesListVar.nom}"></c:out>
+					        	<ul>
+					        		<li>
+					        			Hauteur : <c:out value="${voiesListVar.hauteur }"/>
+					        		</li>
+					        		<li>
+					    				Nombre de points : <c:out value="${voiesListVar.nombrePoints }"/>
+					       			</li>
+					        		<li>
+					        			Nombre de longueurs : <c:out value="${voiesListVar.nombreLongueur}"/>
+					        		</li>
+					        		<li>
+					        			Cotation : <c:out value="${voiesListVar.cotation }"/>
+					        		</li>
+					      		</ul>
+						</li>
+					</ul>
+				</c:forEach>
+			</div> 
        	
        	
 		

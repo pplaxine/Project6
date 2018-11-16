@@ -37,7 +37,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 		
 		Secteur secteur = (Secteur)jT.queryForObject(sQL, new Object[] {id}, rm);
 		
-		secteur.setVoies(getDaoHandler().getVoieDao().listVoie(id));
+		secteur.setVoies(getDaoHandler().getVoieDao().listVoie(id,true));
 		
 		return secteur;
 	}
@@ -54,7 +54,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 		List<Secteur> listSecteur = (List<Secteur>)jT.query(sQL, new Object[] {site_id}, rm);
 		
 		for (Secteur secteur : listSecteur) {
-			secteur.setVoies(getDaoHandler().getVoieDao().listVoie(secteur.getId()));
+			secteur.setVoies(getDaoHandler().getVoieDao().listVoie(secteur.getId(), true));
 		}
 		
 		return listSecteur;

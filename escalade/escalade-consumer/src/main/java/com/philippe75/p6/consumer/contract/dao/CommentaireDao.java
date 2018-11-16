@@ -1,0 +1,14 @@
+package com.philippe75.p6.consumer.contract.dao;
+
+import java.util.List;
+
+import com.philippe75.p6.model.bean.commentaire.Commentaire;
+
+public interface CommentaireDao {
+
+	Commentaire findCommentaire(int commentaire_id);
+	
+	List<Integer> findCommentaireAssociesId(int commentaire_id);
+	
+	List<Commentaire> findAllCommentairesForSite(int site_id);
+}

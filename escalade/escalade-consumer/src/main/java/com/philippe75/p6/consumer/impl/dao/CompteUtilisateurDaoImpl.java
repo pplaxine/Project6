@@ -61,6 +61,24 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 			
 			return nPJT.queryForObject(sQL, mSPS, rm);
 	}
+	
+	@Override
+	public CompteUtilisateur findCompteUtilisateur(int user_id) {
+		
+			String sQL = "SELECT * FROM public.compte_utilisateur WHERE id=:user_id";
+			
+			MapSqlParameterSource mSPS = new MapSqlParameterSource();
+
+			if(Integer.toString(user_id) !=null) {
+				mSPS.addValue("id", user_id);
+			}
+			
+			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+			
+			RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
+			
+			return nPJT.queryForObject(sQL, mSPS, rm);
+	}
 
 
 	@Override

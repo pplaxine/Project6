@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.philippe75.p6.consumer.contract.DaoHandler;
+import com.philippe75.p6.consumer.contract.dao.CommentaireDao;
 import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.consumer.contract.dao.CotationDao;
 import com.philippe75.p6.consumer.contract.dao.DeptDao;
@@ -34,7 +35,10 @@ public class DaoHandlerImpl implements DaoHandler{
 	@Inject
 	private DeptDao deptDao;
 	
+	@Inject
+	private CommentaireDao commentaireDao;
 
+	
 	@Override
 	public CompteUtilisateurDao getCompteUtilisateurDao() {
 		return compteUtilisateurDao;
@@ -64,7 +68,9 @@ public class DaoHandlerImpl implements DaoHandler{
 	public DeptDao getDeptDao() {
 		return deptDao;
 	}
-	
 
+	public CommentaireDao getCommentaireDao() {
+		return commentaireDao;
+	}
 		
 }

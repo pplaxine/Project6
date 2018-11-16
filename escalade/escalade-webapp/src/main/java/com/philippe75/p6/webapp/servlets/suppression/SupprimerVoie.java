@@ -43,12 +43,13 @@ public class SupprimerVoie extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String voieToDelete	= request.getParameter(PARAM_DELETE_VOIE);		// verif à faire 
+		String voieToDelete	= request.getParameter(PARAM_DELETE_VOIE);		 
 		HttpSession session = request.getSession();
 		
 		Map<String,Secteur> secteurs = (Map<String,Secteur>)(session.getAttribute("secteurs"));
+		
 
-		if( secteurs.size() > 1 ) {
+		if( session.getAttribute("voies") != null && ((Map<String,Voie>)session.getAttribute("voies")).size() > 0) {
 			Map<String,Voie> voies = (Map<String,Voie>)session.getAttribute("voies");
 			if(voies != null) {
 				voies.remove(voieToDelete);
@@ -56,7 +57,8 @@ public class SupprimerVoie extends HttpServlet {
 			
 			session.setAttribute("voies", voies);
 			response.sendRedirect(request.getContextPath() + REDIRECT_SUCCESS_SECTEUR);
-		}else {
+
+		}else if(session.getAttribute("voiesSite") != null){
 			Map<String,Voie> voiesSite = (Map<String,Voie>)session.getAttribute("voiesSite");
 			if(voiesSite != null) {
 				voiesSite.remove(voieToDelete);
@@ -66,6 +68,8 @@ public class SupprimerVoie extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + REDIRECT_SUCCESS_SITE);
 		}
 		
+		
 	}
+	
 
 }

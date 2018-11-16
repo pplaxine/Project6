@@ -47,18 +47,26 @@
 							<td><c:out value="${allSitesVar.dept}"/></td>
 							<td><c:out value="${allSitesVar.lieu}"/></td>
 							<td>
-								<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
-									<c:set var="secteurCounter" value="${ allSecteursVS.count }"/>
-								</c:forEach>
-								<c:out value="${secteurCounter}"/>
+								<c:if test="${not empty allSitesVar.secteurs}">
+									<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+										<c:set var="secteurCounter" value="${ allSecteursVS.count }"/>
+									</c:forEach>
+									<c:out value="${secteurCounter}"/>
+								</c:if>
 							</td>
 							<td>
-								<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
-									<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
-										<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+								<c:if test="${not empty allSitesVar.secteurs}">
+									<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+										<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
+											<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+										</c:forEach>
 									</c:forEach>
+									<c:out value="${voieCounter}"/>
+								</c:if>
+								<c:forEach items="${allSitesVar.voies}" var="allVoiesSiteVar" varStatus="allVoiesSiteVS">
+									<c:set var="voieSiteCounter" value="${ allVoiesSiteVS.count }"/>
 								</c:forEach>
-								<c:out value="${voieCounter}"/>
+								<c:out value="${voieSiteCounter}"/>
 							</td>
 							<td>
 								<c:choose>
