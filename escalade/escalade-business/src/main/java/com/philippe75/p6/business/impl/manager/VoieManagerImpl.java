@@ -6,13 +6,10 @@ import java.util.Map;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.jasper.tagplugins.jstl.core.If;
-
 import com.philippe75.p6.business.contract.impl.VoieManager;
 import com.philippe75.p6.business.exception.FormValidationException;
 import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Voie;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("voieManager")
 public class VoieManagerImpl extends AbstractManager implements VoieManager{

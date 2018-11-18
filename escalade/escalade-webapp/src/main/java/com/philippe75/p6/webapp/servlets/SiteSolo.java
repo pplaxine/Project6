@@ -1,6 +1,7 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
+import com.philippe75.p6.model.bean.commentaire.Commentaire;
 import com.philippe75.p6.model.bean.site.Site;
 
 
@@ -37,6 +39,12 @@ public class SiteSolo extends HttpServlet {
 		Site site = managerHandler.getSiteManager().findSite(site_id);
 		request.setAttribute("site", site);
 		
+		List<Commentaire> commentaireList = managerHandler.getCommentaireManager().findAllCommentairesForSite(site_id);
+		Collections.sort(commentaireList);
+		Collections.reverse(commentaireList);
+		
+		request.setAttribute("commentaireList", commentaireList);
+		
 	
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
@@ -46,9 +54,5 @@ public class SiteSolo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
-
-	
-
-
 
 }

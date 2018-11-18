@@ -5,19 +5,15 @@ import java.util.List;
 
 import javax.inject.Named;
 
-import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
-import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;

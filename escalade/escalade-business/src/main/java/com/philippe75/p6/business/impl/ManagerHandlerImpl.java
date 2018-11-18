@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
+import com.philippe75.p6.business.contract.impl.CommentaireManager;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.business.contract.impl.CotationManager;
 import com.philippe75.p6.business.contract.impl.DeptManager;
@@ -31,6 +32,10 @@ public class ManagerHandlerImpl implements ManagerHandler {
 	
 	@Inject
 	private VoieManager voieManager;
+	
+	@Inject
+	private CommentaireManager commentaireManager;
+	
 	
 	@Override
 	public CompteUtilisateurManager getCompteUtilisateurManager() {
@@ -65,7 +70,12 @@ public class ManagerHandlerImpl implements ManagerHandler {
 	}
 
 
+	public CommentaireManager getCommentaireManager() {
+		return commentaireManager;
+	}
 
+
+	
 	
 	
 	

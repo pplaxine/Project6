@@ -84,7 +84,7 @@ CREATE TABLE public.commentaire (
                 id INTEGER NOT NULL DEFAULT nextval('public.commentaire_id_seq'),
                 date_creation TIMESTAMP NOT NULL,
                 contenu VARCHAR(5000) NOT NULL,
-                site_id INTEGER NOT NULL,
+                site_id INTEGER,
                 compte_utilisateur_id INTEGER NOT NULL,
                 CONSTRAINT commentaire_pk PRIMARY KEY (id)
 );
@@ -368,9 +368,9 @@ SELECT * FROM public.secteur where site_id=(SELECT public.site.id FROM public.si
 
 SELECT public.site.id FROM public.site WHERE site.nom='Auban';
 
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:09:18',E'Je n\'ai pas vraiment aimé ce site, je l\'ai trouvé vraiment difficile',1,2); 
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'As-tu utilisé le bon matériel ?',2,1); 
-INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-10-31 06:18:18',E'Oui Laure a raison, un bon matériel est essentiel',1,3); 
+INSERT INTO public.commentaire (date_creation,contenu,site_id,compte_utilisateur_id) VALUES ('2018-02-17 06:09:18',E'Je n\'ai pas vraiment aimé ce site, je l\'ai trouvé vraiment difficile',1,2); 
+INSERT INTO public.commentaire (date_creation,contenu,compte_utilisateur_id) VALUES ('2018-03-17 06:18:18',E'As-tu utilisé le bon matériel ?',1); 
+INSERT INTO public.commentaire (date_creation,contenu,compte_utilisateur_id) VALUES ('2018-04-17 06:18:18',E'Oui Laure a raison, un bon matériel est essentiel',3); 
 
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,2);
 INSERT INTO public.commentaire_associe (commentaire_id, commentaire_associe_id) VALUES (1,3);

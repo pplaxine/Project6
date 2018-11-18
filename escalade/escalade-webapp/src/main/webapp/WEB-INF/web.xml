@@ -56,6 +56,10 @@
     <servlet-name>SupprimerSecteur</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerSecteur</servlet-class>
   </servlet>
+   <servlet>
+  <servlet-name>CreerCommentaire</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerCommentaire</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
@@ -104,6 +108,10 @@
   <servlet-mapping>
     <servlet-name>SupprimerSecteur</servlet-name>
     <url-pattern>/sites/creersite/supprimersecteur</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerCommentaire</servlet-name>
+    <url-pattern>/sites/creercommentaire/</url-pattern>
   </servlet-mapping>
   
   

@@ -46,15 +46,6 @@ public class Sites extends HttpServlet {
 		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
 		request.setAttribute("allSites", allSites);
 		
-		Commentaire com = daoHandler.getCommentaireDao().findCommentaire(1);
-		System.out.println(com.getContenu());
-		
-		List<Commentaire> comcom = com.getCommentaires();
-		Collections.sort(comcom);
-		for (Commentaire com2 : comcom) {
-			System.out.println("	2ème niv " + com2.getContenu());
-		}
-		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 

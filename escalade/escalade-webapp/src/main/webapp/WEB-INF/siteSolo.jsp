@@ -89,9 +89,38 @@
 					</ul>
 				</c:forEach>
 			</div> 
-       	
-       	
-		
+			<p>
+			/////////////////////////////////////////////////////
+			</p>
+       		
+       		<div class="container bg-dark pb-2">
+       			<h3 class="text-light">Messages</h3><br/>
+				<c:import url="/inc/ajoutCommentaire.jsp"/>				       		
+	       		<div class="container bg-dark rounded pb-1">
+	       		
+	       		<c:forEach items="${commentaireList}" var="comListVar">
+	       			<div class="container bg-warning rounded pb-3 mb-4">
+	       				<h5>
+		       				<c:out value="Commentaire laissé par : ${ comListVar.auteur }"/><c:out value="    le : ${ comListVar.dateCreation }"></c:out><br/>
+	       				</h5>
+	       				<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
+			       			<p><c:out value="${ comListVar.contenu }"/></p>
+	       				</div>
+	       				<c:import url="/inc/reponseCommentaire.jsp"/>
+	       				<div class="Container ml-5">
+				       		<c:forEach items="${comListVar.commentaires}" var="comListVar2">
+					     	  	<c:out value="Commentaire laissé par : ${ comListVar2.auteur }"/><c:out value="    le : ${ comListVar2.dateCreation }"></c:out><br/>
+				       			<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
+					     	  		<p><c:out value="${ comListVar2.contenu }"/></p>
+					     	  	</div>
+					     	  	<c:import url="/inc/reponseCommentaire.jsp"/>
+				       		</c:forEach>
+		       			</div>
+		       		</div>	
+	       		</c:forEach>
+	       		
+	       		</div>
+       		</div>
 		
     </body>
 </html>

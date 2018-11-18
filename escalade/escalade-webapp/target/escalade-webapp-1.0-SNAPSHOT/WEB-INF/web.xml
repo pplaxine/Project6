@@ -32,6 +32,34 @@
     <servlet-name>Sites</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.Sites</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SiteSolo</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.SiteSolo</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreerSite</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSite</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreerVoie</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerVoie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreerSecteur</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSecteur</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SupprimerVoie</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerVoie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SupprimerSecteur</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerSecteur</servlet-class>
+  </servlet>
+   <servlet>
+  <servlet-name>CreerCommentaire</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerCommentaire</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
@@ -57,6 +85,36 @@
     <servlet-name>Sites</servlet-name>
     <url-pattern>/sites/</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SiteSolo</servlet-name>
+    <url-pattern>/sites/site</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerSite</servlet-name>
+    <url-pattern>/sites/creersite/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerVoie</servlet-name>
+    <url-pattern>/sites/creersite/creervoie/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerSecteur</servlet-name>
+    <url-pattern>/sites/creersite/creersecteur/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerVoie</servlet-name>
+    <url-pattern>/sites/creersite/creersecteur/supprimervoie</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerSecteur</servlet-name>
+    <url-pattern>/sites/creersite/supprimersecteur</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerCommentaire</servlet-name>
+    <url-pattern>/sites/creercommentaire/</url-pattern>
+  </servlet-mapping>
+  
+  
   <display-name>Escalade</display-name>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
