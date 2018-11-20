@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Dept {
+	TOUS("- Tous -"),
 	AIN("01 Ain"),
 	AISNE("02 Aisne"),
 	ALLIER("03 Allier"),
@@ -100,7 +101,7 @@ public enum Dept {
 	SEINES_ST_DENIS("93 Seine-St-Denis"),
 	VAL_DE_MARNE("94 Val-de-Marne"),
 	VAL_D_OISE("95 Val-D'Oise");
-
+	
 	
 	private String dept="";
 	
@@ -123,8 +124,11 @@ public enum Dept {
         }
     }
   
+    
  
-    public static Dept get(String dept2)
+ 
+
+	public static Dept get(String dept2)
     {
         return lookup2.get(dept2);
     }

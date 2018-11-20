@@ -55,9 +55,26 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
 			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
 		}
-		
 		return listSite;
+	}
+	
+	@Override
+	public List<Site> listAllSiteWithCriteria(String dept, int nombreSecteur, int nombreVoie, boolean topoDisponible) {
 		
+		String sQL = "SELECT * FROM public.site";		
+		
+		JdbcTemplate jT = new JdbcTemplate(getDataSource());
+		
+		RowMapper<Site> rm = new SiteRM();		
+		
+		List<Site> listSite = (List<Site>)jT.query(sQL, rm);
+		
+		for (Site site : listSite) {
+			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
+			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
+		}
+		return listSite;
 	}
 	
 	@Override

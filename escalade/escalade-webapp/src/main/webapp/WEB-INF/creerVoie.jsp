@@ -48,7 +48,7 @@
 			<div class="form-group">
 			
 				<label for="nombrePointsVoie">Nombre de Points<span class="requis">*</span></label>
-				<input type="number" value="1" min="0" class="form-control"  value="1" id="nombrePointsVoie" name="nombrePointsVoie" />
+				<input type="number" value="1" min="0" class="form-control"  value="0" id="nombrePointsVoie" name="nombrePointsVoie" />
 			</div>
 			<div class="form-group">
 				<label for="cotationVoie">Cotation<span class="requis">*</span></label>

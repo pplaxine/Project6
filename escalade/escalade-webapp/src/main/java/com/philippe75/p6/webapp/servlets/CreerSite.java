@@ -51,6 +51,7 @@ public class CreerSite extends HttpServlet {
 		
 		//Enums 
 		List<Dept> listDept = managerHandler.getDeptManager().listAllDepts();
+		listDept.remove(Dept.TOUS);
 		this.getServletContext().setAttribute("listDept", listDept);
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);

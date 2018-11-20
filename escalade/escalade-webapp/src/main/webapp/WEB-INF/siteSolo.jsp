@@ -101,19 +101,23 @@
 	       		<c:forEach items="${commentaireList}" var="comListVar">
 	       			<div class="container bg-warning rounded pb-3 mb-4">
 	       				<h5>
-		       				<c:out value="Commentaire laissé par : ${ comListVar.auteur }"/><c:out value="    le : ${ comListVar.dateCreation }"></c:out><br/>
+		       				<c:out value="Commentaire laissé par : ${ comListVar.auteur } "/><c:out value="    le : ${ comListVar.dateCreation }"></c:out><br/>
 	       				</h5>
 	       				<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
 			       			<p><c:out value="${ comListVar.contenu }"/></p>
 	       				</div>
 	       				<c:import url="/inc/reponseCommentaire.jsp"/>
-	       				<div class="Container ml-5">
+	       				<div class="collapse bg-dark ml-5 rounded" id="repCol">
+	       					
 				       		<c:forEach items="${comListVar.commentaires}" var="comListVar2">
-					     	  	<c:out value="Commentaire laissé par : ${ comListVar2.auteur }"/><c:out value="    le : ${ comListVar2.dateCreation }"></c:out><br/>
-				       			<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
+				       			<div class="container bg-warning p-2 m-1 ">
+				       				 <c:out value="Commentaire laissé par : ${ comListVar2.auteur }"/><c:out value="    le : ${ comListVar2.dateCreation }"></c:out><br/>
+				       				<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
 					     	  		<p><c:out value="${ comListVar2.contenu }"/></p>
-					     	  	</div>
-					     	  	<c:import url="/inc/reponseCommentaire.jsp"/>
+					     	  		</div>
+					     	  		<c:import url="/inc/reponseCommentaire.jsp"/>
+				       			</div>
+					     	 
 				       		</c:forEach>
 		       			</div>
 		       		</div>	

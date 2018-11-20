@@ -45,7 +45,9 @@ public class CreerCommentaire extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String site_id = (String)request.getParameter("site_id");		
+		String site_id = (String)request.getParameter("site_id");	
+		String commentaire_id = (String)request.getParameter("commentaire_id");
+		System.out.println(commentaire_id);
 		
 		CommentaireManager comM = managerHandler.getCommentaireManager();
 		Commentaire commentaire = comM.creerNouveauCommentaire(request, Integer.valueOf(site_id));

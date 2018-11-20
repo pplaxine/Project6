@@ -13,6 +13,8 @@ public interface SiteDao {
 	
 	List<Site> listAllSite();
 	
+	public List<Site> listAllSiteWithCriteria(String dept, int nombreSecteur, int nombreVoie, boolean topoDisponible);
+	
 	int saveSite(Site site);
 
 }
