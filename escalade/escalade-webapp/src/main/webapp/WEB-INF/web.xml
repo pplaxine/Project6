@@ -60,6 +60,14 @@
   <servlet-name>CreerCommentaire</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.CreerCommentaire</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreerTopo</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.CreerTopo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SupprimerSite</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerSite</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
@@ -112,6 +120,14 @@
   <servlet-mapping>
     <servlet-name>CreerCommentaire</servlet-name>
     <url-pattern>/sites/creercommentaire/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerTopo</servlet-name>
+    <url-pattern>/topo/creertopo/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerSite</servlet-name>
+    <url-pattern>/topo/creertopo/supprimersite/</url-pattern>
   </servlet-mapping>
   
   

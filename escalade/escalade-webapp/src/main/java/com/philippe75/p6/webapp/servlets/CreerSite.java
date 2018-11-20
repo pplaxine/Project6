@@ -39,6 +39,7 @@ public class CreerSite extends HttpServlet {
 	DaoHandler daoHandler; 
 	
 	public static final String VUE_MAIN ="/WEB-INF/creerSite.jsp";
+	private boolean requestFromTopo;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -54,6 +55,12 @@ public class CreerSite extends HttpServlet {
 		listDept.remove(Dept.TOUS);
 		this.getServletContext().setAttribute("listDept", listDept);
 		
+		//InitiateurDeLaRequete
+		if(request.getParameter("topo") !=null) {
+			requestFromTopo = request.getParameter("topo").equals("true")?true:false;
+			System.out.println(requestFromTopo);
+		}
+		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
 
@@ -62,37 +69,65 @@ public class CreerSite extends HttpServlet {
 		
 		SiteManager sm = managerHandler.getSiteManager();
 		Site site = sm.creerNouveauSite(request);
-
+	
 		if(sm.getErreurs().isEmpty()) {
 			
 			HttpSession session = request.getSession();
 			List<Secteur> secteurList;
 			List<Voie> voieList;
 			
-			if(session.getAttribute("secteurs") != null) {
-				Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
-				secteurList = new ArrayList<Secteur>(secteursMap.values());
-				site.setSecteurs(secteurList);
+			
+			if(requestFromTopo) {
 				
-				int str = managerHandler.getSiteManager().saveSite(site); 
-				if(str != 0 ) {
+				if(session.getAttribute("secteurs") != null) {
+					Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
+					secteurList = new ArrayList<Secteur>(secteursMap.values());
+					site.setSecteurs(secteurList);
+					
+					session.setAttribute("siteTopo", site); 
 					secteursMap = new HashMap<String,Secteur>();
 					session.setAttribute("secteurs", secteursMap);
+					
 				}
-			}
-			if(session.getAttribute("voiesSite") != null) {
-				Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
-				voieList = new ArrayList<Voie>(voiesMap.values());
-				site.setVoies(voieList);
-				
-				int str = managerHandler.getSiteManager().saveSite(site); 
-				if(str != 0 ) {
+				if(session.getAttribute("voiesSite") != null) {
+					Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
+					voieList = new ArrayList<Voie>(voiesMap.values());
+					site.setVoies(voieList);
+					
+					session.setAttribute("siteTopo", site);
 					voiesMap = new HashMap<String,Voie>();
 					session.setAttribute("voiesSite", voiesMap);
+					
 				}
+				response.sendRedirect(request.getContextPath() + "/topo/creertopo/");
+			}else {
+			
+				if(session.getAttribute("secteurs") != null) {
+					Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
+					secteurList = new ArrayList<Secteur>(secteursMap.values());
+					site.setSecteurs(secteurList);
+					
+					int str = managerHandler.getSiteManager().saveSite(site); 
+					if(str != 0 ) {
+						secteursMap = new HashMap<String,Secteur>();
+						session.setAttribute("secteurs", secteursMap);
+					}
+				}
+				if(session.getAttribute("voiesSite") != null) {
+					Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
+					voieList = new ArrayList<Voie>(voiesMap.values());
+					site.setVoies(voieList);
+					
+					int str = managerHandler.getSiteManager().saveSite(site); 
+					if(str != 0 ) {
+						voiesMap = new HashMap<String,Voie>();
+						session.setAttribute("voiesSite", voiesMap);
+					}
+				}
+				
+				response.sendRedirect(request.getContextPath() + "/sites/");
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/sites/");
 		}else {
 			request.setAttribute("sm", sm);
 			request.setAttribute("site", site);
