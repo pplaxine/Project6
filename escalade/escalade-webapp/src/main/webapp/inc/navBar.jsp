@@ -13,10 +13,10 @@
      		</li>
      		
      		<li class="nav-item dropdown">
-     			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" id="navbarDropdownMenuLink"  aria-haspopup="true" aria-expanded="false">
+     			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" id="navbarDropdownSiteLink"  aria-haspopup="true" aria-expanded="false">
 		          Sites
 		        </a>
-		        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+		        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownSiteLink">
 		        	<ul>
 		        		<li>
 		        			<a class="dropdoawn-item text-light" href="<c:url value="/sites/" />">Tous les sites</a>
@@ -29,8 +29,20 @@
      		 </li>
      		 
      		 
-      		<li class="nav-item">
-      			<a class="nav-link" href="<c:url value="/pret/" />">Espace prêt de topo</a>
+      		<li class="nav-item dropdown">
+      			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" id="navbarDropdownTopoLink"  aria-haspopup="true" aria-expanded="false">
+		          Espace prêt de topo
+		        </a>
+      			 <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownTopoLink">
+		        	<ul>
+		        		<li>
+		        			<a class="dropdoawn-item text-light" href="<c:url value="/topo/topos/" />">Tous les topos</a>
+		        		</li>
+		        		<li>
+		        			<a class="dropdoawn-item text-light " href="<c:url value="/topo/creertopo/" />">Ajouter un topo</a>
+		        		</li>
+		        	</ul>
+		        </div>
      		</li>
       		
       		<sec:authorize access="authenticated" var="authenticatedVar" />

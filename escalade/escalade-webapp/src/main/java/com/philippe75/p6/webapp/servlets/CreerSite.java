@@ -50,15 +50,17 @@ public class CreerSite extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		//Enums 
 		List<Dept> listDept = managerHandler.getDeptManager().listAllDepts();
 		listDept.remove(Dept.TOUS);
 		this.getServletContext().setAttribute("listDept", listDept);
 		
 		//InitiateurDeLaRequete
-		if(request.getParameter("topo") !=null) {
+		if(request.getParameter("topo") != null) {
 			requestFromTopo = request.getParameter("topo").equals("true")?true:false;
-			System.out.println(requestFromTopo);
+			//mise en session pour le bouton retour
+			session.setAttribute("requestFromTopo", requestFromTopo);
 		}
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
@@ -85,8 +87,7 @@ public class CreerSite extends HttpServlet {
 					site.setSecteurs(secteurList);
 					
 					session.setAttribute("siteTopo", site); 
-					secteursMap = new HashMap<String,Secteur>();
-					session.setAttribute("secteurs", secteursMap);
+					session.removeAttribute("secteurs");;
 					
 				}
 				if(session.getAttribute("voiesSite") != null) {
@@ -95,10 +96,10 @@ public class CreerSite extends HttpServlet {
 					site.setVoies(voieList);
 					
 					session.setAttribute("siteTopo", site);
-					voiesMap = new HashMap<String,Voie>();
-					session.setAttribute("voiesSite", voiesMap);
+					session.removeAttribute("voiesSite");
 					
 				}
+				
 				response.sendRedirect(request.getContextPath() + "/topo/creertopo/");
 			}else {
 			
@@ -109,10 +110,10 @@ public class CreerSite extends HttpServlet {
 					
 					int str = managerHandler.getSiteManager().saveSite(site); 
 					if(str != 0 ) {
-						secteursMap = new HashMap<String,Secteur>();
-						session.setAttribute("secteurs", secteursMap);
+						session.removeAttribute("secteurs");
 					}
 				}
+				
 				if(session.getAttribute("voiesSite") != null) {
 					Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
 					voieList = new ArrayList<Voie>(voiesMap.values());
@@ -120,13 +121,13 @@ public class CreerSite extends HttpServlet {
 					
 					int str = managerHandler.getSiteManager().saveSite(site); 
 					if(str != 0 ) {
-						voiesMap = new HashMap<String,Voie>();
-						session.setAttribute("voiesSite", voiesMap);
+						session.removeAttribute("voiesSite");
 					}
 				}
 				
 				response.sendRedirect(request.getContextPath() + "/sites/");
 			}
+			
 			
 		}else {
 			request.setAttribute("sm", sm);

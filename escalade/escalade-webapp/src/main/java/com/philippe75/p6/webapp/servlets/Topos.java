@@ -20,10 +20,11 @@ import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
+import com.philippe75.p6.model.bean.topo.Topo;
 
 
 
-public class Sites extends HttpServlet {
+public class Topos extends HttpServlet {
 	
 	@Inject
 	ManagerHandler managerHandler;
@@ -31,7 +32,7 @@ public class Sites extends HttpServlet {
 	@Inject
 	DaoHandler daoHandler; 
 	
-	public static final String VUE_SITES ="/WEB-INF/sites.jsp";
+	public static final String VUE_TOPOS ="/WEB-INF/topos.jsp";
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -42,39 +43,31 @@ public class Sites extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Dept> listDept = managerHandler.getDeptManager().listAllDepts();
-		this.getServletContext().setAttribute("listDept", listDept);
+		List<Topo> allTopos = daoHandler.getTopoDao().listAllTopo();		// a modif pour managerHandler
+		request.setAttribute("allTopos", allTopos);
 		
-		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
-		request.setAttribute("allSites", allSites);
+//		List<Topo> topos = daoHandler.getTopoDao().listAllTopo();
+//		for (Topo topo : topos) {
+//			System.out.println(topo.getId());
+//			System.out.println(topo.getNom());
+//			System.out.println(topo.getPresentation());
+//			System.out.println(topo.isDisponible());
+//			System.out.println(topo.getDateDebutLocation());
+//			System.out.println(topo.getDateFinLocation());
+//		}
 		
-		String sitesParam = "true";
-		request.setAttribute("sitesParam", sitesParam);
+		this.getServletContext().getRequestDispatcher(VUE_TOPOS).forward(request, response);
 		
-		this.getServletContext().getRequestDispatcher(VUE_SITES).forward(request, response);
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Dept> listDept = managerHandler.getDeptManager().listAllDepts();
-		this.getServletContext().setAttribute("listDept", listDept);
-			
-		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
-		request.setAttribute("allSites", allSites);
-
-		String sitesParam = request.getParameter("allSitesParam");
-		request.setAttribute("sitesParam", sitesParam);
+		List<Topo> allTopos = daoHandler.getTopoDao().listAllTopo();		// a modif pour managerHandler
+		request.setAttribute("allTopos", allTopos);
 	
-		String deptRechV = request.getParameter("deptRech");
-		 request.setAttribute("deptRechV", deptRechV);
-		if(request.getParameter("topoRech") != null) {
-			
-			String topoRechV = request.getParameter("topoRech");
-			request.setAttribute("topoRechV", topoRechV);
-		}
-	
-		this.getServletContext().getRequestDispatcher(VUE_SITES).forward(request, response);
+		this.getServletContext().getRequestDispatcher(VUE_TOPOS).forward(request, response);
 		
 		
 	}

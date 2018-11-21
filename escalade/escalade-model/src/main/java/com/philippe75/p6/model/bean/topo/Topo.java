@@ -14,6 +14,8 @@ public class Topo {
 	private Date dateDebutLocation;
 	private Date dateFinLocation;
 	private Site site;
+	private String preteur;
+	private String emprunteur;
 	
 	
 	public int getId() {
@@ -57,6 +59,18 @@ public class Topo {
 	}
 	public void setSite(Site site) {
 		this.site = site;
+	}
+	public String getPreteur() {
+		return preteur;
+	}
+	public void setPreteur(String preteur) {
+		this.preteur = preteur;
+	}
+	public String getEmprunteur() {
+		return emprunteur;
+	}
+	public void setEmprunteur(String emprunteur) {
+		this.emprunteur = emprunteur;
 	} 
 	
 	

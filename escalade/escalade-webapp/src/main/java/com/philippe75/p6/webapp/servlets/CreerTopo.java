@@ -19,6 +19,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
 import com.philippe75.p6.business.contract.impl.SiteManager;
+import com.philippe75.p6.business.contract.impl.TopoManager;
 import com.philippe75.p6.business.contract.impl.VoieManager;
 import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.model.bean.site.Cotation;
@@ -26,6 +27,7 @@ import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
+import com.philippe75.p6.model.bean.topo.Topo;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
@@ -48,26 +50,34 @@ public class CreerTopo extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		//permet au bouton retour de creerSite de renvoyer a nouveau à la page main 
+		session.removeAttribute("requestFromTopo");
+		
 		this.getServletContext().getRequestDispatcher(VUE_CREERTOPO).forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
-		
-		//SiteManager sm = managerHandler.getSiteManager();
-		//Topo topo = sm.creerNouveauTopo(request);
+		TopoManager tm = managerHandler.getTopoManager();
+		Topo topo = tm.creerNouveauTopo(request);
 
-		//if(sm.getErreurs().isEmpty()) {
-		//	session.removeAttribute("siteTopo");
-		//	response.sendRedirect(request.getContextPath() + "/");
-		//}else {
-			//request.setAttribute("sm", sm);
-			//request.setAttribute("site", site);
+		if(tm.getErreurs().isEmpty() && session.getAttribute("siteTopo") != null) {
+			Site site = (Site)session.getAttribute("siteTopo");
+			topo.setSite(site);
+			int str = managerHandler.getTopoManager().saveTopo(topo);
+			if(str != 0 ) {
+				session.removeAttribute("siteTopo");
+			}
+			
+			response.sendRedirect(request.getContextPath() + "/topo/topos/");
+		}else {
+			request.setAttribute("tm", tm);
+			request.setAttribute("topo", topo);
 
 			this.getServletContext().getRequestDispatcher(VUE_CREERTOPO).forward(request, response);
-		//}
+		}
 	}
 
 	

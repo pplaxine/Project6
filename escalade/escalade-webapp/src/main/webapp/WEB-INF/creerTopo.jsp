@@ -55,7 +55,7 @@
 								<td>
 									<c:if test="${not empty siteTopo.secteurs}">
 										<c:forEach items="${siteTopo.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
-											<c:forEach items="${siteTopo.voies }" var="allVoiesVar" varStatus="allVoiesVS">
+											<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
 												<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
 											</c:forEach>
 										</c:forEach>
@@ -85,11 +85,11 @@
 				<div class="form-group">
 					<label for="nomTopo">Nom <span class="requis">*</span></label>
 					<input type="text" class="form-control" id="nomTopo" name="nomTopo" placeholder="Nom du topo" value="<c:out value="${topo.nom}"/>" size="20" maxlength="20"/>
-					<span class="text-danger">${sm.erreurs['nomTopo']}</span>
+					<span class="text-danger">${tm.erreurs['nomTopo']}</span>
 				</div>
 				
 				<div class="form-group">
-					<label for="presentationTopo">Présentation<span class="requis">*</span></label>
+					<label for="presentationTopo">Présentation</label>
 					<textarea class="form-control" id="presentationTopo" name="presentationTopo" rows="5" placeholder="Description du topo"><c:out value="${topo.presentation}"/></textarea> 
 				</div>
 				<sec:csrfInput/>

@@ -65,6 +65,10 @@
     <servlet-class>com.philippe75.p6.webapp.servlets.CreerTopo</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>Topos</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.Topos</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>SupprimerSite</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerSite</servlet-class>
   </servlet>
@@ -79,7 +83,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>EspacePretTopo</servlet-name>
-    <url-pattern>/pret/</url-pattern>
+    <url-pattern>/topo/pret/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>APropos</servlet-name>
@@ -124,6 +128,10 @@
   <servlet-mapping>
     <servlet-name>CreerTopo</servlet-name>
     <url-pattern>/topo/creertopo/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Topos</servlet-name>
+    <url-pattern>/topo/topos/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>SupprimerSite</servlet-name>

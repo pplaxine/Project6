@@ -19,7 +19,8 @@
     	<security:logout logout-url="/logout" logout-success-url="/main?logout=true" />
     	
     	<security:intercept-url pattern="/#" access="ROLE_ADMIN"/>
-    	<security:intercept-url pattern="/pret/*" access="ROLE_USER, ROLE_ADMIN"/>
+    	<security:intercept-url pattern="/topo/**" access="ROLE_USER, ROLE_ADMIN"/>
+    	<security:intercept-url pattern="/sites/creersite/*" access="ROLE_USER, ROLE_ADMIN"/>
     </security:http>
     
     <security:authentication-manager>

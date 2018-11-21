@@ -9,6 +9,8 @@ public interface SiteDao {
 	
 	Site findSite(int id);
 	
+	Site findSiteWithTopoId(int topo_id);
+	
 	int getSiteId(String nom);
 	
 	List<Site> listAllSite();
@@ -16,5 +18,6 @@ public interface SiteDao {
 	public List<Site> listAllSiteWithCriteria(String dept, int nombreSecteur, int nombreVoie, boolean topoDisponible);
 	
 	int saveSite(Site site);
+	int saveSite(Site site, int topo_id);
 
 }

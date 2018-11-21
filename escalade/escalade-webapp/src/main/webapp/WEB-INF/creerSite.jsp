@@ -118,7 +118,7 @@
 				
 					<div class="form-group">	
 						<label for="lieuSite">Lieu <span class="requis">*</span></label>
-						<input type="text" class="form-control" id="lieuSite" name="lieuSite" placeholder="Lieu du site" value="<c:out value="${site.lieu}"/>" size="20" maxlength="20"/>
+						<input type="text" class="form-control" id="lieuSite" name="lieuSite" placeholder="Lieu du site" value="<c:out value="${site.lieu}"/>" size="20" maxlength="400"/>
 						<span class="text-danger">${sm.erreurs['lieuSite']}</span>
 					</div>	
 						
@@ -132,9 +132,19 @@
 				
 					<button type="submit" class="btn btn-warning">Valider</button>
 					<button type="reset"  class="btn btn-primary">Annuler</button>
-					
+			
+					<c:url value="/topo/creertopo/" var="retourTopoVar"/>
 					<c:url value="/" var="retourVar"/>
-					<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
+					<c:choose>
+						<c:when test="${ not empty requestFromTopo }">
+							<a href="${retourTopoVar}" class="btn btn-info float-right" role="button">Retour</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
+						</c:otherwise>
+					</c:choose>
+					
+					
 				</form>	
 			<p class="info"> ${ sm.result } </p>
 		</div>

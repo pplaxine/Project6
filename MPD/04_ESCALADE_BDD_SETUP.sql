@@ -353,7 +353,7 @@ INSERT INTO public.topo (nom,presentation,disponible, date_debut_location, date_
 INSERT INTO public.topo (nom,presentation,disponible,preteur_id) VALUES (E'Escal\'add','Grimpez des panneaux publicitaires en plein Paris!',TRUE,3);
 
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id,topo_id) VALUES ('Auban','A gauche de la forêt des pins','2018-03-01 00:00:00',2,2,1);
-INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id) VALUES ('Argent','Après la ferme des 3 cochons','2018-03-01 18:17:15',5,1);
+INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id,topo_id) VALUES ('Argent','Après la ferme des 3 cochons','2018-03-01 18:17:15',5,1,2);
 
 INSERT INTO public.secteur (nom,site_id) VALUES ('Zone51',1);
 INSERT INTO public.secteur (nom,site_id) VALUES ('',2);

@@ -10,6 +10,7 @@ import com.philippe75.p6.consumer.contract.dao.CotationDao;
 import com.philippe75.p6.consumer.contract.dao.DeptDao;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
+import com.philippe75.p6.consumer.contract.dao.TopoDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Secteur;
@@ -37,6 +38,9 @@ public class DaoHandlerImpl implements DaoHandler{
 	
 	@Inject
 	private CommentaireDao commentaireDao;
+	
+	@Inject 
+	private TopoDao topoDao;
 
 	
 	@Override
@@ -71,6 +75,10 @@ public class DaoHandlerImpl implements DaoHandler{
 
 	public CommentaireDao getCommentaireDao() {
 		return commentaireDao;
+	}
+
+	public TopoDao getTopoDao() {
+		return topoDao;
 	}
 		
 }

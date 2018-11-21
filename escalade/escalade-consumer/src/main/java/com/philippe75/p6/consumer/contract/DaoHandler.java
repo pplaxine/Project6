@@ -6,6 +6,7 @@ import com.philippe75.p6.consumer.contract.dao.CotationDao;
 import com.philippe75.p6.consumer.contract.dao.DeptDao;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
+import com.philippe75.p6.consumer.contract.dao.TopoDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 
 public interface DaoHandler {
@@ -23,5 +24,7 @@ public interface DaoHandler {
 	DeptDao getDeptDao();
 	
 	CommentaireDao getCommentaireDao();
+	
+	TopoDao getTopoDao();
 	
 }

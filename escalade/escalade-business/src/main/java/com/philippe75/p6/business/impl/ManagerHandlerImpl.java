@@ -10,6 +10,7 @@ import com.philippe75.p6.business.contract.impl.CotationManager;
 import com.philippe75.p6.business.contract.impl.DeptManager;
 import com.philippe75.p6.business.contract.impl.SecteurManager;
 import com.philippe75.p6.business.contract.impl.SiteManager;
+import com.philippe75.p6.business.contract.impl.TopoManager;
 import com.philippe75.p6.business.contract.impl.VoieManager;
 
 @Named("managerHandler")
@@ -35,6 +36,9 @@ public class ManagerHandlerImpl implements ManagerHandler {
 	
 	@Inject
 	private CommentaireManager commentaireManager;
+	
+	@Inject
+	private TopoManager topoManager;
 	
 	
 	@Override
@@ -75,6 +79,17 @@ public class ManagerHandlerImpl implements ManagerHandler {
 	}
 
 
+	public TopoManager getTopoManager() {
+		return topoManager;
+	}
+
+
+	public void setTopoManager(TopoManager topoManager) {
+		this.topoManager = topoManager;
+	}
+
+	
+	
 	
 	
 	

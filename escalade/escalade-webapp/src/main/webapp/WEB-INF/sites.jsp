@@ -96,18 +96,28 @@
 										</c:if>
 									</td>
 									<td>
-										<c:if test="${not empty allSitesVar.secteurs}">
-											<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
-												<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
-													<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+										<c:choose>
+											<c:when test="${not empty allSitesVar.secteurs}">
+												<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+													<c:if test="${not empty allSecteursVar.voies }">
+														<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
+															<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+														</c:forEach>
+														<c:out value="${voieCounter}"/>
+													</c:if>
 												</c:forEach>
-											</c:forEach>
-											<c:out value="${voieCounter}"/>
-										</c:if>
-										<c:forEach items="${allSitesVar.voies}" var="allVoiesSiteVar" varStatus="allVoiesSiteVS">
-											<c:set var="voieSiteCounter" value="${ allVoiesSiteVS.count }"/>
-										</c:forEach>
-										<c:out value="${voieSiteCounter}"/>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${allSitesVar.voies}" var="allVoiesSiteVar" varStatus="allVoiesSiteVS">
+													<c:set var="voieSiteCounter" value="${ allVoiesSiteVS.count }"/>
+												</c:forEach>
+												<c:out value="${voieSiteCounter}"/>
+											</c:otherwise>
+										</c:choose>
+										
+										
+										
+										
 									</td>
 									<td>
 										<c:choose>

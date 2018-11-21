@@ -6,6 +6,7 @@ import com.philippe75.p6.business.contract.impl.CotationManager;
 import com.philippe75.p6.business.contract.impl.DeptManager;
 import com.philippe75.p6.business.contract.impl.SecteurManager;
 import com.philippe75.p6.business.contract.impl.SiteManager;
+import com.philippe75.p6.business.contract.impl.TopoManager;
 import com.philippe75.p6.business.contract.impl.VoieManager;
 import com.philippe75.p6.model.bean.commentaire.Commentaire;
 
@@ -24,4 +25,6 @@ public interface ManagerHandler {
 	VoieManager getVoieManager();
 	
 	CommentaireManager getCommentaireManager();
+	
+	TopoManager getTopoManager();
 }

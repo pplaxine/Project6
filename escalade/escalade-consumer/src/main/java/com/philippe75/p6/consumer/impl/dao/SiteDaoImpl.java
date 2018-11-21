@@ -38,6 +38,23 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
 		return site;
 	}
+	
+	@Override
+	public Site findSiteWithTopoId(int topo_id) {
+		
+		JdbcTemplate jT = new JdbcTemplate(getDataSource());
+				
+		String sQL = "SELECT * FROM public.site WHERE topo_id = ?";
+		
+		RowMapper<Site> rm = new SiteRM();
+		
+		Site site = (Site)jT.queryForObject(sQL, new Object[] {topo_id}, rm);
+		int site_id = site.getId();
+		site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
+		site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+		site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
+		return site;
+	}
 
 	@Override
 	public List<Site> listAllSite() {
@@ -93,6 +110,53 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 	}
 
 	@Override
+	public int saveSite(Site site, int topo_id) {
+	
+		String sQL = "INSERT INTO site (nom, lieu, description, date_creation, dept_id, compte_utilisateur_id, topo_id) VALUES (:nom, :lieu, :description, :date_creation, :dept_id, :compte_utilisateur_id, :topo_id); COMMIT";
+		if(site != null) {
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String userPseudo = auth.getName();
+			CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
+			//---------------
+			
+			MapSqlParameterSource mSPS = new MapSqlParameterSource();
+			
+			mSPS.addValue("nom", site.getNom());
+			mSPS.addValue("lieu", site.getLieu());
+			mSPS.addValue("description", site.getDescription());
+			mSPS.addValue("date_creation", new Date());
+			mSPS.addValue("dept_id", getDaoHandler().getDeptDao().getDeptId(site.getDept()));
+			mSPS.addValue("compte_utilisateur_id", cu.getId());
+			mSPS.addValue("topo_id", topo_id);
+			
+			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+			int result = nPJT.update(sQL, mSPS);
+			
+			if(result != 0 && site.getSecteurs() != null) {
+				int site_id = getSiteId(site.getNom());
+				for (Secteur secteur : site.getSecteurs()) {
+					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+				}
+					
+				return result;
+			}
+			
+			if(result != 0 && site.getVoies() != null) {
+				int site_id = getSiteId(site.getNom());
+				for (Voie voie : site.getVoies()) {
+					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
+				}
+					
+				return result;
+			}
+			
+			return 0;
+		}
+		return 0;
+	}
+	
+	@Override
 	public int saveSite(Site site) {
 	
 		String sQL = "INSERT INTO site (nom, lieu, description, date_creation, dept_id, compte_utilisateur_id) VALUES (:nom, :lieu, :description, :date_creation, :dept_id, :compte_utilisateur_id); COMMIT";
@@ -110,7 +174,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			mSPS.addValue("description", site.getDescription());
 			mSPS.addValue("date_creation", new Date());
 			mSPS.addValue("dept_id", getDaoHandler().getDeptDao().getDeptId(site.getDept()));
-			mSPS.addValue("compte_utilisateur_id", cu.getId());				// trouver l'id de l'utilisateur !!!! 
+			mSPS.addValue("compte_utilisateur_id", cu.getId());
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			int result = nPJT.update(sQL, mSPS);
