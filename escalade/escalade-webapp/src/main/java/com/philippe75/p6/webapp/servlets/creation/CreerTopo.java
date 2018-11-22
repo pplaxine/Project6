@@ -1,4 +1,4 @@
-package com.philippe75.p6.webapp.servlets;
+package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,10 +37,11 @@ public class CreerTopo extends HttpServlet {
 	@Inject
 	ManagerHandler managerHandler;
 	
-	@Inject
-	DaoHandler daoHandler; 
+	private HttpSession session;
 	
 	public static final String VUE_CREERTOPO ="/WEB-INF/creerTopo.jsp";
+	public static final String REDIRECT_SUCESS = "/topo/topos/";
+	
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -50,8 +51,9 @@ public class CreerTopo extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+
 		//permet au bouton retour de creerSite de renvoyer a nouveau à la page main 
+		session = request.getSession();
 		session.removeAttribute("requestFromTopo");
 		
 		this.getServletContext().getRequestDispatcher(VUE_CREERTOPO).forward(request, response);
@@ -59,7 +61,8 @@ public class CreerTopo extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		
+		session = request.getSession();
 		TopoManager tm = managerHandler.getTopoManager();
 		Topo topo = tm.creerNouveauTopo(request);
 
@@ -70,8 +73,8 @@ public class CreerTopo extends HttpServlet {
 			if(str != 0 ) {
 				session.removeAttribute("siteTopo");
 			}
-			
-			response.sendRedirect(request.getContextPath() + "/topo/topos/");
+			response.sendRedirect(request.getContextPath() + REDIRECT_SUCESS);
+
 		}else {
 			request.setAttribute("tm", tm);
 			request.setAttribute("topo", topo);

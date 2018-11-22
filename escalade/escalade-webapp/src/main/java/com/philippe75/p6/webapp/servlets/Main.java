@@ -52,10 +52,6 @@ public class Main extends HttpServlet {
 		String nbreCompteUtilisateur = Integer.toString(managerHandler.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
 		
-	
-		Site site = managerHandler.getSiteManager().findSite(1);
-		request.setAttribute("site", site);
-		
 		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
 		request.setAttribute("allSites", allSites);
 		

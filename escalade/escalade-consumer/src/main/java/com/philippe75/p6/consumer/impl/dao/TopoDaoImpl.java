@@ -47,7 +47,22 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		List<Topo> listTopo = (List<Topo>)jT.query(sQL, rm);
 		for (Topo topo : listTopo) {
-			topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
+			if(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()) != null) {
+				topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
+				System.out.println("Emprunteur " + topo.getEmprunteur_id());
+				System.out.println("Preteur " + topo.getPreteur_id());
+			}
+			
+			
+//			if( topo.getPreteur_id() != 0 && getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getPreteur_id()) != null ) {
+//				CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getPreteur_id());
+//				topo.setPreteur(cu.getPseudo());
+//			}
+//			if(topo.getEmprunteur_id() != 0 && getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getEmprunteur_id()) != null) {
+//				CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getEmprunteur_id());
+//				topo.setEmprunteur(cu.getPseudo());
+//			}
+			
 		}
 		return listTopo;
 	}

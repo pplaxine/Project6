@@ -1,4 +1,4 @@
-package com.philippe75.p6.webapp.servlets;
+package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,7 +34,9 @@ public class CreerVoie extends HttpServlet {
 	public static final String VUE_MAIN ="/WEB-INF/creerVoie.jsp";
 	public static final String REDIRECT_SUCCESS_SECTEUR ="/sites/creersite/creersecteur/";
 	public static final String REDIRECT_SUCCESS_SITE ="/sites/creersite/";
+	
 	private String testSecteur; 
+	private HttpSession session;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -69,7 +71,7 @@ public class CreerVoie extends HttpServlet {
 			
 		if(vm.getErreurs().isEmpty()) {
 			
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			
 			if(testSecteur != null) {
 				Map<String,Voie> voies = (Map<String,Voie>)session.getAttribute("voies");

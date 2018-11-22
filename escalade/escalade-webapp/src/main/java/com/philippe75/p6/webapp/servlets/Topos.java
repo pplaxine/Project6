@@ -43,7 +43,7 @@ public class Topos extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Topo> allTopos = daoHandler.getTopoDao().listAllTopo();		// a modif pour managerHandler
+		List<Topo> allTopos = managerHandler.getTopoManager().listAllTopo();
 		request.setAttribute("allTopos", allTopos);
 		
 //		List<Topo> topos = daoHandler.getTopoDao().listAllTopo();

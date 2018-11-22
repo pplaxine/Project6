@@ -38,6 +38,11 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		return getDaoHandler().getTopoDao().createTopo(topo);
 	}
 	
+	@Override
+	public List<Topo> listAllTopo() {
+		return getDaoHandler().getTopoDao().listAllTopo();
+	}
+	
 	
 	@Override
 	public Topo creerNouveauTopo(HttpServletRequest request) {
@@ -107,6 +112,7 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		}
 		return null;
 	}
+
 
 
 }

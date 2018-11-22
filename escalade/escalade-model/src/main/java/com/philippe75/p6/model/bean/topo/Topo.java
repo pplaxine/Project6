@@ -14,6 +14,8 @@ public class Topo {
 	private Date dateDebutLocation;
 	private Date dateFinLocation;
 	private Site site;
+	private int preteur_id;
+	private int emprunteur_id;
 	private String preteur;
 	private String emprunteur;
 	
@@ -71,6 +73,18 @@ public class Topo {
 	}
 	public void setEmprunteur(String emprunteur) {
 		this.emprunteur = emprunteur;
+	}
+	public int getPreteur_id() {
+		return preteur_id;
+	}
+	public void setPreteur_id(int preteur_id) {
+		this.preteur_id = preteur_id;
+	}
+	public int getEmprunteur_id() {
+		return emprunteur_id;
+	}
+	public void setEmprunteur_id(int emprunteur_id) {
+		this.emprunteur_id = emprunteur_id;
 	} 
 	
 	

@@ -1,4 +1,4 @@
-package com.philippe75.p6.webapp.servlets;
+package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,6 +35,10 @@ public class CreerCommentaire extends HttpServlet {
 	
 	@Inject
 	ManagerHandler managerHandler;
+	
+	private HttpSession session;
+	
+	public static final String REDIRECT_URL = "/sites/site?site_id=";
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -44,10 +48,9 @@ public class CreerCommentaire extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		String site_id = (String)request.getParameter("site_id");	
-		String commentaire_id = (String)request.getParameter("commentaire_id");
-		System.out.println(commentaire_id);
+		//String commentaire_id = (String)request.getParameter("commentaire_id");
 		
 		CommentaireManager comM = managerHandler.getCommentaireManager();
 		Commentaire commentaire = comM.creerNouveauCommentaire(request, Integer.valueOf(site_id));
@@ -55,13 +58,13 @@ public class CreerCommentaire extends HttpServlet {
 		if (comM.getErreurs().isEmpty()) {
 			session.removeAttribute("commentaire");
 			session.removeAttribute("comM");
-			response.sendRedirect(request.getContextPath() + "/sites/site?site_id=" + site_id);
+			response.sendRedirect(request.getContextPath() + REDIRECT_URL + site_id);
 			
 		}else {
 		session.setAttribute("commentaire", commentaire);
 		session.setAttribute("comM", comM);
 		
-		response.sendRedirect(request.getContextPath() + "/sites/site?site_id=" + site_id);
+		response.sendRedirect(request.getContextPath() + REDIRECT_URL + site_id);
 	
 		}
 		

@@ -21,7 +21,8 @@ public class TopoRM implements RowMapper<Topo> {
 		topo.setPresentation(rs.getString("presentation"));
 		topo.setDateDebutLocation(rs.getTimestamp("date_debut_location"));
 		topo.setDateFinLocation(rs.getTimestamp("date_fin_location"));
-		
+		topo.setPreteur_id(rs.getInt("preteur_id"));
+		topo.setEmprunteur_id(rs.getInt("emprunteur_id"));
 		return topo;
 	}
 }

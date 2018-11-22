@@ -38,15 +38,15 @@
   </servlet>
   <servlet>
     <servlet-name>CreerSite</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSite</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerSite</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CreerVoie</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerVoie</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerVoie</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CreerSecteur</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSecteur</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerSecteur</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SupprimerVoie</servlet-name>
@@ -58,11 +58,11 @@
   </servlet>
    <servlet>
   <servlet-name>CreerCommentaire</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerCommentaire</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerCommentaire</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>CreerTopo</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerTopo</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerTopo</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>Topos</servlet-name>

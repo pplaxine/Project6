@@ -1,4 +1,4 @@
-package com.philippe75.p6.webapp.servlets;
+package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,6 +28,7 @@ public class CreerSecteur extends HttpServlet {
 	public static final String VUE_MAIN ="/WEB-INF/creerSecteur.jsp";
 	public static final String REDIRECT_SUCCESS ="/sites/creersite/";
 	
+	private HttpSession session;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -47,7 +48,7 @@ public class CreerSecteur extends HttpServlet {
 		Secteur secteur = secM.creerNouveauSecteur(request);
 			
 		if(secM.getErreurs().isEmpty()) {
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			Map<String,Secteur> secteurs = (Map<String,Secteur>)session.getAttribute("secteurs");
 			if(secteurs == null) {
 				secteurs = new HashMap<String,Secteur>();

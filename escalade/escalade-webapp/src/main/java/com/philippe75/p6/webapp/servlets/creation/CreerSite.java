@@ -1,4 +1,4 @@
-package com.philippe75.p6.webapp.servlets;
+package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,11 +35,13 @@ public class CreerSite extends HttpServlet {
 	@Inject
 	ManagerHandler managerHandler;
 	
-	@Inject
-	DaoHandler daoHandler; 
-	
 	public static final String VUE_MAIN ="/WEB-INF/creerSite.jsp";
+	public static final String URL_RETOUR_SITES ="/sites/";
+	public static final String URL_RETOUR_CREERTOPO ="/topo/creertopo/";
+	
 	private boolean requestFromTopo;
+	
+	private HttpSession session;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -50,7 +52,8 @@ public class CreerSite extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
+		
 		//Enums 
 		List<Dept> listDept = managerHandler.getDeptManager().listAllDepts();
 		listDept.remove(Dept.TOUS);
@@ -74,7 +77,7 @@ public class CreerSite extends HttpServlet {
 	
 		if(sm.getErreurs().isEmpty()) {
 			
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			List<Secteur> secteurList;
 			List<Voie> voieList;
 			
@@ -100,7 +103,7 @@ public class CreerSite extends HttpServlet {
 					
 				}
 				
-				response.sendRedirect(request.getContextPath() + "/topo/creertopo/");
+				response.sendRedirect(request.getContextPath() + URL_RETOUR_CREERTOPO);
 			}else {
 			
 				if(session.getAttribute("secteurs") != null) {
@@ -125,7 +128,7 @@ public class CreerSite extends HttpServlet {
 					}
 				}
 				
-				response.sendRedirect(request.getContextPath() + "/sites/");
+				response.sendRedirect(request.getContextPath() + URL_RETOUR_SITES);
 			}
 			
 			
