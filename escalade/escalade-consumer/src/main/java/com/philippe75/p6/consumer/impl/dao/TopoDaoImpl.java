@@ -13,9 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.TopoDao;
+import com.philippe75.p6.consumer.impl.rowmapper.LocationTopoRM;
 import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
 import com.philippe75.p6.consumer.impl.rowmapper.TopoRM;
 import com.philippe75.p6.model.bean.site.Site;
+import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
@@ -34,12 +36,45 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		return nPJT.queryForObject(sQL,mSPS, Integer.class);
 	
-	}	
+	}
+	
+	@Override
+	public int findNumberOfReservations(int topo_id) {
+		String sQL = "SELECT COUNT(*) FROM public.location_topo WHERE topo_id = :topo_id";
+		
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		
+		mSPS.addValue("topo_id", topo_id );
+		
+		return nPJT.queryForObject(sQL,mSPS, Integer.class);
+	}
+	
+	@Override
+	public List<LocationTopo> findLocationTopo(int topo_id) {
+		String sQL = "SELECT compte_utilisateur.pseudo, location_topo.* FROM location_topo "
+					+ "JOIN compte_utilisateur ON compte_utilisateur.id = location_topo.emprunteur_id "
+					+ "WHERE topo_id = :topo_id";		
+		
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		
+		mSPS.addValue("topo_id", topo_id);
+		
+		RowMapper<LocationTopo> rm = new LocationTopoRM();
+		
+		List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
+		
+		return	listLocationTopo;
+		  
+	}
+
 	
 	@Override
 	public List<Topo> listAllTopo() {
 		
-		String sQL = "SELECT * FROM public.topo";		
+		String sQL = 		"SELECT compte_utilisateur.pseudo, topo.* FROM topo "
+						+ 	"LEFT JOIN compte_utilisateur ON compte_utilisateur.id = topo.createur_id";		
 		
 		JdbcTemplate jT = new JdbcTemplate(getDataSource());
 		
@@ -49,19 +84,10 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		for (Topo topo : listTopo) {
 			if(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()) != null) {
 				topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
-				System.out.println("Emprunteur " + topo.getEmprunteur_id());
-				System.out.println("Preteur " + topo.getPreteur_id());
 			}
-			
-			
-//			if( topo.getPreteur_id() != 0 && getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getPreteur_id()) != null ) {
-//				CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getPreteur_id());
-//				topo.setPreteur(cu.getPseudo());
-//			}
-//			if(topo.getEmprunteur_id() != 0 && getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getEmprunteur_id()) != null) {
-//				CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(topo.getEmprunteur_id());
-//				topo.setEmprunteur(cu.getPseudo());
-//			}
+			if(findNumberOfReservations(topo.getId()) != 0) {
+				topo.setNbreResa(findNumberOfReservations(topo.getId()));
+			}
 			
 		}
 		return listTopo;
@@ -95,6 +121,33 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		}
 		return 0;
 	}
+
+	@Override
+	public Topo findTopo(int topo_id) {
+		String sQL = "SELECT compte_utilisateur.pseudo, topo.* FROM topo "
+					+ "JOIN compte_utilisateur ON compte_utilisateur.id = topo.createur_id "
+					+ "WHERE topo.id = :topo_id";		
+		
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		
+		mSPS.addValue("topo_id", topo_id);
+		
+		RowMapper<Topo> rm = new TopoRM();
+		
+		Topo topo = (Topo)nPJT.queryForObject(sQL, mSPS ,rm);
+		if(topo != null && getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()) != null) {
+			topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
+		}
+		if(topo != null && getDaoHandler().getTopoDao().findLocationTopo(topo.getId()) != null) {
+			topo.setListLocationTopo(getDaoHandler().getTopoDao().findLocationTopo(topo.getId()));
+		}
+	
+		return topo;
+	}
+
+
+
 
 
 

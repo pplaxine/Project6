@@ -1,6 +1,6 @@
 package com.philippe75.p6.model.bean.topo;
 
-import java.util.Date;
+import java.util.List;
 
 import com.philippe75.p6.model.bean.site.Site;
 
@@ -11,13 +11,11 @@ public class Topo {
 	private String nom; 
 	private String presentation;
 	private boolean disponible;
-	private Date dateDebutLocation;
-	private Date dateFinLocation;
 	private Site site;
-	private int preteur_id;
-	private int emprunteur_id;
-	private String preteur;
-	private String emprunteur;
+	private int createur_id;
+	private String createur;
+	private int NbreResa;
+	private List<LocationTopo> listLocationTopo;
 	
 	
 	public int getId() {
@@ -44,47 +42,35 @@ public class Topo {
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-	public Date getDateDebutLocation() {
-		return dateDebutLocation;
-	}
-	public void setDateDebutLocation(Date dateDebutLocation) {
-		this.dateDebutLocation = dateDebutLocation;
-	}
-	public Date getDateFinLocation() {
-		return dateFinLocation;
-	}
-	public void setDateFinLocation(Date dateFinLocation) {
-		this.dateFinLocation = dateFinLocation;
-	}
 	public Site getSite() {
 		return site;
 	}
 	public void setSite(Site site) {
 		this.site = site;
 	}
-	public String getPreteur() {
-		return preteur;
+	public int getCreateur_id() {
+		return createur_id;
 	}
-	public void setPreteur(String preteur) {
-		this.preteur = preteur;
+	public void setCreateur_id(int createur_id) {
+		this.createur_id = createur_id;
 	}
-	public String getEmprunteur() {
-		return emprunteur;
+	public String getCreateur() {
+		return createur;
 	}
-	public void setEmprunteur(String emprunteur) {
-		this.emprunteur = emprunteur;
+	public void setCreateur(String createur) {
+		this.createur = createur;
 	}
-	public int getPreteur_id() {
-		return preteur_id;
+	public int getNbreResa() {
+		return NbreResa;
 	}
-	public void setPreteur_id(int preteur_id) {
-		this.preteur_id = preteur_id;
+	public void setNbreResa(int nbreResa) {
+		NbreResa = nbreResa;
 	}
-	public int getEmprunteur_id() {
-		return emprunteur_id;
+	public List<LocationTopo> getListLocationTopo() {
+		return listLocationTopo;
 	}
-	public void setEmprunteur_id(int emprunteur_id) {
-		this.emprunteur_id = emprunteur_id;
+	public void setListLocationTopo(List<LocationTopo> listLocationTopo) {
+		this.listLocationTopo = listLocationTopo;
 	} 
 	
 	

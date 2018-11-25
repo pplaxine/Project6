@@ -68,6 +68,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		String descSite = getValeurChamp(CHAMP_DESCRIPTION, request);
 		
 		
+		
 		//test des informations fournies dans les champs et création du bean
 		traiterNomSite(nomSite, site);
 		traiterDeptSite(deptSite, site);

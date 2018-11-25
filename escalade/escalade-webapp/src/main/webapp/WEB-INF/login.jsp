@@ -41,7 +41,7 @@
 			<button type="submit" id="btn-save" class="btn btn-warning">Login</button>
 			<button type="reset" class="btn btn-primary">cancel</button>
 			
-			<c:url value="/" var="retourVar"/>
+			<c:url value="/home" var="retourVar"/>
 			<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
 			
 		</form>

@@ -9,7 +9,7 @@
    		
    		<ul class="navbar-nav ">
     		<li class="nav-item">
-       			<a class="nav-link" href="<c:url value="/" />">Home<span class="sr-only">(current)</span></a>
+       			<a class="nav-link" href="<c:url value="/home" />">Home<span class="sr-only">(current)</span></a>
      		</li>
      		
      		<li class="nav-item dropdown">

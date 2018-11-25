@@ -39,6 +39,7 @@ public class CreerSite extends HttpServlet {
 	public static final String URL_RETOUR_SITES ="/sites/";
 	public static final String URL_RETOUR_CREERTOPO ="/topo/creertopo/";
 	
+
 	private boolean requestFromTopo;
 	
 	private HttpSession session;
@@ -74,7 +75,9 @@ public class CreerSite extends HttpServlet {
 		
 		SiteManager sm = managerHandler.getSiteManager();
 		Site site = sm.creerNouveauSite(request);
-	
+		
+		
+		
 		if(sm.getErreurs().isEmpty()) {
 			
 			session = request.getSession();

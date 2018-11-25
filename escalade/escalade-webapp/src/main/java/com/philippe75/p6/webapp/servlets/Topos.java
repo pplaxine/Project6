@@ -46,16 +46,6 @@ public class Topos extends HttpServlet {
 		List<Topo> allTopos = managerHandler.getTopoManager().listAllTopo();
 		request.setAttribute("allTopos", allTopos);
 		
-//		List<Topo> topos = daoHandler.getTopoDao().listAllTopo();
-//		for (Topo topo : topos) {
-//			System.out.println(topo.getId());
-//			System.out.println(topo.getNom());
-//			System.out.println(topo.getPresentation());
-//			System.out.println(topo.isDisponible());
-//			System.out.println(topo.getDateDebutLocation());
-//			System.out.println(topo.getDateFinLocation());
-//		}
-		
 		this.getServletContext().getRequestDispatcher(VUE_TOPOS).forward(request, response);
 		
 		

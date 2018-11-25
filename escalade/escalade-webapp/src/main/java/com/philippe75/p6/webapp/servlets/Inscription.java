@@ -53,7 +53,7 @@ public class Inscription extends HttpServlet {
 			Authentication auth = new UsernamePasswordAuthenticationToken(compteUtilisateur, compteUtilisateur.getMdp(), compteUtilisateur.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "/home/");
 
 		}else {
 		

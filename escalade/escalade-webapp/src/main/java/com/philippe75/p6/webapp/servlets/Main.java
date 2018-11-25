@@ -21,6 +21,7 @@ import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
+import com.philippe75.p6.model.bean.topo.LocationTopo;
 
 
 
@@ -56,7 +57,6 @@ public class Main extends HttpServlet {
 		request.setAttribute("allSites", allSites);
 		
 		//---------------------------------------------------------------
-	
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}

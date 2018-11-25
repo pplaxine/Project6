@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
 
 public interface TopoManager {
@@ -12,6 +13,10 @@ public interface TopoManager {
 	Topo creerNouveauTopo(HttpServletRequest request);
 	
 	int saveTopo(Topo topo);
+	
+	LocationTopo creerNouvelleDemandeLocation(HttpServletRequest request);
+	
+	Topo findTopo(int topo_id);
 	
 	List<Topo> listAllTopo();
 	

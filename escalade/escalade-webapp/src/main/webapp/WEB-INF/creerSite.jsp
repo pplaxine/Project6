@@ -5,14 +5,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <meta charset="utf-8" />
+
    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
     	
         <title>Création Site</title>
+     
+        
     </head>
     
     <body>
@@ -134,7 +135,7 @@
 					<button type="reset"  class="btn btn-primary">Annuler</button>
 			
 					<c:url value="/topo/creertopo/" var="retourTopoVar"/>
-					<c:url value="/" var="retourVar"/>
+					<c:url value="/home" var="retourVar"/>
 					<c:choose>
 						<c:when test="${ not empty requestFromTopo }">
 							<a href="${retourTopoVar}" class="btn btn-info float-right" role="button">Retour</a>

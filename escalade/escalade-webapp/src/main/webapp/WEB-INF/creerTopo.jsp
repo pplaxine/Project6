@@ -97,7 +97,7 @@
 				<button type="submit" class="btn btn-warning">Valider</button>
 				<button type="reset"  class="btn btn-primary">Annuler</button>
 				
-				<c:url value="/topo/" var="retourVar"/>
+				<c:url value="/home/" var="retourVar"/>
 				<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
 			</form>	
 			<p class="info"> ${ sm.result } </p>
