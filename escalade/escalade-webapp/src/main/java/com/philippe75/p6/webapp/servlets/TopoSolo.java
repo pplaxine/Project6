@@ -56,14 +56,18 @@ public class TopoSolo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		
 		String topo_id = request.getParameter("topo_id");
+		
 		TopoManager tm = managerHandler.getTopoManager();
 		LocationTopo locationTopo = tm.creerNouvelleDemandeLocation(request);
 		
 		if (tm.getErreurs().isEmpty()) {
-			session.removeAttribute("locationTopo");
-			session.removeAttribute("tm");
+			
+			int result = managerHandler.getTopoManager().saveDemandeLocationTopo(locationTopo);
+			if(result > 0) {
+				session.removeAttribute("locationTopo");
+				session.setAttribute("tm", tm);
+			}
 			response.sendRedirect(request.getContextPath() + "/topo?topo_id=" + topo_id);
 
 		}else {

@@ -105,7 +105,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		mSPS.addValue("nom", nom );
 		
 		int site_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
-		
+
 		return site_id;
 	}
 
@@ -115,10 +115,8 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		String sQL = "INSERT INTO site (nom, lieu, description, date_creation, dept_id, compte_utilisateur_id, topo_id) VALUES (:nom, :lieu, :description, :date_creation, :dept_id, :compte_utilisateur_id, :topo_id); COMMIT";
 		if(site != null) {
 			
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			String userPseudo = auth.getName();
-			CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
-			//---------------
+			// retrouve l'utilisateur
+			CompteUtilisateur cu = getUser();
 			
 			MapSqlParameterSource mSPS = new MapSqlParameterSource();
 			
@@ -133,21 +131,18 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			int result = nPJT.update(sQL, mSPS);
 			
+			int site_id = getSiteId(site.getNom());
 			if(result != 0 && site.getSecteurs() != null) {
-				int site_id = getSiteId(site.getNom());
 				for (Secteur secteur : site.getSecteurs()) {
 					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
 				}
-					
 				return result;
 			}
 			
 			if(result != 0 && site.getVoies() != null) {
-				int site_id = getSiteId(site.getNom());
 				for (Voie voie : site.getVoies()) {
 					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
 				}
-					
 				return result;
 			}
 			
@@ -162,10 +157,8 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		String sQL = "INSERT INTO site (nom, lieu, description, date_creation, dept_id, compte_utilisateur_id) VALUES (:nom, :lieu, :description, :date_creation, :dept_id, :compte_utilisateur_id); COMMIT";
 		if(site != null) {
 			
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			String userPseudo = auth.getName();
-			CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
-			//---------------
+			// retrouve l'utilisateur
+			CompteUtilisateur cu = getUser();
 			
 			MapSqlParameterSource mSPS = new MapSqlParameterSource();
 			
@@ -178,22 +171,19 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			int result = nPJT.update(sQL, mSPS);
+			int site_id = getSiteId(site.getNom());
 			
 			if(result != 0 && site.getSecteurs() != null) {
-				int site_id = getSiteId(site.getNom());
 				for (Secteur secteur : site.getSecteurs()) {
 					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
 				}
-					
 				return result;
 			}
 			
 			if(result != 0 && site.getVoies() != null) {
-				int site_id = getSiteId(site.getNom());
 				for (Voie voie : site.getVoies()) {
 					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
 				}
-					
 				return result;
 			}
 			

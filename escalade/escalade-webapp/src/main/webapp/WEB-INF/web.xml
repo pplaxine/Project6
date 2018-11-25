@@ -39,8 +39,8 @@
     <servlet-class>com.philippe75.p6.webapp.servlets.Inscription</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>EspacePretTopo</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.EspacePretTopo</servlet-class>
+    <servlet-name>EspacePerso</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.EspacePerso</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>APropos</servlet-name>
@@ -98,6 +98,14 @@
   	<servlet-name>TopoSolo</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.TopoSolo</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AccepterLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.validation.AccepterLocation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RefuserLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.validation.RefuserLocation</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
@@ -108,8 +116,8 @@
     <url-pattern>/inscription/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>EspacePretTopo</servlet-name>
-    <url-pattern>/topo/pret/</url-pattern>
+    <servlet-name>EspacePerso</servlet-name>
+    <url-pattern>/espaceperso</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>APropos</servlet-name>
@@ -166,6 +174,14 @@
   <servlet-mapping>
     <servlet-name>TopoSolo</servlet-name>
     <url-pattern>/topo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AccepterLocation</servlet-name>
+    <url-pattern>/topo/accepterlocation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RefuserLocation</servlet-name>
+    <url-pattern>/topo/refuserlocation</url-pattern>
   </servlet-mapping>
   
   

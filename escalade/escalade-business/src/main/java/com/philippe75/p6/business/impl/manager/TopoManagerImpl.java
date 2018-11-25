@@ -89,6 +89,12 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	}
 	
 	@Override
+	public List<Topo> listAllTopoForUser() {
+		return getDaoHandler().getTopoDao().listAllTopoForUser();
+	}
+
+	
+	@Override
 	public LocationTopo creerNouvelleDemandeLocation(HttpServletRequest request) {
 		
 		LocationTopo lt = new LocationTopo();
@@ -101,15 +107,23 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		
 		//test des informations fournies dans les champs et création du bean
 		traiterDateLocationTopo(dateDebutLocationDemande, dateFinLocationDemande, topo_id, lt);
+		lt.setTopo_id(topo_id);
+		
 		
 		if(erreurs.isEmpty()) {
 			
-			result ="Création de voie réalisée avec succès";  
+			result ="Création de demande de location de topo réalisée avec succès";  
 		}else {
-			result ="Echec de la création de voie";
+			result ="Echec de la création de la demande de location de topo";
 		}
 		
 		return lt;
+	}
+	
+	@Override
+	public int saveDemandeLocationTopo(LocationTopo locationTopo) {
+		int result = getDaoHandler().getTopoDao().saveDemandeLocationTopo(locationTopo);
+		return result;
 	}
 	
 	
@@ -154,6 +168,8 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 					throw new FormValidationException("La date choisi est comprise dans une période ou le topo fait déjà l'objet d'une location.");
 				}
 			}
+			
+			
 		}else {
 			throw new FormValidationException("Merci d'entrer une date de début et de fin de demande de location");
 		}
@@ -187,6 +203,11 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		}
 		return false;
 	}
+	@Override
+	public int repondreDemandeLocation(int location_id, Boolean accepter) {
+		return getDaoHandler().getTopoDao().repondreDemandeLocation(location_id, accepter);
+	}
+
 
 
 }

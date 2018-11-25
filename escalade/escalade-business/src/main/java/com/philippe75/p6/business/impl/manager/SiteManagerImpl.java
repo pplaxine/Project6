@@ -1,22 +1,15 @@
 package com.philippe75.p6.business.impl.manager;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.philippe75.p6.business.contract.impl.SiteManager;
 import com.philippe75.p6.business.exception.FormValidationException;
-import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Dept;
-import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.site.Voie;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("siteManager")
 public class SiteManagerImpl extends AbstractManager implements SiteManager{

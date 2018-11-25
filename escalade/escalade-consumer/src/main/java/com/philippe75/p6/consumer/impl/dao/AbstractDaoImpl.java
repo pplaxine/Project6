@@ -4,8 +4,11 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.philippe75.p6.consumer.contract.DaoHandler;
+import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
 public abstract class AbstractDaoImpl {
@@ -25,6 +28,14 @@ public abstract class AbstractDaoImpl {
 	
 	public static void setDataSource(DataSource dataSource) {
 		AbstractDaoImpl.dataSource = dataSource;
+	}
+	
+	protected CompteUtilisateur getUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userPseudo = auth.getName();
+		CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
+		
+		return cu;
 	}
 
 }

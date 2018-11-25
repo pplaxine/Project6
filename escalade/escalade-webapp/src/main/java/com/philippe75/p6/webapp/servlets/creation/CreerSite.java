@@ -111,23 +111,27 @@ public class CreerSite extends HttpServlet {
 			
 				if(session.getAttribute("secteurs") != null) {
 					Map<String,Secteur> secteursMap = (Map<String,Secteur>)session.getAttribute("secteurs");
-					secteurList = new ArrayList<Secteur>(secteursMap.values());
-					site.setSecteurs(secteurList);
-					
-					int str = managerHandler.getSiteManager().saveSite(site); 
-					if(str != 0 ) {
-						session.removeAttribute("secteurs");
+					if(!secteursMap.isEmpty()) {
+						secteurList = new ArrayList<Secteur>(secteursMap.values());
+						site.setSecteurs(secteurList);
+						
+						int str = managerHandler.getSiteManager().saveSite(site); 
+						if(str != 0 ) {
+							session.removeAttribute("secteurs");
+						}
 					}
 				}
 				
 				if(session.getAttribute("voiesSite") != null) {
 					Map<String,Voie> voiesMap = (Map<String,Voie>)session.getAttribute("voiesSite");
-					voieList = new ArrayList<Voie>(voiesMap.values());
-					site.setVoies(voieList);
-					
-					int str = managerHandler.getSiteManager().saveSite(site); 
-					if(str != 0 ) {
-						session.removeAttribute("voiesSite");
+					if(!voiesMap.isEmpty()) {
+						voieList = new ArrayList<Voie>(voiesMap.values());
+						site.setVoies(voieList);
+						
+						int str = managerHandler.getSiteManager().saveSite(site); 
+						if(str != 0 ) {
+							session.removeAttribute("voiesSite");
+						}
 					}
 				}
 				

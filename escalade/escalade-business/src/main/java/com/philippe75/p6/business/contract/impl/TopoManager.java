@@ -20,7 +20,13 @@ public interface TopoManager {
 	
 	List<Topo> listAllTopo();
 	
+	List<Topo> listAllTopoForUser();
+	
 	Map<String, String> getErreurs();
 
 	String getResult();
+	
+	int saveDemandeLocationTopo(LocationTopo locationTopo);
+	
+	int repondreDemandeLocation(int location_id, Boolean accepter);
 }

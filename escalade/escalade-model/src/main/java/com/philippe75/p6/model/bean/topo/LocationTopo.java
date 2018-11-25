@@ -3,9 +3,10 @@ package com.philippe75.p6.model.bean.topo;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.philippe75.p6.model.bean.commentaire.Commentaire;
 import com.philippe75.p6.model.bean.site.Site;
 
-public class LocationTopo {
+public class LocationTopo implements Comparable<LocationTopo>{
 	
 	private int id;
 	
@@ -64,6 +65,11 @@ public class LocationTopo {
 	}
 	public void setDateFinLocationFormat(String dateFinLocationFormat) {
 		this.dateFinLocationFormat = dateFinLocationFormat;
+	}
+	@Override
+	public int compareTo(LocationTopo locationTopo) {
+		
+		return getDateDebutLocation().compareTo(locationTopo.getDateDebutLocation());
 	}
 	
 	

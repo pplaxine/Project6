@@ -13,7 +13,7 @@
     <security:http auto-config="true" use-expressions="false">
     	
     	<security:form-login login-page="/login" login-processing-url="/login" username-parameter="user_name" password-parameter="user_pw"
-    		default-target-url="/topo/pret/"
+    		default-target-url="/espaceperso"
     		authentication-failure-url="/login?error=true"/>
     	
     	<security:logout logout-url="/logout" logout-success-url="/home?logout=true" />

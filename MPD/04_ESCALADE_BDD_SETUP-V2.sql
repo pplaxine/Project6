@@ -371,8 +371,13 @@ INSERT INTO public.cotation (id,note) VALUES (30,'COTATION_9C');
 INSERT INTO public.topo (nom,presentation, createur_id ) VALUES ('Milles est une dune','Site superbe au milieu des dunes', 1);
 INSERT INTO public.topo (nom,presentation, createur_id) VALUES (E'Escal\'add','Grimpez des panneaux publicitaires en plein Paris!',3);
 
-INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id) VALUES ('2018-04-01 07:00:00','2018-04-01 18:30:00', 1, 3);
-INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id) VALUES ('2018-04-06 07:00:00','2018-04-01 18:30:00', 1, 3);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-05-14 07:00:00','2018-05-14 18:30:00', 1, 3, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-25 07:00:00','2018-12-25 18:30:00', 1, 2, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-23 07:00:00','2018-12-23 18:30:00', 1, 3, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-17 07:00:00','2018-12-17 18:30:00', 1, 2, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-06 07:00:00','2018-12-06 18:30:00', 1, 2, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-19 07:00:00','2018-12-19 18:30:00', 1, 3, true);
+INSERT INTO public.location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id, accepte) VALUES ('2018-12-22 07:00:00','2018-12-01 18:30:00', 1, 3, true);
 
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id,topo_id) VALUES ('Auban','A gauche de la forêt des pins','2018-03-01 00:00:00',2,2,1);
 INSERT INTO public.site (nom,lieu,date_creation,dept_id,compte_utilisateur_id,topo_id) VALUES ('Argent','Après la ferme des 3 cochons','2018-03-01 18:17:15',5,1,2);

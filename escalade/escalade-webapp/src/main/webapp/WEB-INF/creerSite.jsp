@@ -96,7 +96,9 @@
 							<a href="<c:url value="/sites/creersite/creersecteur/" />" class="btn btn-warning" role="button">Ajouter un secteur</a>
 						</c:if><br/><br/>	
 						<c:if test="${empty sessionScope.secteurs }">
-							<c:out value="Si votre site ne possède pas de secteurs vous pouvez créer directement vos voies"/><br/>			
+							<c:if test="${empty sessionScope.voiesSite}">
+								<c:out value="Si votre site ne possède pas de secteurs vous pouvez créer directement vos voies"/><br/>			
+							</c:if>
 							<a href="<c:url value="/sites/creersite/creervoie/" />" class="btn btn-warning" role="button">Ajouter une voie</a>
 						</c:if>
 					</p>
