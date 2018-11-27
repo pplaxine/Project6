@@ -107,6 +107,11 @@
     <servlet-class>com.philippe75.p6.webapp.servlets.validation.RefuserLocation</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>SupprimerLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerLocation</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
     <url-pattern>/home</url-pattern>
@@ -182,6 +187,10 @@
   <servlet-mapping>
     <servlet-name>RefuserLocation</servlet-name>
     <url-pattern>/topo/refuserlocation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerLocation</servlet-name>
+    <url-pattern>/topo/supprimerlocation</url-pattern>
   </servlet-mapping>
   
   

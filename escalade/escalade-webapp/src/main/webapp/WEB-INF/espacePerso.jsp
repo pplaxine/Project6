@@ -53,7 +53,7 @@
 																			<c:when test="${ locationTopoVar.accepte == true }"><span class="text-success"><c:out value="Demande acceptée"/></span></c:when>
 																		</c:choose>
 																	</td>
-																	<td class="text-center"><a class="text-danger" href="<c:url value="/topo/refuserlocation"><c:param name="location" value="${locationTopoVar.id}" /></c:url>" ><c:out value="Refuser"/></a></td>
+																	<td class="text-center"><a class="text-danger" href="<c:url value="/topo/refuserlocation"><c:param name="location" value="${locationTopoVar.id}" /></c:url>" ><c:out value="Annuler"/></a></td>
 																</tr>
 															</c:when>
 															<c:when test="${locationTopoVar.accepte == false }">
@@ -118,21 +118,61 @@
 				      				<c:out value="Aucune demande de location"/>
 				      			</c:otherwise>
 							</c:choose>
-					</c:forEach>
+						</c:forEach>
 		      		</div>
-		      		
 		      	</div>
+		      	
 		      	<div class="col-sm-12">
 		      		<h5>Vos demandes de location de topo</h5><br/>
 		      		<div class="container">
 		      			
+							<c:choose>
+				      			<c:when test="${not empty listDemandeLocation }">
+						      		<table class="table table-dark table-sm">
+										<thead>
+											<tr>
+												<th scope="col">Topo</th>
+												<th scope="col">Date début de location</th>
+												<th scope="col">Date Fin de location</th>
+												<th scope="col">Demande</th>
+												<th scope="col"></th>
+												<th scope="col"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${ listDemandeLocation }" var="demandeLocationVar">
+													<tr>
+														<td></td>
+														<td>${ demandeLocationVar.dateDebutLocationFormat }</td>
+														<td>${ demandeLocationVar.dateFinLocationFormat }</td>
+														<td>
+															<c:choose>
+																<c:when test="${demandeLocationVar.accepte == true }">
+																	<c:out value="Acceptée"/>
+																</c:when>
+																<c:when test="${demandeLocationVar.accepte == false }">
+																	<c:out value="Refusée"/>
+																</c:when>
+																<c:otherwise>
+																	<c:out value="En attente de réponse"/>
+																</c:otherwise>
+															</c:choose>
+														</td>
+														<td class="text-center"><a class="text-danger" href="<c:url value="/topo/supprimerlocation"><c:param name="location" value="${demandeLocationVar.id}" /></c:url>" ><c:out value="Annuler"/></a></td>
+													</tr>
+											</c:forEach>								
+										</tbody>
+									</table>		
+				      			</c:when>
+				      			<c:otherwise>
+				      				<c:out value="Aucune demande de location"/>
+				      			</c:otherwise>
+							</c:choose>
+					
 		      		</div>
 		      		
 		      	</div>
 	    	</div>
 	    </div>
-        
-       
-            
     </body>
 </html>

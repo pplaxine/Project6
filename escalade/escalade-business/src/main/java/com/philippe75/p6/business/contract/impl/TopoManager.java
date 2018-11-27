@@ -29,4 +29,8 @@ public interface TopoManager {
 	int saveDemandeLocationTopo(LocationTopo locationTopo);
 	
 	int repondreDemandeLocation(int location_id, Boolean accepter);
+	
+	int deleteLocation(int location_id);
+	
+	List<LocationTopo> findAllLocationOfUser();
 }

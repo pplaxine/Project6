@@ -178,6 +178,26 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 	}
 	
 	@Override
+	public List<LocationTopo> findAllLocationOfUser() {
+		String sQL = "SELECT compte_utilisateur.pseudo, location_topo.* FROM location_topo "
+				+ "JOIN compte_utilisateur ON compte_utilisateur.id = location_topo.emprunteur_id "
+				+ "WHERE emprunteur_id = :user_id";		
+		CompteUtilisateur cu = getUser();
+		
+		
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		
+		mSPS.addValue("user_id", cu.getId());
+		
+		RowMapper<LocationTopo> rm = new LocationTopoRM();
+		
+		List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
+		
+		return	listLocationTopo;
+	}
+	
+	@Override
 	public int saveDemandeLocationTopo(LocationTopo locationTopo) {
 		
 		String sQL = "INSERT INTO location_topo (date_debut_location, date_fin_location, topo_id, emprunteur_id) VALUES (:date_debut_location, :date_fin_location, :topo_id, :emprunteur_id); COMMIT";
@@ -213,4 +233,19 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		return result;
 	}
+
+	@Override
+	public int deleteLocation(int location_id) {
+		String sQL = "DELETE FROM location_topo WHERE id= :location_id; COMMIT";
+		
+		MapSqlParameterSource mSPS = new MapSqlParameterSource();
+		mSPS.addValue("location_id", location_id);
+		
+		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+		int result = nPJT.update(sQL, mSPS);
+		
+		return result;
+	}
+
+
 }

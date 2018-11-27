@@ -11,8 +11,10 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
     	
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
-  
-  		
+    	
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     	
         <title>Topo ${topo.nom}</title>
     </head>
@@ -60,15 +62,39 @@
 			   	</div> 
 			</div>
 		</div>
-	   
 		
 		<div class="container">
 			<form method="POST" action="<c:url value="/topo"/>"> 
 				
 			<h3>Demande de location</h3>
-			<input type="hidden" name="dateDebutLocationDemande" value="2018-12-06T08:30:00" />
-			<input type="hidden" name="dateFinLocationDemande" value="2018-04-06T18:30:00" />
+			<!-- <input type="hidden" name="dateDebutLocationDemande" value="2018-12-06T08:30:00" /> -->
+			<!-- <input type="hidden" name="dateFinLocationDemande" value="2018-04-06T18:30:00" /> -->
 			<input type="hidden" name="topo_id" value="${ topo.id }" />
+			
+			<div class="container">
+			    <div class='col-md-5'>
+			        <div class="form-group">
+			           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+			                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" name="dateDebutLocationDemande"/>
+			                <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+			                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class='col-md-5'>
+			        <div class="form-group">
+			           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+			                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" name="dateFinLocationDemande"/>
+			                <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+			                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+			
 			<sec:csrfInput/>
 			<span class="text-danger">${tm.erreurs['dateDebutLocationDemande']}</span>
 				<button type="submit" class="btn btn-warning">Valider</button>
@@ -78,7 +104,25 @@
 			<p class="info"> ${ tm.result } </p>
 			
 		</div>
- 
-		   	 
+		
+		<script type="text/javascript">
+		    $(function () {
+		        $('#datetimepicker7').datetimepicker({
+	    		    
+		        	format: 'D MM YYYY HH:mm',
+	    		  });
+		        $('#datetimepicker8').datetimepicker({
+		        	format: 'D MM YYYY HH:mm',
+		            useCurrent: false
+		        });
+		     
+		        $("#datetimepicker7").on("change.datetimepicker", function (e) {
+		            $('#datetimepicker8').datetimepicker('minDate', e.date);
+		        });
+		        $("#datetimepicker8").on("change.datetimepicker", function (e) {
+		            $('#datetimepicker7').datetimepicker('maxDate', e.date);
+		        });
+		    });
+		</script> 
     </body>
 </html>

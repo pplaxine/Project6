@@ -1,6 +1,7 @@
 package com.philippe75.p6.business.impl.manager;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	public static final String CHAMP_PRESENTATION = "presentationTopo";
 	
 	public static final String CHAMP_DATE_DEBUT_LOCATION_DEMANDE = "dateDebutLocationDemande";
-	public static final String CHAMP_DATE_FIN_LOCATION_DEMANDE = "dateDebutLocationDemande";
+	public static final String CHAMP_DATE_FIN_LOCATION_DEMANDE = "dateFinLocationDemande";
 	public static final String ATT_TOPO_ID = "topo_id";
 
 	private Map<String, String> erreurs; 
@@ -92,6 +93,11 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	public List<Topo> listAllTopoForUser() {
 		return getDaoHandler().getTopoDao().listAllTopoForUser();
 	}
+	
+	@Override
+	public List<LocationTopo> findAllLocationOfUser() {
+		return getDaoHandler().getTopoDao().findAllLocationOfUser();
+	}
 
 	
 	@Override
@@ -101,8 +107,12 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		erreurs = new HashMap<>();
 		
 		//récupération des info du formulaire
-		LocalDateTime dateDebutLocationDemande = LocalDateTime.parse(getValeurChamp(CHAMP_DATE_DEBUT_LOCATION_DEMANDE, request)); 
-		LocalDateTime dateFinLocationDemande = LocalDateTime.parse(getValeurChamp(CHAMP_DATE_FIN_LOCATION_DEMANDE, request)); 
+		String dateDebutLocationFullFormat = addSecToDT(getValeurChamp(CHAMP_DATE_DEBUT_LOCATION_DEMANDE, request));
+		LocalDateTime dateDebutLocationDemande = LocalDateTime.parse(dateDebutLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss")); 
+		
+		String dateFinLocationFullFormat = addSecToDT(getValeurChamp(CHAMP_DATE_FIN_LOCATION_DEMANDE, request));
+		LocalDateTime dateFinLocationDemande = LocalDateTime.parse(dateFinLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss"));  
+		
 		int topo_id = Integer.valueOf(getValeurChamp(ATT_TOPO_ID, request));
 		
 		//test des informations fournies dans les champs et création du bean
@@ -124,6 +134,15 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	public int saveDemandeLocationTopo(LocationTopo locationTopo) {
 		int result = getDaoHandler().getTopoDao().saveDemandeLocationTopo(locationTopo);
 		return result;
+	}
+	
+	@Override
+	public int repondreDemandeLocation(int location_id, Boolean accepter) {
+		return getDaoHandler().getTopoDao().repondreDemandeLocation(location_id, accepter);
+	}
+	@Override
+	public int deleteLocation(int location_id) {
+		return getDaoHandler().getTopoDao().deleteLocation(location_id);
 	}
 	
 	
@@ -203,9 +222,10 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		}
 		return false;
 	}
-	@Override
-	public int repondreDemandeLocation(int location_id, Boolean accepter) {
-		return getDaoHandler().getTopoDao().repondreDemandeLocation(location_id, accepter);
+
+	private String addSecToDT(String dtDate) {
+		String newDate = dtDate + ":01";
+		return newDate;
 	}
 
 

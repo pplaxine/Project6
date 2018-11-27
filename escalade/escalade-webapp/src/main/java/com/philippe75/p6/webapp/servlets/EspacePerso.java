@@ -37,6 +37,8 @@ public class EspacePerso extends HttpServlet {
 		List<Topo> listTopoUser = managerHandler.getTopoManager().listAllTopoForUser();
 		request.setAttribute("listTopoUser", listTopoUser);
 		
+		List<LocationTopo> listDemandeLocation = managerHandler.getTopoManager().findAllLocationOfUser();
+		request.setAttribute("listDemandeLocation", listDemandeLocation);
 		
 		this.getServletContext().getRequestDispatcher(VUE_ESPACE_PRET_TOPO).forward(request, response);
 	}

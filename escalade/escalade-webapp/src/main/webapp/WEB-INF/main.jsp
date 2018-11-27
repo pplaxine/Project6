@@ -45,7 +45,7 @@
 		       
 		        <br/>
 		        <p>
-		        	Nombre de compte utilisateur en BDD : ${nbreCompteUtilisateur}
+		        	Nombre d'utilisateur inscrits : ${nbreCompteUtilisateur}
 		        </p>
 		     
 		        	<h3>Tous les sites</h3>

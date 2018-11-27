@@ -23,6 +23,10 @@ public interface TopoDao {
 	
 	List<LocationTopo> findLocationTopo(int topo_id);
 	
+	List<LocationTopo> findAllLocationOfUser();
+	
+	int deleteLocation(int location_id);
+	
 	int saveDemandeLocationTopo(LocationTopo locationTopo);
 	
 }
