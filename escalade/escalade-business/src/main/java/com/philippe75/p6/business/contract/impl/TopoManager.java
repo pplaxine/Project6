@@ -22,6 +22,8 @@ public interface TopoManager {
 	
 	List<Topo> listAllTopoForUser();
 	
+	Topo getLastTopoAdded();
+	
 	Map<String, String> getErreurs();
 
 	String getResult();

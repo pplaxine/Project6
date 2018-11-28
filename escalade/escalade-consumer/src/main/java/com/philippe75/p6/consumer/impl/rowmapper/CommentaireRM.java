@@ -18,6 +18,9 @@ public class CommentaireRM implements RowMapper<Commentaire> {
 		com.setDateCreation(rs.getTimestamp("date_creation"));
 		com.setContenu(rs.getString("contenu"));
 		com.setAuteur(rs.getString("pseudo"));
+		if(rs.getInt("site_id") != 0) {
+			com.setSite_id(rs.getInt("site_id"));
+		}
 		
 		return com;		
 	}

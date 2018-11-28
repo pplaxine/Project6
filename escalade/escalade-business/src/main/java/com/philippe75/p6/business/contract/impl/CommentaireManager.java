@@ -20,4 +20,6 @@ public interface CommentaireManager {
 	Map<String, String> getErreurs();
 
 	String getResult();
+	
+	List<Commentaire> getThreelastCommentaire();
 }

@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  
+    <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ignore</param-name>
+      <param-value>false</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
   </filter>
+
   <filter-mapping>
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> 
+
+  
+  
   <servlet>
     <servlet-name>Main</servlet-name>
     <servlet-class>com.philippe75.p6.webapp.servlets.Main</servlet-class>
@@ -17,8 +39,8 @@
     <servlet-class>com.philippe75.p6.webapp.servlets.Inscription</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>EspacePretTopo</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.EspacePretTopo</servlet-class>
+    <servlet-name>EspacePerso</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.EspacePerso</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>APropos</servlet-name>
@@ -38,15 +60,15 @@
   </servlet>
   <servlet>
     <servlet-name>CreerSite</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSite</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerSite</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CreerVoie</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerVoie</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerVoie</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CreerSecteur</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerSecteur</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerSecteur</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SupprimerVoie</servlet-name>
@@ -58,20 +80,49 @@
   </servlet>
    <servlet>
   <servlet-name>CreerCommentaire</servlet-name>
-    <servlet-class>com.philippe75.p6.webapp.servlets.CreerCommentaire</servlet-class>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerCommentaire</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CreerTopo</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.creation.CreerTopo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Topos</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.Topos</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SupprimerSite</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerSite</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TopoSolo</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.TopoSolo</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AccepterLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.validation.AccepterLocation</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RefuserLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.validation.RefuserLocation</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>SupprimerLocation</servlet-name>
+    <servlet-class>com.philippe75.p6.webapp.servlets.suppression.SupprimerLocation</servlet-class>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>Main</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Inscription</servlet-name>
     <url-pattern>/inscription/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>EspacePretTopo</servlet-name>
-    <url-pattern>/pret/</url-pattern>
+    <servlet-name>EspacePerso</servlet-name>
+    <url-pattern>/espaceperso</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>APropos</servlet-name>
@@ -112,6 +163,34 @@
   <servlet-mapping>
     <servlet-name>CreerCommentaire</servlet-name>
     <url-pattern>/sites/creercommentaire/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreerTopo</servlet-name>
+    <url-pattern>/topo/creertopo/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Topos</servlet-name>
+    <url-pattern>/topo/topos/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerSite</servlet-name>
+    <url-pattern>/topo/creertopo/supprimersite/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TopoSolo</servlet-name>
+    <url-pattern>/topo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AccepterLocation</servlet-name>
+    <url-pattern>/topo/accepterlocation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RefuserLocation</servlet-name>
+    <url-pattern>/topo/refuserlocation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SupprimerLocation</servlet-name>
+    <url-pattern>/topo/supprimerlocation</url-pattern>
   </servlet-mapping>
   
   

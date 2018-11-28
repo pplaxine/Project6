@@ -134,35 +134,35 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 	private void validationNom(String nom) throws FormValidationException{
 		if(nom != null ) {
 			if(nom.length() < 2) {
-				throw new FormValidationException("Le nom de l'utilisateur doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom de l'utilisateur doit contenir au moins 2 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un nom d'utilisateur.");
+			throw new FormValidationException("- Merci d'entrer un nom d'utilisateur. -");
 		}
 	}
 	
 	private void validationPrenom(String prenom) throws FormValidationException{
 		if(prenom != null ) {
 			if(prenom.length() < 2) {
-				throw new FormValidationException("Le nom de l'utilisateur doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom de l'utilisateur doit contenir au moins 2 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un prénom d'utilisateur.");
+			throw new FormValidationException("- Merci d'entrer un prénom d'utilisateur. -");
 		}
 	}
 	
 	private void validationPseudo(String pseudo) throws FormValidationException{
 		if(pseudo != null ) {
 			if(pseudo.length() < 2) {
-				throw new FormValidationException("Le nom de l'utilisateur doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom de l'utilisateur doit contenir au moins 2 caractères. -");
 			}
 			for (CompteUtilisateur compteUtilisateur : getDaoHandler().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
 				if(compteUtilisateur.getPseudo().toLowerCase().equals(pseudo.toLowerCase())) {
-					throw new FormValidationException("Ce pseudonyme est déjà utilisé par un autre utilisateur.");
+					throw new FormValidationException("- Ce pseudonyme est déjà utilisé par un autre utilisateur. -");
 				}
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer votre pseudo.");
+			throw new FormValidationException("- Merci d'entrer votre pseudo. -");
 		}
 	}
 	
@@ -170,11 +170,11 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 		if(email != null ) {
 			for (CompteUtilisateur compteUtilisateur : getDaoHandler().getCompteUtilisateurDao().getAllCompteUtilisateur()) {
 				if(compteUtilisateur.getEmail().equals(email)) {
-					throw new FormValidationException("Cet adresse email est déjà rattaché à un compte utilisateur.");
+					throw new FormValidationException("- Cet adresse email est déjà rattaché à un compte utilisateur. -");
 				}
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer une adresse email.");
+			throw new FormValidationException("- Merci d'entrer une adresse email. -");
 		}
 	}
 	
@@ -182,10 +182,10 @@ public class CompteUtilisateurManagerImpl extends AbstractManager implements Com
 		if(mdp != null && mdp.equals(mdpConf)) {
 																													//---------------------- autres critère à implémenter 
 			if(mdp.length() < 4 ) {
-				throw new FormValidationException("Le mot de passe doit contenir au moins 4 caractères.");
+				throw new FormValidationException("- Le mot de passe doit contenir au moins 4 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un mot de passe.");
+			throw new FormValidationException("- Merci d'entrer un mot de passe. -");
 		}
 	}
 	

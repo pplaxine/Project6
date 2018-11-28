@@ -15,5 +15,5 @@ public interface CommentaireDao {
 	
 	List<Commentaire> findAllCommentairesForSite(int site_id);
 	
-	
+	List<Commentaire> getThreelastCommentaire(); 
 }

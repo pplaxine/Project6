@@ -9,8 +9,11 @@ import java.util.Map;
 
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+
+import com.google.common.collect.Iterables;
 import com.philippe75.p6.business.contract.impl.TopoManager;
 import com.philippe75.p6.business.exception.FormValidationException;
+import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
 
@@ -38,6 +41,16 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	@Override
 	public int saveTopo(Topo topo) {
 		return getDaoHandler().getTopoDao().createTopo(topo);
+	}
+	
+	@Override
+	public Topo getLastTopoAdded() {
+		List<Topo> topos = listAllTopo();
+		if(topos != null) {
+			Topo topo = Iterables.getLast(topos);
+			return topo;
+		}
+		return null;
 	}
 	
 	@Override

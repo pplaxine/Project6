@@ -9,7 +9,7 @@
         
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
         
-    <!-- acces les plus restreints en premiers -->    
+       
     <security:http auto-config="true" use-expressions="false">
     	
     	<security:form-login login-page="/login" login-processing-url="/login" username-parameter="user_name" password-parameter="user_pw"
@@ -18,6 +18,7 @@
     	
     	<security:logout logout-url="/logout" logout-success-url="/home?logout=true" />
     	
+    	 <!-- acces les plus restreints en premiers -->
     	<security:intercept-url pattern="/#" access="ROLE_ADMIN"/>
     	<security:intercept-url pattern="/topo/**" access="ROLE_USER, ROLE_ADMIN"/>
     	<security:intercept-url pattern="/sites/creersite/*" access="ROLE_USER, ROLE_ADMIN"/>

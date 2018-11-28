@@ -1,3 +1,177 @@
-h3 {
-    color: red;
+body, html {
+	height: 100%;
+	
+}
+
+.card{
+	background-color: rgba(25, 25, 24, 0.5);
+}
+
+.table{
+	
+	opacity: 0.92;
+}
+
+.list-group{
+	color: rgba(242, 164, 19, 0.9);
+	font-family: weedings;
+	font-size: 1.2em;
+	opacity: 0.7;
+}
+
+		
+.bg_sites {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/sites_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_home {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/home_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_apropos {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/apropos_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#les_dix{
+	font-family: monospace;
+	font-weight: bolder;
+	font-size: 1.6em;
+	color:black;
+	opacity: 0.9;
+}
+
+.bg_creersite {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/creersite_bg.jpg);
+
+  height: 120%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_espaceperso {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/espaceperso_bg.jpg);
+
+  height: 200%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_inscription {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/inscription_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#inscription_block, #creersite_block, #dlEP1, #dlEP2, #dlEP3 {
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+}
+
+.erreur{
+	color:rgb(175, 0, 0);
+	text-shadow: black;
+	background-color: rgba(0,0,0,0.7);
+	
+}
+
+.bg_login {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/login_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_topos {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/topos_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_creertopo {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/creertopo_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_siteSolo {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/siteSolo_bg.jpg);
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_topoSolo {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/topoSolo_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#home_dernier_site, #home_dernier_topo, #home_derniers_mess {
+	background-image: url(/escalade-webapp/inc/img/dark_bg01.jpg);
+	opacity: 0.9;
 }

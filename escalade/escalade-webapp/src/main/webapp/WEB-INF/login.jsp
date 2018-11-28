@@ -12,39 +12,40 @@
     	
     <c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
 
-	<title>Login</title>
+	<title >Login</title>
 </head>
 <body>
-	
-	<div class="container">
-		<div class="row">
-			<h1>Login</h1>
+	<div class="bg_login d-flex align-items-center pb-5">
+		<div class="container text-light">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<h1>Login</h1>
+					<c:url value="/login" var="loginVar"/>
+					<form id="login-form" method="POST" action="${loginVar}">
+						<div class="form-group">
+							<label for="user_name">Pseudo</label>
+							<input id="user_name" name="user_name" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label for="user_pw">Password</label>
+							<input type="password" id="user_pw" name="user_pw" class="form-control"/>
+						</div>
+						
+						<sec:csrfInput/>
+						<c:if test="${param.error != null }">
+							<span class="erreur rounded ">- Invalide Username or Password -</span><br/>
+						</c:if>
+						<br/>
+						<button type="submit" id="btn-save" class="btn btn-warning">Login</button>
+						<button type="reset" class="btn btn-primary">cancel</button>
+						
+						<c:url value="/home" var="retourVar"/>
+						<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
+					</form>
+				</div>
+				
+			</div>
 		</div>
-		
-		<c:url value="/login" var="loginVar"/>
-		<form id="login-form" method="POST" action="${loginVar}">
-			<div class="form-group">
-				<label for="user_name">Pseudo</label>
-				<input id="user_name" name="user_name" class="form-control"/>
-			</div>
-			<div class="form-group">
-				<label for="user_pw">Password</label>
-				<input type="password" id="user_pw" name="user_pw" class="form-control"/>
-			</div>
-			
-			<sec:csrfInput/>
-			
-			<c:if test="${param.error != null }">
-				<p class="text-danger">Invalide Username or Password</p>
-			</c:if>
-			
-			<button type="submit" id="btn-save" class="btn btn-warning">Login</button>
-			<button type="reset" class="btn btn-primary">cancel</button>
-			
-			<c:url value="/home" var="retourVar"/>
-			<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
-			
-		</form>
 	</div>
 </body>
 </html>

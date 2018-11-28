@@ -17,11 +17,13 @@ import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
+import com.philippe75.p6.model.bean.commentaire.Commentaire;
 import com.philippe75.p6.model.bean.site.Cotation;
 import com.philippe75.p6.model.bean.site.Secteur;
 import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
 import com.philippe75.p6.model.bean.topo.LocationTopo;
+import com.philippe75.p6.model.bean.topo.Topo;
 
 
 
@@ -32,20 +34,11 @@ public class Main extends HttpServlet {
 	@Inject
 	ManagerHandler managerHandler;
 	
-	@Inject
-	DaoHandler daoHandler; 
-	
-	
-	//----------------------------------------------------------------------------
-	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
-
-	//----------------------------------------------------------------------------
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,21 +46,15 @@ public class Main extends HttpServlet {
 		String nbreCompteUtilisateur = Integer.toString(managerHandler.getCompteUtilisateurManager().getCountCompteUtilisateur());
 		request.setAttribute("nbreCompteUtilisateur", nbreCompteUtilisateur);
 		
-		List<Site> allSites = managerHandler.getSiteManager().listAllSite();
-		request.setAttribute("allSites", allSites);
+		Site lastSite = managerHandler.getSiteManager().getLastSiteAdded();
+		request.setAttribute("lastSite", lastSite);
 		
-		//---------------------------------------------------------------
+		List<Commentaire> threeLastCom = managerHandler.getCommentaireManager().getThreelastCommentaire();
+		request.setAttribute("lastCom", threeLastCom);
+		
+		Topo lastTopo = managerHandler.getTopoManager().getLastTopoAdded();
+		request.setAttribute("lastTopo", lastTopo);
 		
 		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher(VUE_MAIN).forward(request, response);
-	}
-
-	
-
-
-
 }

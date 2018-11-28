@@ -12,40 +12,21 @@
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/> 
     	
         <title>Espace Sites</title>
-        <style type="text/css">
-	        body, html {
-				height: 100%;
-			}
-			.bg {
-			
-			  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
-			
-			  height: 100%;
-		
-			  background-position: center;
-			  background-repeat: no-repeat;
-			  background-attachment: fixed;
-			  background-size: cover;
-			}
-        </style>
-       
-      	
     </head>
     
     <body>
     <c:import url="/inc/navBar.jsp"/>
-    <div class="bg">
-	   
-       	<br/>
+    <div class="bg_sites">
+	   <h3 class="h1 pt-4 pr-3">Espace sites</h3>
+       	
         
-       	<p>
-			<h3>Espace sites</h3>
+       	
+     
+       	<div class="container">
 			
-       	</p>
-       	<div class="container-fluid ">
        	
        		<div class="input-group bg-dark p-2 rounded ">
-       			<div class="container-fluid">
+       			<div class="container-fluid ">
 	       			<form method="Post" class="form form-inline " action="<c:url value="/sites/"/>" >
 	  				<div class="input-group-prepend ">
 	    				<span class="input-group-text  bg-dark text-warning" id="">Département</span>
@@ -65,8 +46,8 @@
 						<option value="false"><c:out value="Non disponible"/></option>
 					</select> 
 	  				
-	  				<div class="input-group-prepend">
-	    				<button type="submit" class="btn btn-info btn-warning float-right ml-2 rounded">Rechercher</button>
+	  				<div class="float-right">
+	    				<button type="submit" class="btn btn-info btn-warning ml-2 rounded">Rechercher</button>
 	  				</div>
 	  				<input type="hidden" name="allSitesParam" value="false">
 					
@@ -74,11 +55,7 @@
 	  				</form>
   				</div>
 			</div>
-	       	</div><br/>
-		
-	       	
-	      	
-	      	<div class="container">
+	       	<br/>
 	      		<table class="table table-dark ">
 					<thead>
 						<tr>
@@ -115,7 +92,7 @@
 															<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
 																<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
 															</c:forEach>
-															<c:out value="${voieCounter}"/>
+															<c:out value="S${ allSecteursVS.count}:${voieCounter}v "/>
 														</c:if>
 													</c:forEach>
 												</c:when>
@@ -126,10 +103,6 @@
 													<c:out value="${voieSiteCounter}"/>
 												</c:otherwise>
 											</c:choose>
-											
-											
-											
-											
 										</td>
 										<td>
 											<c:choose>
@@ -143,7 +116,6 @@
 	
 							<c:otherwise>
 								<c:forEach items="${allSites}" var="allSitesVar">
-									<c:out value=" TOPO  ${allSitesVar.topo }"/>
 							 		<c:if test="${ (allSitesVar.dept == deptRechV || deptRechV =='TOUS') && (allSitesVar.topo == topoRechV || topoRechV == 'TOUS' ) }">
 										<tr>
 											<td><a href="/escalade-webapp/sites/site?site_id=${allSitesVar.id}"><c:out value=" ${allSitesVar.nom}"/></a></td>
@@ -158,18 +130,24 @@
 												</c:if>
 											</td>
 											<td>
-												<c:if test="${not empty allSitesVar.secteurs}">
-													<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
-														<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
-															<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+												<c:choose>
+													<c:when test="${not empty allSitesVar.secteurs}">
+														<c:forEach items="${allSitesVar.secteurs}" var="allSecteursVar" varStatus="allSecteursVS">
+															<c:if test="${not empty allSecteursVar.voies }">
+																<c:forEach items="${allSecteursVar.voies }" var="allVoiesVar" varStatus="allVoiesVS">
+																	<c:set var="voieCounter" value="${ allVoiesVS.count }"/>
+																</c:forEach>
+																<c:out value="S${ allSecteursVS.count}:${voieCounter}v "/>
+															</c:if>
 														</c:forEach>
-													</c:forEach>
-													<c:out value="${voieCounter}"/>
-												</c:if>
-												<c:forEach items="${allSitesVar.voies}" var="allVoiesSiteVar" varStatus="allVoiesSiteVS">
-													<c:set var="voieSiteCounter" value="${ allVoiesSiteVS.count }"/>
-												</c:forEach>
-												<c:out value="${voieSiteCounter}"/>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${allSitesVar.voies}" var="allVoiesSiteVar" varStatus="allVoiesSiteVS">
+															<c:set var="voieSiteCounter" value="${ allVoiesSiteVS.count }"/>
+														</c:forEach>
+														<c:out value="${voieSiteCounter}"/>
+													</c:otherwise>
+												</c:choose>
 											</td>
 											<td>
 												<c:choose>

@@ -10,6 +10,7 @@ public class Commentaire implements Comparable<Commentaire>{
 	
 	private int id;
 	
+	private String site_nom;
 	private int site_id;
 	private String auteur;
 	private Date dateCreation; 
@@ -23,6 +24,13 @@ public class Commentaire implements Comparable<Commentaire>{
 	}
 	public void setSite_id(int site_id) {
 		this.site_id = site_id;
+	}
+	
+	public String getSite_nom() {
+		return site_nom;
+	}
+	public void setSite_nom(String site_nom) {
+		this.site_nom = site_nom;
 	}
 	public String getAuteur() {
 		return auteur;

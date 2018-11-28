@@ -11,6 +11,7 @@ public class LocationTopo implements Comparable<LocationTopo>{
 	private int id;
 	
 	private int topo_id;
+	private String topoName;
 	private LocalDateTime dateDebutLocation;
 	private LocalDateTime dateFinLocation;
 	private String dateDebutLocationFormat;
@@ -26,6 +27,12 @@ public class LocationTopo implements Comparable<LocationTopo>{
 	}
 	public int getTopo_id() {
 		return topo_id;
+	}
+	public String getTopoName() {
+		return topoName;
+	}
+	public void setTopoName(String topoName) {
+		this.topoName = topoName;
 	}
 	public void setTopo_id(int topo_id) {
 		this.topo_id = topo_id;

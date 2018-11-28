@@ -11,17 +11,19 @@
     	
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
     	
-        <title>Espace Prêt de Topo</title>
+        <title>Espace Perso</title>
     </head>
     
     <body>
 		<c:import url="/inc/navBar.jsp"/>
-	    <div class="bg">
-		    </br>
-		    
-		    <h3>Votres espace Perso</h3>  
+	    <div class="bg_espaceperso">
+	    <div class="container-fluid">
+		    <br/>
+		    <div class="row text-light pl-4 pb-3">
+			    <h3>Votres espace Perso</h3>  
+		    </div>
 	        <div class="row">
-	        	<div class="col sm-12">
+	        	<div class="col sm-12 text-light pl-5 pb-5 mb-2" id="dlEP1">
 		      		<h5>Vos demandes de location de topos traités</h5><br/>
 		      		<div class="container">
 		      			<c:forEach items="${ listTopoUser }" var="topoUserVar">
@@ -82,7 +84,7 @@
 		      		</div>
 		      	</div>
 		      	
-		      	<div class="col-sm-12">
+		      	<div class="col-sm-12 text-light pl-5 pb-5 mb-2" id="dlEP2">
 		      		<h5>Vos demandes de location de topos en attente d'une réponse</h5><br/>
 		      		<div class="container">
 		      			<c:forEach items="${ listTopoUser }" var="topoUserVar">
@@ -122,7 +124,7 @@
 		      		</div>
 		      	</div>
 		      	
-		      	<div class="col-sm-12">
+		      	<div class="col-sm-12 text-light pl-5 pb-5 mb-2" id="dlEP3">
 		      		<h5>Vos demandes de location de topo</h5><br/>
 		      		<div class="container">
 		      			
@@ -142,7 +144,7 @@
 										<tbody>
 											<c:forEach items="${ listDemandeLocation }" var="demandeLocationVar">
 													<tr>
-														<td></td>
+														<td>${ demandeLocationVar.topoName }</td>
 														<td>${ demandeLocationVar.dateDebutLocationFormat }</td>
 														<td>${ demandeLocationVar.dateFinLocationFormat }</td>
 														<td>
@@ -172,6 +174,7 @@
 		      		</div>
 		      		
 		      	</div>
+	    	</div>
 	    	</div>
 	    </div>
     </body>

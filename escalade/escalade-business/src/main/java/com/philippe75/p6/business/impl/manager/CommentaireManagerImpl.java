@@ -19,7 +19,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 	public static final String CHAMP_COMMENTAIRE = "contenuCom";
 	
 	private Map<String, String> erreurs; 
-	private String result; 
+	private String result;
 	
 	//G&S -------------------------------------
 	public Map<String, String> getErreurs() {
@@ -29,6 +29,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 	public String getResult() {
 		return result;
 	}
+
 	//-----------------------------------------
 
 	@Override
@@ -55,10 +56,8 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 			int succes = getDaoHandler().getCommentaireDao().createCommentaire(commentaire); 
 			if(succes > 0) {
 				result ="Votre message à bien été ajouté";  
-				System.out.println("Message ajouté");
 			}else {
 				result ="Echec lors de l'enregistrement des informations en base de donnée";
-				System.out.println("Message non ajouté en BDD ");
 			}
 		}else {
 			result ="Echec de l'ajout de votre message";
@@ -98,5 +97,10 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
 
 	private void setErreur(String nomChamp, String erreurMessage) {
 		erreurs.put(nomChamp, erreurMessage);
+	}
+
+	@Override
+	public List<Commentaire> getThreelastCommentaire() {
+		return getDaoHandler().getCommentaireDao().getThreelastCommentaire();
 	}
 }

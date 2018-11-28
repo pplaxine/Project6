@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.TopoDao;
 import com.philippe75.p6.consumer.impl.rowmapper.LocationTopoRM;
+import com.philippe75.p6.consumer.impl.rowmapper.LocationTopoRMWithTopoName;
 import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
 import com.philippe75.p6.consumer.impl.rowmapper.TopoRM;
 import com.philippe75.p6.model.bean.site.Site;
@@ -179,8 +180,9 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 	
 	@Override
 	public List<LocationTopo> findAllLocationOfUser() {
-		String sQL = "SELECT compte_utilisateur.pseudo, location_topo.* FROM location_topo "
+		String sQL = "SELECT compte_utilisateur.pseudo, topo.nom , location_topo.* FROM location_topo "
 				+ "JOIN compte_utilisateur ON compte_utilisateur.id = location_topo.emprunteur_id "
+				+ "JOIN topo ON topo.id = location_topo.topo_id "
 				+ "WHERE emprunteur_id = :user_id";		
 		CompteUtilisateur cu = getUser();
 		
@@ -190,7 +192,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		mSPS.addValue("user_id", cu.getId());
 		
-		RowMapper<LocationTopo> rm = new LocationTopoRM();
+		RowMapper<LocationTopo> rm = new LocationTopoRMWithTopoName();
 		
 		List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
 		

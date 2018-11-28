@@ -66,7 +66,7 @@
 			</p>
 			<div class="form-group" >
 				<label for="nomSecteur">Nom<span class="requis">*</span></label>
-				<input type="text" class="form-control" id="nomSecteur" name="nomSecteur" placeholder="Nom du secteur" value="<c:out value="${secteur.nom}"/>" size="20" maxlength="20"/>
+				<input type="text" class="form-control" id="nomSecteur" name="nomSecteur" placeholder="Nom du secteur" value="<c:out value="${secteur.nom}"/>" size="20" maxlength="200"/>
 				<span class="text-danger">${secM.erreurs['nomSecteur']}</span>
 			</div>
 			<p>

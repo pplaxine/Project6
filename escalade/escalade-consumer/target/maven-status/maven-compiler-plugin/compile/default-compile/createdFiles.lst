@@ -1,9 +1,12 @@
+com\philippe75\p6\consumer\impl\rowmapper\TopoRM.class
 com\philippe75\p6\consumer\contract\DaoHandler.class
 com\philippe75\p6\consumer\impl\rowmapper\DeptRM.class
 com\philippe75\p6\consumer\impl\dao\CotationDaoImpl.class
 com\philippe75\p6\consumer\impl\dao\CommentaireDaoImpl.class
+com\philippe75\p6\consumer\impl\rowmapper\LocationTopoRMWithTopoName.class
 com\philippe75\p6\consumer\contract\dao\CompteUtilisateurDao.class
 com\philippe75\p6\consumer\contract\dao\CotationDao.class
+com\philippe75\p6\consumer\impl\dao\TopoDaoImpl.class
 com\philippe75\p6\consumer\impl\dao\SecteurDaoImpl.class
 com\philippe75\p6\consumer\contract\dao\VoieDao.class
 com\philippe75\p6\consumer\impl\rowmapper\CotationRM.class
@@ -24,3 +27,5 @@ com\philippe75\p6\consumer\impl\dao\VoieDaoImpl.class
 com\philippe75\p6\consumer\contract\dao\CommentaireDao.class
 com\philippe75\p6\consumer\contract\dao\SecteurDao.class
 com\philippe75\p6\consumer\impl\dao\AbstractDaoImpl.class
+com\philippe75\p6\consumer\impl\rowmapper\LocationTopoRM.class
+com\philippe75\p6\consumer\contract\dao\TopoDao.class

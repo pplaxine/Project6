@@ -9,7 +9,7 @@
 		<span class="text-danger">${sessionScope.comM.result}</span>
 	</div>
 	<input type="hidden" name="site_id" value="${site.id }">
-	<button type="submit" class="btn btn-primary">Ajouter un commentaire</button>
+	<button type="submit" class="btn btn-primary float-right"><c:out value=" Ajouter un commentaire"/></button>
 	<sec:csrfInput/>
 </form>
 

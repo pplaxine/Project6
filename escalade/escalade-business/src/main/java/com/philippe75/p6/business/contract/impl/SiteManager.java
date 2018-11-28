@@ -22,6 +22,7 @@ public interface SiteManager {
 	Map<String, String> getErreurs();
 	String getResult();
 	
+	Site getLastSiteAdded();
 	
 	
 }

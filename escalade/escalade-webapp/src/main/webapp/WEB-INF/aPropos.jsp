@@ -11,31 +11,41 @@
     	
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
     	<title>A propos</title>
-		<style type="text/css">
-	        body, html {
-				height: 100%;
-			}
-			.bg {
-			
-			  background-image: url("http://sajutulade.lv/wp-content/uploads/2018/10/sunset-3314275_960_720.jpg");
-			
-			  height: 100%;
-		
-			  background-position: center;
-			  background-repeat: no-repeat;
-			  background-size: cover;
-			  background-attachment: fixed;
-			}
-        </style>    	
+           	
         <title>Espace Prêt de Topo</title>
     </head>
     
     <body>
-    	<div class="bg">
+    	<div class="bg_apropos">
 		<c:import url="/inc/navBar.jsp"/>
-	    <p>
-	    <h1>Espace A propos</h1>
-	    </p>
+		<br/>
+	    
+	    <h1 class="pl-3">Espace A propos</h1>
+	    
+	    
+	    <div class="container" id="les_dix">
+	    		<div class="d-flex justify-content-center">
+		    		
+			    		<div class="pb-4 pt-2 col-sm-9 pl-5 ">
+				    		<div class="row mb-5 d-flex justify-content-center h1">Les dix Come'on man !</div>
+					    	<div class="row">1. Tes connaissances, tu partageras.</div>
+					    	<div class="row">2. Dans le but d'échanger, des sites tu créeras.</div>
+					    	<div class="row">3. Les débutants, tu aideras. </div>
+					    	<div class="row">4. Tes topos, tu exposeras.</div>
+					    	<div class="row">5. Preuve de politesse dans tes messages, tu feras.</div>
+					    	<div class="row">6. Les demandes de location, tu considéreras.</div>
+					    	<div class="row">7. Des améliorations du site, tu demanderas.</div>
+					    	<div class="row">8. Humble, tu resteras.</div>
+					    	<div class="row">9. A trouver le dernier tu m'aideras.</div>
+					    	<div class="row">10. Grace à nous tous la voie s'ouvrira.</div>     
+			    		</div>
+			    		<div class="card pl-1 mt-5">
+			    			<p class=" mt-4 mb-5">@Philippe Plaxine</p>
+			    			<p class="h5 pt-5">email: philippe.plaxine@gmail.com</p>
+			    		</div>
+	    		</div>
+	    </div>
+	   
     	
     	</div>
     </body>

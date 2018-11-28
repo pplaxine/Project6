@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+
+import com.google.common.collect.Iterables;
 import com.philippe75.p6.business.contract.impl.SiteManager;
 import com.philippe75.p6.business.exception.FormValidationException;
 import com.philippe75.p6.model.bean.site.Dept;
@@ -36,6 +38,16 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 	@Override
 	public List<Site> listAllSite() {
 		return getDaoHandler().getSiteDao().listAllSite();
+	}
+	
+	@Override
+	public Site getLastSiteAdded() {
+		List<Site> sites = listAllSite();
+		if(sites != null) {
+			Site site = Iterables.getLast(sites);
+			return site;
+		}
+		return null;
 	}
 
 	@Override
@@ -117,25 +129,25 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 	private void validationNomSite(String nomSite) throws FormValidationException{
 		if(nomSite != null ) {
 			if(nomSite.length() < 2) {
-				throw new FormValidationException("Le nom du site doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom du site doit contenir au moins 2 caractères. -");
 			}
 			for (Site site : getDaoHandler().getSiteDao().listAllSite()) {
 				if(site.getNom().toLowerCase().equals(nomSite.toLowerCase())) {
-					throw new FormValidationException("Ce site est déjà présent dans notre base de donnée.");
+					throw new FormValidationException("- Ce site est déjà présent dans notre base de donnée. -");
 				}
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un nom de site.");
+			throw new FormValidationException("- Merci d'entrer un nom de site. -");
 		}
 	}
 	
 	private void validationLieuSite(String lieuSite) throws FormValidationException{
 		if(lieuSite != null ) {
 			if(lieuSite.length() < 2) {
-				throw new FormValidationException("Le lieu doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le lieu doit contenir au moins 2 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer le lieu ou se situe le site.");
+			throw new FormValidationException("- Merci d'entrer le lieu ou se situe le site. -");
 		}
 	}
 	
@@ -160,5 +172,6 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager{
 		}
 		return null;
 	}
+
 	
 }

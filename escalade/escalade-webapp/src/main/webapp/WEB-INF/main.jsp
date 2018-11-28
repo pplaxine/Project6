@@ -12,86 +12,114 @@
     	
     	<c:import url="/inc/bootstrapAndJQueryImport.jsp"/>
         <title>Home</title>
-    	 <style type="text/css">
-	        body, html {
-				height: 100%;
-			}
-			.bg {
-			
-			  background-image: url("https://wpblink.com/sites/default/files/wallpaper/sports/73611/climbing-wallpapers-hd-73611-5012556.png");
-			
-			  height: 100%;
-		
-			  background-position: center;
-			  background-repeat: no-repeat;
-			  background-attachment: fixed;
-			  background-size: cover;
-			}
-        </style>
-    	
     </head>
     
     <body>
 	    <c:import url="/inc/navBar.jsp"/>
-    	<div class="bg">
-		   
-		        <br/>
-		        
-		       <p>
-		       	<h1>Welcome to Escale'add website !</h1>
-		       	<h2>Le site qui vous permet de partager sur l'escalade</h2>
-		       </p> 
-		       <div class="container-fluid" >
-		       
-		        <br/>
-		        <p>
-		        	Nombre d'utilisateur inscrits : ${nbreCompteUtilisateur}
-		        </p>
-		     
-		        	<h3>Tous les sites</h3>
-		        	<c:forEach items="${allSites}" var="allSitesVar" >
-				        <div class="container">
-				        	Nom du site : <c:out value="${ allSitesVar.nom }"/><br/>
-				        	Département : <c:out value="${ allSitesVar.dept }"/><br/>
-				        	Lieu : <c:out value="${ allSitesVar.lieu }"/><br/>
-				        	<c:if test="${ allSitesVar.description != null }">
-				        		Description : <c:out value="${ allSitesVar.description }"/><br/>
-				        	</c:if>
-				        	Date de création : <c:out value="${ allSitesVar.dateCreation }"/>
-				        	<div>
-				        		<c:forEach items="${allSitesVar.secteurs}" var="secteursVar">
-							        <ul>
-							       		<li>
-							    			Secteur : <c:out value="${secteursVar.nom}"/>
-							        		<c:forEach items="${secteursVar.voies}" var="voiesVar3">
-							        			<ul>
-							        				<li>
-							        					Voie : <c:out value="${voiesVar3.nom}"></c:out>
-							        					<ul>
-							        						<li>
-							        							Hauteur : <c:out value="${voiesVar3.hauteur }"/>
-							        						</li>
-							        						<li>
-							        							Nombre de points : <c:out value="${voiesVar3.nombrePoints }"/>
-							        						</li>
-							        						<li>
-							        							Nombre de longueurs : <c:out value="${voiesVar3.nombreLongueur}"/>
-							        						</li>
-							        						<li>
-							        							Cotation : <c:out value="${voiesVar3.cotation }"/>
-							        						</li>
-							        					</ul>
-							        				</li>
-							        			</ul>
-							        		</c:forEach>
-							        	</li>
-							        </ul>
-						        </c:forEach>
-							</div> 
-				        </div>
-		        	</c:forEach>  
-		      </div>  
-		    
+    	<div class="bg_home">
+    		<div class="container-fluid ">
+				   <div class="row pt-3 ">
+				   		<div class="col-md-10">
+						       	<h1>Welcome to Escale'add website !</h1>
+						       	<h2>Le site qui vous permet de partager sur l'escalade</h2>
+				   		</div>
+				   		<div class="col-md-2 hidden-md d-none d-lg-block text-right text-warning pr-4">	
+				   			<c:out value="Nombre d'utilisateur inscrits : ${nbreCompteUtilisateur}"/> 
+				   		</div>
+				   </div>
+			   <div class="row mt-5 ">
+			   		<div class="col-md-3 offset-md-1 col-sm-12 pb-5">
+			   			<div class="row">
+			   				<div class="card text-light">
+				   				<div class="card-header">
+						   			<c:out value="Dernier site ajouté"/>
+				   				</div>
+				   				<ul class="list-group list-group-flush">
+				   					<li class="list-group-item" id="home_dernier_site">
+						   				<div class="col-lg-12 ">
+						   					<c:out value="Nom : ${ lastSite.nom }"/>
+						   				</div>
+						   				<div class="col-lg-12">
+						   					<c:out value="Département : "></c:out><c:out value="${ lastSite.dept }"/>
+						   				</div>
+						   				<div class="col-lg-12">
+						   					<c:out value="Lieu : ${ lastSite.lieu }"/>
+						   				</div>
+						   				<c:if test="${ not empty lastSite.description }">
+						   					<div class="col-lg-12">
+						   						<c:out value="Description : ${ lastSite.description }"/>
+						   					</div>
+						   				</c:if>
+						   				<c:if test="${ not empty lastSite.secteurs }">
+						   					<div class="col-lg-12">
+							   					<c:out value="Secteur : "/>
+						   					</div>
+						   					<div class="col-lg-12">
+						   						<ul>
+							   						<c:forEach items="${ lastSite.secteurs }" var="secteurVar">
+							   							<li ><c:out value="${ secteurVar.nom}"/> </li>
+							   							<c:if test="${ not empty secteurVar.voies}" >
+											   				<c:out value="Voie : "/>
+										   			 		<ul>
+										   						<c:forEach items="${ secteurVar.voies }" var="voieVar">
+										   							<li ><c:out value="Nom : ${ voieVar.nom}"/></li>
+										   						</c:forEach>
+									   						</ul> 
+							   							</c:if>
+							   						</c:forEach>
+						   						</ul>
+						   					</div>
+						   				</c:if>
+					   				</li>
+				   				</ul>
+				   			
+			   				</div>
+			   			</div>
+			   		</div>
+			   		<div class="col-md-6 offset-md-1 col-sm-12">
+			   			<div class="row mb-5">
+			   				<div class="card text-light">
+				   				<div class="card-header">
+						   			<c:out value="Dernier topo mise à disposition"/>
+				   				</div>
+				   				<ul class="list-group list-group-flush" >
+				   					<li class="list-group-item" id="home_dernier_topo">
+				   						<div class="col-lg-12 ">
+						   					<c:out value="Nom : ${ lastTopo.nom }"/>
+						   				</div>
+						   				<div class="col-lg-12 ">
+						   					<c:out value="Site couvert : ${ lastTopo.site.nom }"/>
+						   				</div>
+						   				<c:if test="${ not empty lastTopo.presentation }">
+						   					<div class="col-lg-12 ">
+						   						<c:out value="Site presentation : ${ lastTopo.presentation }"/>
+						   					</div>
+						   				</c:if>
+						   				<br/>
+						   				<div class="col-lg-12 ">
+						   					<c:out value="Par : ${ lastTopo.createur }"/>
+						   				</div>
+				   					</li>
+			   					</ul>
+			   				</div>
+			   			</div>	
+			   			<div class="row mt-5" >
+			   				<div class="card text-light">
+			   					<div class="card-header">
+						   			<c:out value="Derniers messages laissés"/>
+				   				</div>
+					   			<ul class="list-group list-group-flush">
+						   			<c:forEach items="${lastCom }" var="lastComVar">
+						   				<li class="list-group-item "id="home_derniers_mess">
+						   					<c:out value="${ lastComVar.auteur } ~ sur le site ${ lastComVar.site_nom }  : "></c:out> <c:out value="${ lastComVar.contenu }"/>
+						   				</li>
+						   			</c:forEach>
+					   			</ul>
+			   				</div>
+			   			</div>
+			   		</div>
+				</div>
+			 </div>  
     	</div>
     </body>
 </html>
