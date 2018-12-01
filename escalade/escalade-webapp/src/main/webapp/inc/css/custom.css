@@ -171,6 +171,16 @@ body, html {
   background-size: cover;
 }
 
+#card_topoSolo{
+	width: 23rem;
+	
+}
+
+#presentation_topoSolo{
+	opacity:0.8;
+	
+}
+
 #home_dernier_site, #home_dernier_topo, #home_derniers_mess {
 	background-image: url(/escalade-webapp/inc/img/dark_bg01.jpg);
 	opacity: 0.9;

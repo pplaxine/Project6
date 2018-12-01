@@ -17,18 +17,19 @@
     
     <body>
     <c:import url="/inc/navBar.jsp"/>
-		<div class="bg_creertopo"> 
+		<div class="bg_creertopo "> 
 	       	<br/>
 	        
 	       	<p>
 				<h3>Créer un nouveau Topo</h3>
 	       	</p>
-	       	
-	       	<div class="container">
+	       	<div class="container-fluid">
+	       	<div class="col-md-4 offset-md-4">
+	       		<div>
 				<h3>Informations Topo</h3>
 				<c:if test="${not empty sessionScope.siteTopo}">
 					<div class="container">
-	      				<table class="table table-sm table-dark ">
+	      				<table class="table table-sm table-dark " >
 							<thead>
 								<tr>
 									<th scope="col">Nom</th>
@@ -73,7 +74,7 @@
 					</div>
 				</c:if>
 				
-				<form method="POST" action="<c:url value="/topo/creertopo/"/>">
+				<form method="POST" action="<c:url value="/topo/creertopo/"/>" >
 					<p>
 						
 						<c:if test="${empty sessionScope.siteTopo}">
@@ -82,15 +83,15 @@
 					</p>
 					<br/>
 					
-					<div class="form-group">
+					<div class="form-group" >
 						<label for="nomTopo">Nom <span class="requis">*</span></label>
-						<input type="text" class="form-control" id="nomTopo" name="nomTopo" placeholder="Nom du topo" value="<c:out value="${topo.nom}"/>" size="20" maxlength="20"/>
+						<input type="text" class="form-control" id="nomTopo" name="nomTopo" placeholder="Nom du topo" value="<c:out value="${topo.nom}"/>" size="20" maxlength="20" style="opacity: 0.7"/>
 						<span class="text-danger">${tm.erreurs['nomTopo']}</span>
 					</div>
 					
 					<div class="form-group">
 						<label for="presentationTopo">Présentation</label>
-						<textarea class="form-control" id="presentationTopo" name="presentationTopo" rows="5" placeholder="Description du topo"><c:out value="${topo.presentation}"/></textarea> 
+						<textarea class="form-control" id="presentationTopo" name="presentationTopo" rows="5" placeholder="Description du topo" style="opacity: 0.7"><c:out value="${topo.presentation}" /></textarea> 
 					</div>
 					<sec:csrfInput/>
 				
@@ -101,6 +102,8 @@
 					<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
 				</form>	
 				<p class="info"> ${ sm.result } </p>
+			</div>
+			</div>
 			</div>
 		</div>	
     </body>

@@ -21,104 +21,106 @@
     
     <body>
     <c:import url="/inc/navBar.jsp"/>
-		<div class="bg_topoSolo">  
-	       	<br/>
-	        
-		    <div class="row">
-		       	<div class="col-md-6">
-			      	<p>
-						<h3>Topo <c:out value="${topo.nom}"/> </h3>
-			       	</p>
-					<%-- <img alt="photo" src="<c:url value="/inc/img/escalade.png"/>"> --%>
-					<p>
-						Nom du topo : <c:out value="${topo.nom}"/><br/>
-						Présentation : <c:out value="${topo.presentation}"/><br/>
-					   	Site : <c:out value="${topo.site.nom}"/><br/>
-					</p>
-				</div>
+		<div class="bg_topoSolo text-light">
+			<div class="container-fluid h-100">  
+		       	<br/>
+		        
+			    <div class="row h-100 ">
+			       	<div class="col-md-3">
+			       		<div class="container bg-dark rounded pt-2 pb-3 " id="presentation_topoSolo">
+				       		<p>
+								<h3>Topo <c:out value="${topo.nom}"/> </h3>
+					       	</p>
+							<%-- <img alt="photo" src="<c:url value="/inc/img/escalade.png"/>"> --%>
+							<p>
+								Nom du topo : <c:out value="${topo.nom}"/><br/>
+								Présentation : <c:out value="${topo.presentation}"/><br/>
+							   	Site : <c:out value="${topo.site.nom}"/><br/>
+							</p>
+			       		</div>
+					</div>
+					<div class="col-md-4 offset-md-1 ">
+						<form method="POST" action="<c:url value="/topo"/>" > 
+							
+							<h3>Demande de location</h3>
 				
-				<div class="col-md-6 ">
-					<div class="card float-right mr-4" style="width: 23rem;">
-				   		<c:choose>
-				   			<c:when test="${not empty topo.listLocationTopo }">
-						   		<div class="card-header">
-						   			Prochaines locations 
-						   		</div>
-							   	<ul class="list-group list-group-flush">
-							   		<c:forEach items="${topo.listLocationTopo }" var="locationTopoVar">
-								   		<c:if test="${locationTopoVar.accepte == true }">
-								   			<li class="list-group-item">du ${ locationTopoVar.dateDebutLocationFormat} au ${locationTopoVar.dateFinLocationFormat } </li>
-								   		</c:if>
-							   		</c:forEach>
-							   	</ul>
-				   			</c:when>
-				   			<c:otherwise>
-				   				<div class="card-header">
-						   			Prochaines locations 
-						   		</div>
-						   		<li class="list-group-item"><c:out value="Aucune"/> </li>
-				   			</c:otherwise>
-				   		</c:choose>
-				   	
-				   	</div> 
-				</div>
-			</div>
+							<input type="hidden" name="topo_id" value="${ topo.id }" />
+						    <div class='col-md-5'>
+						        <div class="form-group">
+						           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+						                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" name="dateDebutLocationDemande"/>
+						                <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+						                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						    <div class='col-md-5'>
+						        <div class="form-group">
+						           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+						                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" name="dateFinLocationDemande"/>
+						                <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+						                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+							<sec:csrfInput/>
+							<span class="text-danger">${tm.erreurs['dateDebutLocationDemande']}</span>
+							<button type="submit" class="btn btn-warning">Valider</button>
+							<button type="reset"  class="btn btn-primary">Annuler</button>
 			
-			<div class="container">
-				<form method="POST" action="<c:url value="/topo"/>"> 
+						</form>	
+						<p class="info"> ${ tm.result } </p>
 					
-					<h3>Demande de location</h3>
-		
-					<input type="hidden" name="topo_id" value="${ topo.id }" />
-				    <div class='col-md-5'>
-				        <div class="form-group">
-				           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
-				                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" name="dateDebutLocationDemande"/>
-				                <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
-				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				    <div class='col-md-5'>
-				        <div class="form-group">
-				           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
-				                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" name="dateFinLocationDemande"/>
-				                <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
-				                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-					<sec:csrfInput/>
-					<span class="text-danger">${tm.erreurs['dateDebutLocationDemande']}</span>
-					<button type="submit" class="btn btn-warning">Valider</button>
-					<button type="reset"  class="btn btn-primary">Annuler</button>
-	
-				</form>	
-				<p class="info"> ${ tm.result } </p>
-				
+					</div>
+					
+					<div class="col-md-4 ">
+						<div class="card float-right mr-4" id="card_topoSolo">
+					   		<c:choose>
+					   			<c:when test="${not empty topo.listLocationTopo }">
+							   		<div class="card-header text-light">
+							   			Prochaines locations 
+							   		</div>
+								   	<ul class="list-group list-group-flush">
+								   		<c:forEach items="${topo.listLocationTopo }" var="locationTopoVar">
+									   		<c:if test="${locationTopoVar.accepte == true }">
+									   			<li class="list-group-item text-dark">du ${ locationTopoVar.dateDebutLocationFormat} au ${locationTopoVar.dateFinLocationFormat } </li>
+									   		</c:if>
+								   		</c:forEach>
+								   	</ul>
+					   			</c:when>
+					   			<c:otherwise>
+					   				<div class="card-header" >
+							   			Prochaines locations 
+							   		</div>
+							   		<li class="list-group-item"><c:out value="Aucune"/> </li>
+					   			</c:otherwise>
+					   		</c:choose>
+					   	
+					   	</div> 
+					</div>
+				</div>
+				<script type="text/javascript">
+				    $(function () {
+				        $('#datetimepicker7').datetimepicker({
+			    		    
+				        	format: 'DD MM YYYY HH:mm',
+			    		  });
+				        $('#datetimepicker8').datetimepicker({
+				        	format: 'DD MM YYYY HH:mm',
+				            useCurrent: false
+				        });
+				     
+				        $("#datetimepicker7").on("change.datetimepicker", function (e) {
+				            $('#datetimepicker8').datetimepicker('minDate', e.date);
+				        });
+				        $("#datetimepicker8").on("change.datetimepicker", function (e) {
+				            $('#datetimepicker7').datetimepicker('maxDate', e.date);
+				        });
+				    });
+				</script>
 			</div>
-			
-			<script type="text/javascript">
-			    $(function () {
-			        $('#datetimepicker7').datetimepicker({
-		    		    
-			        	format: 'DD MM YYYY HH:mm',
-		    		  });
-			        $('#datetimepicker8').datetimepicker({
-			        	format: 'DD MM YYYY HH:mm',
-			            useCurrent: false
-			        });
-			     
-			        $("#datetimepicker7").on("change.datetimepicker", function (e) {
-			            $('#datetimepicker8').datetimepicker('minDate', e.date);
-			        });
-			        $("#datetimepicker8").on("change.datetimepicker", function (e) {
-			            $('#datetimepicker7').datetimepicker('maxDate', e.date);
-			        });
-			    });
-			</script>
 		</div> 
     </body>
 </html>
