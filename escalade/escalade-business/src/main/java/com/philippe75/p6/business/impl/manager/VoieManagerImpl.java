@@ -108,16 +108,16 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager{
 	private void validationNomVoie(String nomVoie) throws FormValidationException{
 		if(nomVoie != null ) {
 			if(nomVoie.length() < 2) {
-				throw new FormValidationException("Le nom de la voie doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom de la voie doit contenir au moins 2 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un nom de voie.");
+			throw new FormValidationException("- Merci d'entrer un nom de voie. -");
 		}
 	}
 	
 	private void validationHauteurVoie(String hauteurVoie) throws FormValidationException{
 		if(hauteurVoie == null || Float.valueOf(hauteurVoie) < 1  ) {
-			throw new FormValidationException("Merci d'entrer une hauteur de voie.");
+			throw new FormValidationException("- Merci d'entrer une hauteur de voie. -");
 		}
 	}
 	

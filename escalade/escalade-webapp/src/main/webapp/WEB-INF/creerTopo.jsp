@@ -17,14 +17,10 @@
     
     <body>
     <c:import url="/inc/navBar.jsp"/>
-		<div class="bg_creertopo "> 
-	       	<br/>
-	        
-	       	<p>
-				<h3>Créer un nouveau Topo</h3>
-	       	</p>
+		<div class="bg_creertopo pt-3 pl-3"> 
+			<h3>Créer un nouveau Topo</h3>
 	       	<div class="container-fluid">
-	       	<div class="col-md-4 offset-md-4">
+	       	<div class="col-md-4 offset-md-4 pt-5">
 	       		<div>
 				<h3>Informations Topo</h3>
 				<c:if test="${not empty sessionScope.siteTopo}">

@@ -17,14 +17,8 @@
     <body>
     <c:import url="/inc/navBar.jsp"/>
     <div class="bg_sites">
-	   <h3 class="h1 pt-4 pr-3">Espace sites</h3>
-       	
-        
-       	
-     
+	   <h3 class="h1 pt-4 pr-3 pl-2">Espace sites</h3>
        	<div class="container">
-			
-       	
        		<div class="input-group bg-dark p-2 rounded ">
        			<div class="container-fluid ">
 	       			<form method="Post" class="form form-inline " action="<c:url value="/sites/"/>" >

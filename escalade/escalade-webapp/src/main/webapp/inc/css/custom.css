@@ -36,7 +36,7 @@ body, html {
 		
   background-image: url(/escalade-webapp/inc/img/page_bg/home_bg.jpg);
 
-  height: 100%;
+  height: 180%;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -44,11 +44,20 @@ body, html {
   background-size: cover;
 }
 
+#main_block{
+	background-color: black;
+	opacity:0.8;
+}
+
+#derniertopo_block{
+	margin-bottom: 4em;
+}
+
 .bg_apropos {
 		
   background-image: url(/escalade-webapp/inc/img/page_bg/apropos_bg.jpg);
 
-  height: 100%;
+  height: 200%;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -110,6 +119,7 @@ body, html {
 	text-shadow: black;
 	background-color: rgba(0,0,0,0.7);
 	
+	
 }
 
 .bg_login {
@@ -148,8 +158,33 @@ body, html {
   background-size: cover;
 }
 
-.bg_siteSolo {
+.bg_creersecteur {
 		
+  background-image: url(/escalade-webapp/inc/img/page_bg/creersecteur_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_creervoie {
+		
+  background-image: url(/escalade-webapp/inc/img/page_bg/creervoie_bg.jpg);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.bg_siteSolo {
+
+  height: 200%;
   background-image: url(/escalade-webapp/inc/img/page_bg/siteSolo_bg.jpg);
 
 
@@ -157,6 +192,10 @@ body, html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+
+#site_solo_message_block, #creervoie_block, #creersecteur_block{
+	opacity: 0.85;
 }
 
 .bg_topoSolo {

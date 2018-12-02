@@ -16,14 +16,8 @@
     
     <body>
     <c:import url="/inc/navBar.jsp"/>
-	<div class="bg_creersite">
-	       	<br/>
-	        
-	       	<p>
-				<h3>Créer un nouveau site</h3>
-	       	</p>
-	       	
-	       	
+		<div class="bg_creersite">
+			<h3 class="h2 pt-3 pb-2 pl-3">Créer un nouveau site</h3>
 	       	<div class="container rounded pt-3 pb-4" id="creersite_block">
 						<h3 style="color:black">Informations Site</h3>
 						<c:if test="${not empty sessionScope.voiesSite}">
