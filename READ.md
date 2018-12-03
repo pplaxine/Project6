@@ -8,6 +8,11 @@ Also, this webapp includes a topos renting system to make booking for owners and
 
 ## Getting Started
 
+  #### DataBase
+    1. Start PGAdmin4 and select the corresponding database. 
+    2. Via the query tool browse the following database creation script : 03_ESCALADE_BDD_SETUP-V2.sql . 
+    3. Execute the script. 
+
 1. Start your tomcat serveur. 
 2. To access Tomcat Manager App, go to http://localhost:8080/ and select Manager App. 
 3. In section WAR file to deploy, browse the escalade-webapp.war you have downloaded, and select deploy.
