@@ -10,7 +10,7 @@ Also, this webapp includes a topos renting system to make booking for owners and
 
 1. Start your tomcat serveur. 
 2. To access Tomcat Manager App, go to http://localhost:8080/ and select Manager App. 
-3. In section WAR file to deploy, browse the escalade-webapp.war you have downloaded and select deploy.
+3. In section WAR file to deploy, browse the escalade-webapp.war you have downloaded, and select deploy.
 4. You can now run the webapp via the following url : http://localhost:8080/escalade-webapp/home
 
 ### Prerequisites
