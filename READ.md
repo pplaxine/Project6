@@ -1,16 +1,17 @@
 # Project6 - Climbing site
 
-This webapp allows the users to .
+This webapp allows the users to share and discuss everything related to climbing. 
+
+It is possible to create its own site, indicating all the features, for users to discuss about.
+
+Also, this webapp includes a topos renting system to make booking for owners and renters as easy as few clicks.  
 
 ## Getting Started
 
-To compile the file. In console, got to your directory containing the Project3-Game.jar file, and type the folowing instruction : 
-	
-	java -jar Project3-Game.jar
-	java -jar Project3-Game.jar -dev (will start the program in developer mode). 
-
-You can also activate / desactivate the developer mode, as well as, define the combinations length, the number of errors allowed, and the size of the pool of colours via the dataConfig.properties file within the Project3-Game.jar file.  
-
+1. Start your tomcat serveur. 
+2. To access Tomcat Manager App, go to http://localhost:8080/ and select Manager App. 
+3. In section WAR file to deploy, browse the escalade-webapp.war you have downloaded and select deploy.
+4. You can now run the webapp via the following url : http://localhost:8080/escalade-webapp/home
 
 ### Prerequisites
 
