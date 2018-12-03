@@ -15,7 +15,9 @@ You can also activate / desactivate the developer mode, as well as, define the c
 ### Prerequisites
 
 Install Java JRE version 8 or higher.
+
 Install PGAdmin4 and create, for the webapp, a corresponding database (for more information : https://www.pgadmin.org/). 
+
 Install the latest version of Tomcat and set configuration to unlock access to the Manager app(for more information : https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html). 
 
 ## Built With
