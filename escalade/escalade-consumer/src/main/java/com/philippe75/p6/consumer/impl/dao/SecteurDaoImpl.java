@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -39,7 +40,13 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 		
 		secteur.setVoies(getDaoHandler().getVoieDao().listVoie(id,true));
 		
-		return secteur;
+		try {
+			return secteur;
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
+		
 	}
 
 	@Override
@@ -57,7 +64,12 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 			secteur.setVoies(getDaoHandler().getVoieDao().listVoie(secteur.getId(), true));
 		}
 		
-		return listSecteur;
+		try {
+			return listSecteur;
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 		
 	}
 	
 	@Override
@@ -72,8 +84,14 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 		mSPS.addValue("site_id", site_id);
 		
 		int secteur_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
-		
-		return secteur_id;
+
+		try {
+			return secteur_id;
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 
 	@Override
@@ -88,17 +106,22 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao{
 			mSPS.addValue("site_id", site_id);
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-			int result = nPJT.update(sQL, mSPS);
-			
-			if(result != 0 && secteur.getVoies() != null) {
-				int secteur_id = getSecteurId(secteur.getNom(), site_id); 
+			try {
+				int result = nPJT.update(sQL, mSPS);
+				
+				if(result != 0 && secteur.getVoies() != null) {
+					int secteur_id = getSecteurId(secteur.getNom(), site_id); 
+							
+					for (Voie voie : secteur.getVoies()) {
+						getDaoHandler().getVoieDao().saveVoie(voie, secteur_id, true); 
+					}
 						
-				for (Voie voie : secteur.getVoies()) {
-					getDaoHandler().getVoieDao().saveVoie(voie, secteur_id, true); 
+					return result;
 				}
-					
-				return result;
-			}
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return 0;
+			} 
 			return 0;
 		}
 		return 0;

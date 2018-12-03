@@ -28,8 +28,8 @@
 					
 					
 						<h5>Voies</h5>
-			      		<table class="table table-striped table-sm">
-							<thead class="thead-dark">
+			      		<table class="table table-dark table-sm ">
+							<thead>
 								<tr>
 									<th scope="col">Nom</th>
 									<th scope="col">Hauteur</th>
@@ -57,10 +57,9 @@
 								
 			<form method="POST" action="<c:url value="/sites/creersite/creersecteur/"/>"> 
 				<p>
-					
 					<a href="<c:url value="/sites/creersite/creervoie/"><c:param name="testSecteur" value="true"/></c:url>" class="btn btn-warning" role="button">Ajouter une voie</a>
 				</p>
-				<div class="form-group" >
+				<div class="form-group pt-4" >
 					<label for="nomSecteur">Nom<span class="requis">*</span></label>
 					<input type="text" class="form-control" id="nomSecteur" name="nomSecteur" placeholder="Nom du secteur" value="<c:out value="${secteur.nom}"/>" size="20" maxlength="200"/>
 					<span class="text-danger">${secM.erreurs['nomSecteur']}</span>

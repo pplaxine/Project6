@@ -39,39 +39,44 @@
 							</p>
 			       		</div>
 					</div>
-					<div class="col-md-4 offset-md-1 ">
-						<form method="POST" action="<c:url value="/topo"/>" > 
+					<div class="col-md-4 offset-md-1 d-flex align-items-center justify-content-center">
+						<form method="POST" action="<c:url value="/topo"/>"> 
 							
-							<h3>Demande de location</h3>
-				
-							<input type="hidden" name="topo_id" value="${ topo.id }" />
-						    <div class='col-md-5'>
-						        <div class="form-group">
-						           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
-						                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" name="dateDebutLocationDemande"/>
-						                <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
-						                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-						                </div>
-						            </div>
-						        </div>
-						    </div>
-						    <div class='col-md-5'>
-						        <div class="form-group">
-						           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
-						                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" name="dateFinLocationDemande"/>
-						                <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
-						                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-						                </div>
-						            </div>
-						        </div>
-						    </div>
-							<sec:csrfInput/>
-							<span class="text-danger">${tm.erreurs['dateDebutLocationDemande']}</span>
-							<button type="submit" class="btn btn-warning">Valider</button>
-							<button type="reset"  class="btn btn-primary">Annuler</button>
-			
+							<h3 class="pl-3">Demande de location</h3>
+							<div id="demandelocation_block">
+								<input type="hidden" name="topo_id" value="${ topo.id }" />
+							    <div class='col-md-12'>
+							        <div class="form-group">
+							           <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+							                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" name="dateDebutLocationDemande"/>
+							                <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+							                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							    <div class='col-md-12'>
+							        <div class="form-group">
+							           <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+							                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" name="dateFinLocationDemande"/>
+							                <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+							                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+								<sec:csrfInput/>
+							</div>
+							<div class="pl-3">
+								<span class="erreur">${tm.erreurs['dateDebutLocationDemande']}</span>
+								<c:choose>
+									<c:when test="${empty tm.erreurs['dateDebutLocationDemande']}"><div class="erreur text-success mt-2"> ${ tm.result } </div></c:when>
+									<c:otherwise><div class="erreur mt-2"> ${ tm.result } </div></c:otherwise>
+								</c:choose><br/>
+								<button type="submit" class="btn btn-warning">Valider</button>
+								<button type="reset"  class="btn btn-primary">Annuler</button>
+							</div>
 						</form>	
-						<p class="info"> ${ tm.result } </p>
 					
 					</div>
 					
@@ -79,7 +84,7 @@
 						<div class="card float-right mr-4" id="card_topoSolo">
 					   		<c:choose>
 					   			<c:when test="${not empty topo.listLocationTopo }">
-							   		<div class="card-header text-light">
+							   		<div class="card-header">
 							   			Prochaines locations 
 							   		</div>
 								   	<ul class="list-group list-group-flush">
@@ -94,7 +99,7 @@
 					   				<div class="card-header" >
 							   			Prochaines locations 
 							   		</div>
-							   		<li class="list-group-item"><c:out value="Aucune"/> </li>
+							   		<li class="list-group-item text-dark"><c:out value="Aucune"/></li>
 					   			</c:otherwise>
 					   		</c:choose>
 					   	

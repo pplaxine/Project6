@@ -118,13 +118,21 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		
 		LocationTopo lt = new LocationTopo();
 		erreurs = new HashMap<>();
+		LocalDateTime dateDebutLocationDemande;
+		LocalDateTime dateFinLocationDemande;
 		
 		//récupération des info du formulaire
 		String dateDebutLocationFullFormat = addSecToDT(getValeurChamp(CHAMP_DATE_DEBUT_LOCATION_DEMANDE, request));
-		LocalDateTime dateDebutLocationDemande = LocalDateTime.parse(dateDebutLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss")); 
-		
 		String dateFinLocationFullFormat = addSecToDT(getValeurChamp(CHAMP_DATE_FIN_LOCATION_DEMANDE, request));
-		LocalDateTime dateFinLocationDemande = LocalDateTime.parse(dateFinLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss"));  
+
+		if(dateDebutLocationFullFormat != null && dateFinLocationFullFormat !=null) {
+			dateDebutLocationDemande = LocalDateTime.parse(dateDebutLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss")); 
+			dateFinLocationDemande = LocalDateTime.parse(dateFinLocationFullFormat, DateTimeFormatter.ofPattern("dd MM yyyy HH:mm:ss"));  
+	
+		}else {
+			dateDebutLocationDemande = null;
+			dateFinLocationDemande = null;
+		}
 		
 		int topo_id = Integer.valueOf(getValeurChamp(ATT_TOPO_ID, request));
 		
@@ -134,10 +142,9 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 		
 		
 		if(erreurs.isEmpty()) {
-			
-			result ="Création de demande de location de topo réalisée avec succès";  
+			result ="- Création de demande de location de topo réalisée avec succès - ";  
 		}else {
-			result ="Echec de la création de la demande de location de topo";
+			result ="- Echec de la création de la demande de location de topo -";
 		}
 		
 		return lt;
@@ -185,10 +192,10 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	private void validationNomTopo(String nomTopo) throws FormValidationException{
 		if(nomTopo != null ) {
 			if(nomTopo.length() < 2) {
-				throw new FormValidationException("Le nom du Topo doit contenir au moins 2 caractères.");
+				throw new FormValidationException("- Le nom du Topo doit contenir au moins 2 caractères. -");
 			}
 		}else {
-			throw new FormValidationException("Merci d'entrer un nom de Topo.");
+			throw new FormValidationException("- Merci d'entrer un nom de Topo. -");
 		}
 	}
 	
@@ -197,13 +204,13 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 			List <LocationTopo> listLocations = getDaoHandler().getTopoDao().findLocationTopo(topo_id);
 			for (LocationTopo lt : listLocations) {
 				if(lt.getAccepte() != null && lt.getAccepte() == true && (dateIsBetweenTheseDates(dateDebutLocationDemande, lt.getDateDebutLocation(), lt.getDateFinLocation()) || dateIsBetweenTheseDates(dateFinLocationDemande, lt.getDateDebutLocation(), lt.getDateFinLocation())  )) {
-					throw new FormValidationException("La date choisi est comprise dans une période ou le topo fait déjà l'objet d'une location.");
+					throw new FormValidationException("- La date choisi est comprise dans une période ou le topo fait déjà l'objet d'une location. -");
 				}
 			}
 			
 			
 		}else {
-			throw new FormValidationException("Merci d'entrer une date de début et de fin de demande de location");
+			throw new FormValidationException("- Merci d'entrer une date de début et de fin de demande de location -");
 		}
 	}
 	
@@ -237,10 +244,12 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
 	}
 
 	private String addSecToDT(String dtDate) {
-		String newDate = dtDate + ":01";
-		return newDate;
+		if(dtDate != null) {
+			String newDate = dtDate + ":01";
+			return newDate;
+		}
+		return null;
 	}
-
 
 
 }

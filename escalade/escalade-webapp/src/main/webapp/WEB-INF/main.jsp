@@ -29,7 +29,7 @@
 				   </div>
 				<div class="container-fluid mt-5 pt-2 pb-4 rounded" id="main_block">  
 					<div class="row mt-4 ">
-				   		<div class="col-md-3 offset-md-1 col-sm-12 pb-5">
+				   		<div class="col-md-3 offset-md-2 col-sm-12 pb-5 mr-2">
 				   			<div class="row">
 				   				<div class="card text-light ">
 					   				<div class="card-header">

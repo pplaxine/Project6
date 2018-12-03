@@ -1,14 +1,11 @@
 package com.philippe75.p6.consumer.impl.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Named;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,9 +26,13 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 		String sQl = "SELECT COUNT(*) FROM public.compte_utilisateur";
 		JdbcTemplate jT = new JdbcTemplate(getDataSource());
 		
-		return jT.queryForObject(sQl, Integer.class);
+		try {
+			return jT.queryForObject(sQl, Integer.class);
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
-
 	
 	@Override
 	public int createCompteUtilisateur(CompteUtilisateur compteUtilisateur) {
@@ -40,7 +41,12 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 			
 			SqlParameterSource sPS = new BeanPropertySqlParameterSource(compteUtilisateur);
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-			return nPJT.update(sQL, sPS); // update renvoie le nombre de ligne affectée par la requête 
+			try {
+				return nPJT.update(sQL, sPS); // update renvoie le nombre de ligne affectée par la requête 
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return 0;
+			} 
 	}
 
 	
@@ -58,8 +64,13 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 			
 			RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
+			try {
+				return nPJT.queryForObject(sQL, mSPS, rm);
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return null;
+			} 
 			
-			return nPJT.queryForObject(sQL, mSPS, rm);
 	}
 	
 	@Override
@@ -77,7 +88,13 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 			
 			RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
 			
-			return nPJT.queryForObject(sQL, mSPS, rm);
+			try {
+				return nPJT.queryForObject(sQL, mSPS, rm);
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return null;
+			} 
+			
 	}
 
 
@@ -87,8 +104,13 @@ public class CompteUtilisateurDaoImpl extends AbstractDaoImpl implements CompteU
 		JdbcTemplate jT = new JdbcTemplate(getDataSource());
 		RowMapper<CompteUtilisateur> rm = new CompteUtilisateurRM();
 		List<CompteUtilisateur> listCompteUtilisateur = jT.query(sQL, rm);
+		try {
+			return listCompteUtilisateur;
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 		
-		return listCompteUtilisateur;
 	}
 
 }

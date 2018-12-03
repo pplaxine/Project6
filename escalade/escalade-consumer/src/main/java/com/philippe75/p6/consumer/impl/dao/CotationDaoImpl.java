@@ -1,20 +1,15 @@
 package com.philippe75.p6.consumer.impl.dao;
 
-import java.sql.Types;
-
 import javax.inject.Named;
-import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.philippe75.p6.consumer.contract.dao.CotationDao;
 import com.philippe75.p6.consumer.impl.rowmapper.CotationRM;
-import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
 import com.philippe75.p6.model.bean.site.Cotation;
-import com.philippe75.p6.model.bean.site.Site;
 
 @Named("cotationDao")
 public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao{
@@ -33,8 +28,13 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao{
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 		
 		RowMapper<Cotation> rm = new CotationRM();
+		try {
+			return nPJT.queryForObject(sQL, mSPS, rm);
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 		
-		return nPJT.queryForObject(sQL, mSPS, rm);
 	}
 
 	@Override
@@ -48,11 +48,11 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao{
 		mSPS.addValue("note", cotation.name() );
 		
 		int cotation_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
-
-		return cotation_id;
-		
+		try {
+			return cotation_id;
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
-	
-	
-
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -38,9 +39,13 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 		
 		mSPS.addValue("nom", nom_topo );
-		
-		return nPJT.queryForObject(sQL,mSPS, Integer.class);
-	
+		try {
+			return nPJT.queryForObject(sQL,mSPS, Integer.class);
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 	
 	@Override
@@ -52,7 +57,13 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		mSPS.addValue("topo_id", topo_id );
 		
-		return nPJT.queryForObject(sQL,mSPS, Integer.class);
+		try {
+			return nPJT.queryForObject(sQL,mSPS, Integer.class);
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 	
 	@Override
@@ -92,17 +103,23 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		mSPS.addValue("user_id", user_id);		
 		RowMapper<Topo> rm = new TopoRM();
 		
-		List<Topo> listTopo = (List<Topo>)nPJT.query(sQL, mSPS,rm);
-		if(listTopo != null) {
-			for (Topo topo : listTopo) {
-				if(findLocationTopo(topo.getId()) != null) {
-					List<LocationTopo> listLocationTopo = findLocationTopo(topo.getId());
-					Collections.sort(listLocationTopo);
-					topo.setListLocationTopo(listLocationTopo);
+		try {
+			List<Topo> listTopo = (List<Topo>)nPJT.query(sQL, mSPS,rm);
+			if(listTopo != null) {
+				for (Topo topo : listTopo) {
+					if(findLocationTopo(topo.getId()) != null) {
+						List<LocationTopo> listLocationTopo = findLocationTopo(topo.getId());
+						Collections.sort(listLocationTopo);
+						topo.setListLocationTopo(listLocationTopo);
+					}
 				}
 			}
-		}
-		return listTopo;
+			return listTopo;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 
 
@@ -114,21 +131,27 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String userPseudo = auth.getName();
-			CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
-			if (cu != null) {
-				MapSqlParameterSource mSPS = new MapSqlParameterSource();
-				
-				mSPS.addValue("nom", topo.getNom());
-				mSPS.addValue("presentation", topo.getPresentation());
-				mSPS.addValue("createur_id", cu.getId());
 			
-				NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-				int result = nPJT.update(sQL, mSPS);
-				if(result > 0) {
-					int resultSite = getDaoHandler().getSiteDao().saveSite(topo.getSite(), findTopoId(topo.getNom()));
-					return resultSite;
+			try {
+				CompteUtilisateur cu = getDaoHandler().getCompteUtilisateurDao().findCompteUtilisateur(userPseudo);
+				if (cu != null) {
+					MapSqlParameterSource mSPS = new MapSqlParameterSource();
+					
+					mSPS.addValue("nom", topo.getNom());
+					mSPS.addValue("presentation", topo.getPresentation());
+					mSPS.addValue("createur_id", cu.getId());
+					
+					NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
+					int result = nPJT.update(sQL, mSPS);
+					if(result > 0) {
+						int resultSite = getDaoHandler().getSiteDao().saveSite(topo.getSite(), findTopoId(topo.getNom()));
+						return resultSite;
+					}
 				}
-			}
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return 0;
+			} 
 		}
 		return 0;
 	}
@@ -146,15 +169,21 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		RowMapper<Topo> rm = new TopoRM();
 		
-		Topo topo = (Topo)nPJT.queryForObject(sQL, mSPS ,rm);
-		if(topo != null && getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()) != null) {
-			topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
-		}
-		if(topo != null && getDaoHandler().getTopoDao().findLocationTopo(topo.getId()) != null) {
-			topo.setListLocationTopo(getDaoHandler().getTopoDao().findLocationTopo(topo.getId()));
-		}
-	
-		return topo;
+		try {
+			Topo topo = (Topo)nPJT.queryForObject(sQL, mSPS ,rm);
+			if(topo != null && getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()) != null) {
+				topo.setSite(getDaoHandler().getSiteDao().findSiteWithTopoId(topo.getId()));
+			}
+			if(topo != null && getDaoHandler().getTopoDao().findLocationTopo(topo.getId()) != null) {
+				topo.setListLocationTopo(getDaoHandler().getTopoDao().findLocationTopo(topo.getId()));
+			}
+			
+			return topo;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 
 	//---------------------- LOCATION TOPO ---------------------------------
@@ -172,10 +201,14 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		RowMapper<LocationTopo> rm = new LocationTopoRM();
 		
-		List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
-		
-		return	listLocationTopo;
-		  
+		try {
+			List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
+			return	listLocationTopo;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	@Override
@@ -194,9 +227,14 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		
 		RowMapper<LocationTopo> rm = new LocationTopoRMWithTopoName();
 		
-		List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
-		
-		return	listLocationTopo;
+		try {
+			List<LocationTopo> listLocationTopo = (List<LocationTopo>)nPJT.query(sQL, mSPS ,rm);
+			return	listLocationTopo;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	@Override
@@ -213,12 +251,18 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		mSPS.addValue("date_fin_location", locationTopo.getDateFinLocation());
 		mSPS.addValue("topo_id", locationTopo.getTopo_id());
 		mSPS.addValue("emprunteur_id", cu.getId());
-	
 		
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-		int result = nPJT.update(sQL, mSPS);
 		
-		return result;
+		try {
+			int result = nPJT.update(sQL, mSPS);
+			return result;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
+		
 	}
 
 	@Override
@@ -231,9 +275,15 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		mSPS.addValue("location_id", location_id);
 		
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-		int result = nPJT.update(sQL, mSPS);
 		
-		return result;
+		try {
+			int result = nPJT.update(sQL, mSPS);
+			return result;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 
 	@Override
@@ -244,10 +294,14 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao{
 		mSPS.addValue("location_id", location_id);
 		
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-		int result = nPJT.update(sQL, mSPS);
 		
-		return result;
+		try {
+			int result = nPJT.update(sQL, mSPS);
+			return result;
+
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
-
-
 }

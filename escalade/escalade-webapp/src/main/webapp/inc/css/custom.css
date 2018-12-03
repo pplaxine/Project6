@@ -210,6 +210,10 @@ body, html {
   background-size: cover;
 }
 
+#demandelocation_block{
+	opacity:0.9;
+}
+
 #card_topoSolo{
 	width: 23rem;
 	

@@ -19,11 +19,10 @@
 		<div class="bg_creersite">
 			<h3 class="h2 pt-3 pb-2 pl-3">Créer un nouveau site</h3>
 	       	<div class="container rounded pt-3 pb-4" id="creersite_block">
-						<h3 style="color:black">Informations Site</h3>
+						<h3 class="pb-3 text-light" >Informations Site</h3>
 						<c:if test="${not empty sessionScope.voiesSite}">
-							
-					      		<table class="table  table-striped table-sm">
-									<thead class="thead-dark">
+					      		<table class="table table-dark table-sm ">
+									<thead>
 										<tr>
 											<th scope="col">Nom</th>
 											<th scope="col">Hauteur</th>
@@ -53,8 +52,8 @@
 						</c:if>
 						<c:if test="${not empty sessionScope.secteurs}">
 						
-					      		<table class="table table-striped table-sm">
-									<thead class="thead-dark">
+					      		<table class="table table-dark table-sm table-sm">
+									<thead>
 										<tr>
 											<th scope="col">Nom</th>
 											<th scope="col">Voie</th>

@@ -20,7 +20,7 @@
 		<div class="bg_creertopo pt-3 pl-3"> 
 			<h3>Créer un nouveau Topo</h3>
 	       	<div class="container-fluid">
-	       	<div class="col-md-4 offset-md-4 pt-5">
+	       	<div class="col-md-5 offset-md-4 pt-5">
 	       		<div>
 				<h3>Informations Topo</h3>
 				<c:if test="${not empty sessionScope.siteTopo}">
@@ -94,7 +94,7 @@
 					<button type="submit" class="btn btn-warning">Valider</button>
 					<button type="reset"  class="btn btn-primary">Annuler</button>
 					
-					<c:url value="/home/" var="retourVar"/>
+					<c:url value="/home" var="retourVar"/>
 					<a href="${retourVar}" class="btn btn-info float-right" role="button">Retour</a>
 				</form>	
 				<p class="info"> ${ sm.result } </p>

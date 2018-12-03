@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -31,12 +32,19 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		
 		RowMapper<Site> rm = new SiteRM();
 		
-		Site site = (Site)jT.queryForObject(sQL, new Object[] {site_id}, rm);
-		
-		site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
-		site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
-		site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
-		return site;
+		try {
+
+			Site site = (Site)jT.queryForObject(sQL, new Object[] {site_id}, rm);
+			
+			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
+			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
+			return site;
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	@Override
@@ -48,12 +56,19 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		
 		RowMapper<Site> rm = new SiteRM();
 		
-		Site site = (Site)jT.queryForObject(sQL, new Object[] {topo_id}, rm);
-		int site_id = site.getId();
-		site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
-		site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
-		site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
-		return site;
+		try {
+			
+			Site site = (Site)jT.queryForObject(sQL, new Object[] {topo_id}, rm);
+			int site_id = site.getId();
+			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site_id));
+			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false));
+			return site;
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 
 	@Override
@@ -65,14 +80,20 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		
 		RowMapper<Site> rm = new SiteRM();		
 		
-		List<Site> listSite = (List<Site>)jT.query(sQL, rm);
-		
-		for (Site site : listSite) {
-			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
-			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
-			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
-		}
-		return listSite;
+		try {
+			
+			List<Site> listSite = (List<Site>)jT.query(sQL, rm);
+			
+			for (Site site : listSite) {
+				site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
+				site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+				site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
+			}
+			return listSite;
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	@Override
@@ -84,14 +105,20 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		
 		RowMapper<Site> rm = new SiteRM();		
 		
-		List<Site> listSite = (List<Site>)jT.query(sQL, rm);
-		
-		for (Site site : listSite) {
-			site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
-			site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
-			site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
-		}
-		return listSite;
+		try {
+			List<Site> listSite = (List<Site>)jT.query(sQL, rm);
+			
+			for (Site site : listSite) {
+				site.setSecteurs(getDaoHandler().getSecteurDao().listSecteur(site.getId()));
+				site.setDept(getDaoHandler().getDeptDao().findDept(site.getId()));
+				site.setVoies(getDaoHandler().getVoieDao().listVoie(site.getId(), false)); // lister les voies avec site id 
+			}
+			return listSite;
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	@Override
@@ -102,11 +129,15 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 		MapSqlParameterSource mSPS = new MapSqlParameterSource();
 		NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
 		
-		mSPS.addValue("nom", nom );
-		
-		int site_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
-
-		return site_id;
+		try {
+			mSPS.addValue("nom", nom );
+			int site_id = nPJT.queryForObject(sQL,mSPS, Integer.class);
+			return site_id;
+			
+		} catch (DataAccessException e) {	
+			e.printStackTrace();
+			return 0;
+		} 
 	}
 
 	@Override
@@ -129,24 +160,28 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			mSPS.addValue("topo_id", topo_id);
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-			int result = nPJT.update(sQL, mSPS);
-			
-			int site_id = getSiteId(site.getNom());
-			if(result != 0 && site.getSecteurs() != null) {
-				for (Secteur secteur : site.getSecteurs()) {
-					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+			try {
+				int result = nPJT.update(sQL, mSPS);
+				
+				int site_id = getSiteId(site.getNom());
+				if(result != 0 && site.getSecteurs() != null) {
+					for (Secteur secteur : site.getSecteurs()) {
+						getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+					}
+					return result;
 				}
-				return result;
-			}
-			
-			if(result != 0 && site.getVoies() != null) {
-				for (Voie voie : site.getVoies()) {
-					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
+				
+				if(result != 0 && site.getVoies() != null) {
+					for (Voie voie : site.getVoies()) {
+						getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
+					}
+					return result;
 				}
-				return result;
-			}
-			
-			return 0;
+				
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return 0;
+			} 
 		}
 		return 0;
 	}
@@ -170,32 +205,29 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao{
 			mSPS.addValue("compte_utilisateur_id", cu.getId());
 			
 			NamedParameterJdbcTemplate nPJT = new NamedParameterJdbcTemplate(getDataSource());
-			int result = nPJT.update(sQL, mSPS);
-			int site_id = getSiteId(site.getNom());
-			
-			if(result != 0 && site.getSecteurs() != null) {
-				for (Secteur secteur : site.getSecteurs()) {
-					getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+			try {
+				
+				int result = nPJT.update(sQL, mSPS);
+				int site_id = getSiteId(site.getNom());
+				
+				if(result != 0 && site.getSecteurs() != null) {
+					for (Secteur secteur : site.getSecteurs()) {
+						getDaoHandler().getSecteurDao().saveSecteur(secteur, site_id );
+					}
+					return result;
 				}
-				return result;
-			}
-			
-			if(result != 0 && site.getVoies() != null) {
-				for (Voie voie : site.getVoies()) {
-					getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
+				
+				if(result != 0 && site.getVoies() != null) {
+					for (Voie voie : site.getVoies()) {
+						getDaoHandler().getVoieDao().saveVoie(voie, site_id, false);
+					}
+					return result;
 				}
-				return result;
-			}
-			
-			return 0;
+			} catch (DataAccessException e) {	
+				e.printStackTrace();
+				return 0;
+			} 
 		}
 		return 0;
 	}
-
-
-
-
-	
-	
-	
 }
