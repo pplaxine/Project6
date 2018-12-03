@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+        
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+        
+       
+    <security:http auto-config="true" use-expressions="false">
+    	
+    	<security:form-login login-page="/login" login-processing-url="/login" username-parameter="user_name" password-parameter="user_pw"
+    		default-target-url="/espaceperso"
+    		authentication-failure-url="/login?error=true"/>
+    	
+    	<security:logout logout-url="/logout" logout-success-url="/home?logout=true" />
+    	
+    	 <!-- acces les plus restreints en premiers -->
+    	<security:intercept-url pattern="/#" access="ROLE_ADMIN"/>
+    	<security:intercept-url pattern="/topo/**" access="ROLE_USER, ROLE_ADMIN"/>
+    	<security:intercept-url pattern="/sites/creersite/*" access="ROLE_USER, ROLE_ADMIN"/>
+    </security:http>
+    
+    <security:authentication-manager>
+    	<security:authentication-provider  user-service-ref="customUserDetailService"  />
+    </security:authentication-manager> 
+        
+</beans>
