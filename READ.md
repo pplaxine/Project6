@@ -9,9 +9,10 @@ Also, this webapp includes a topos renting system to make booking for owners and
 ## Getting Started
 
   #### DataBase
-    1. Start PGAdmin4 and select the corresponding database. 
-    2. Via the query tool browse the following database creation script : 03_ESCALADE_BDD_SETUP-V2.sql . 
+    1. Start PGAdmin 4 and select the database you have created for the purpose. 
+    2. Via the query tool, browse the following database creation script : 03_ESCALADE_BDD_SETUP-V2.sql . 
     3. Execute the script. 
+    Your database is now ready to go. 
 
   #### WebApp
     1. Start your tomcat serveur. 
