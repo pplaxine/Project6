@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.philippe75.p6.model.bean.commentaire.Commentaire;
-import com.philippe75.p6.model.bean.site.Cotation;
 
 public class CommentaireRM implements RowMapper<Commentaire> {
 	

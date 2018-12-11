@@ -29,7 +29,7 @@
 			       	<div class="col-md-3">
 			       		<div class="container bg-dark rounded pt-2 pb-3 " id="presentation_topoSolo">
 				       		<p>
-								<h3>Topo <c:out value="${topo.nom}"/> </h3>
+								<h3>Topo <c:out value="${topo.nom}"/></h3>
 					       	</p>
 							<%-- <img alt="photo" src="<c:url value="/inc/img/escalade.png"/>"> --%>
 							<p>

@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
-import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 @Named("customUserDetailService")

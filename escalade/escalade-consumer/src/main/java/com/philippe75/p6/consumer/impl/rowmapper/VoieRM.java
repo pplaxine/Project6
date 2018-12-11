@@ -4,10 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.philippe75.p6.model.bean.site.Cotation;
-import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 public class VoieRM implements RowMapper<Voie> {
 	

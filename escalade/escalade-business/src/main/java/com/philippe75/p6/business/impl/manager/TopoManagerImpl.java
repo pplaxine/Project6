@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.common.collect.Iterables;
 import com.philippe75.p6.business.contract.impl.TopoManager;
 import com.philippe75.p6.business.exception.FormValidationException;
-import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
 

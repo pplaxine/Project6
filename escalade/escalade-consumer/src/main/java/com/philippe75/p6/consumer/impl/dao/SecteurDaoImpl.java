@@ -1,6 +1,5 @@
 package com.philippe75.p6.consumer.impl.dao;
 
-import java.sql.Types;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,10 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 import com.philippe75.p6.consumer.impl.rowmapper.SecteurRM;
-import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
-import com.philippe75.p6.consumer.impl.rowmapper.VoieRM;
 import com.philippe75.p6.model.bean.site.Secteur;
-import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
 
 @Named("SecteurDao")

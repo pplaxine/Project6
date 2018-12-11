@@ -27,9 +27,10 @@
 				   			<c:out value="Nombre d'utilisateur inscrits : ${nbreCompteUtilisateur}"/> 
 				   		</div>
 				   </div>
-				<div class="container-fluid mt-5 pt-2 pb-4 rounded" id="main_block">  
+				<div class="container-fluid mt-5 pt-2 pb-4 rounded" id="main_block">
 					<div class="row mt-4 ">
 				   		<div class="col-md-3 offset-md-2 col-sm-12 pb-5 mr-2">
+				   			
 				   			<div class="row">
 				   				<div class="card text-light ">
 					   				<div class="card-header">
@@ -67,6 +68,18 @@
 											   						</c:forEach>
 										   						</ul> 
 								   							</c:if>
+								   						</c:forEach>
+							   						</ul>
+							   					</div>
+							   				</c:if>
+							   				<c:if test="${ not empty lastSite.voies }">
+							   					<div class="col-lg-12">
+								   					<c:out value="Voie : "/>
+							   					</div>
+							   						<div class="col-lg-12">
+							   						<ul>
+								   						<c:forEach items="${ lastSite.voies }" var="voieVar">
+								   							<li ><c:out value="${ voieVar.nom}"/> </li>
 								   						</c:forEach>
 							   						</ul>
 							   					</div>

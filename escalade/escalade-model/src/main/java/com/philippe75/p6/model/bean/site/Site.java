@@ -3,9 +3,6 @@ package com.philippe75.p6.model.bean.site;
 import java.util.Date;
 import java.util.List;
 
-import com.philippe75.p6.model.bean.topo.Topo;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
-
 public class Site {
 	
 	private int id;

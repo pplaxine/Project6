@@ -16,7 +16,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
-import com.philippe75.p6.consumer.contract.dao.CompteUtilisateurDao;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
@@ -53,7 +52,7 @@ public class Inscription extends HttpServlet {
 			Authentication auth = new UsernamePasswordAuthenticationToken(compteUtilisateur, compteUtilisateur.getMdp(), compteUtilisateur.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			
-			response.sendRedirect(request.getContextPath() + "/home/");
+			response.sendRedirect(request.getContextPath() + "/home");
 
 		}else {
 		

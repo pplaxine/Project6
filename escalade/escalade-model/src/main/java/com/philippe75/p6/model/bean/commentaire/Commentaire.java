@@ -3,9 +3,6 @@ package com.philippe75.p6.model.bean.commentaire;
 import java.util.Date;
 import java.util.List;
 
-import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
-
 public class Commentaire implements Comparable<Commentaire>{
 	
 	private int id;

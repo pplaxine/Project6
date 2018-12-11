@@ -1,10 +1,6 @@
 package com.philippe75.p6.webapp.servlets.creation;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,21 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.business.contract.impl.CommentaireManager;
-import com.philippe75.p6.business.contract.impl.CompteUtilisateurManager;
-import com.philippe75.p6.business.contract.impl.VoieManager;
 import com.philippe75.p6.model.bean.commentaire.Commentaire;
-import com.philippe75.p6.model.bean.site.Cotation;
-import com.philippe75.p6.model.bean.site.Dept;
-import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.site.Voie;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 
 

@@ -1,10 +1,6 @@
 package com.philippe75.p6.model.bean.topo;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.philippe75.p6.model.bean.commentaire.Commentaire;
-import com.philippe75.p6.model.bean.site.Site;
 
 public class LocationTopo implements Comparable<LocationTopo>{
 	

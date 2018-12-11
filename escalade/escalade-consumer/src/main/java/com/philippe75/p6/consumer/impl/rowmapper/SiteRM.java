@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.philippe75.p6.model.bean.site.Dept;
 import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 public class SiteRM implements RowMapper<Site> {
 	

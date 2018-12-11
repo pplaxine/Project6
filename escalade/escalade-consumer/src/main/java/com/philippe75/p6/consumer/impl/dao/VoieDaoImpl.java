@@ -1,11 +1,8 @@
 package com.philippe75.p6.consumer.impl.dao;
 
-import java.sql.Types;
 import java.util.List;
 
 import javax.inject.Named;
-import javax.sql.DataSource;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,11 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
 import com.philippe75.p6.consumer.impl.rowmapper.VoieRM;
-import com.philippe75.p6.model.bean.site.Cotation;
-import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.site.Voie;
-
-import aj.org.objectweb.asm.Type;
 
 @Named("voieDao")
 public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {

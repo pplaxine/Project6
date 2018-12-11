@@ -61,10 +61,7 @@
 							  	</li>
 							</ul>
 						</c:forEach>
-						<c:choose>
-							<c:when test="${site.topo}">Topo disponible</c:when>
-							<c:otherwise>Pas de topo disponible</c:otherwise>
-						</c:choose><br/>
+					
 					</div> 
 					<div>
 						<c:forEach items="${site.voies}" var="voiesListVar">
@@ -88,6 +85,10 @@
 								</li>
 							</ul>
 						</c:forEach>
+						<c:choose>
+							<c:when test="${site.topo}">Topo disponible</c:when>
+							<c:otherwise>Pas de topo disponible</c:otherwise>
+						</c:choose><br/>
 					</div>
 				</div> 
 	       	</div>
@@ -117,19 +118,19 @@
 					       			<p><c:out value="${ comListVar.contenu }"/></p>
 			       				</div>
 								
-										       		<%-- 	<div class="collapse bg-dark ml-5 rounded" id="repCol">
-										       					
-													       		<c:forEach items="${comListVar.commentaires}" var="comListVar2">
-													       			<div class="container bg-warning p-2 m-1 ">
-													       				 <c:out value="Commentaire laissé par : ${ comListVar2.auteur }"/><c:out value="    le : ${ comListVar2.dateCreation }"></c:out><br/>
-													       				<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
-														     	  		<p><c:out value="${ comListVar2.contenu }"/></p>
-														     	  		</div>
-														     	  		<c:import url="/inc/reponseCommentaire.jsp"/>
-													       			</div>
-														     	 
-													       		</c:forEach> 
-											       			</div>	--%>
+			       		<%-- 	<div class="collapse bg-dark ml-5 rounded" id="repCol">
+			       					
+						       		<c:forEach items="${comListVar.commentaires}" var="comListVar2">
+						       			<div class="container bg-warning p-2 m-1 ">
+						       				 <c:out value="Commentaire laissé par : ${ comListVar2.auteur }"/><c:out value="    le : ${ comListVar2.dateCreation }"></c:out><br/>
+						       				<div class="container bg-dark text-light rounded mt-2 mb-2 pt-2 pb-1">
+							     	  		<p><c:out value="${ comListVar2.contenu }"/></p>
+							     	  		</div>
+							     	  		<c:import url="/inc/reponseCommentaire.jsp"/>
+						       			</div>
+							     	 
+						       		</c:forEach> 
+				       			</div>	--%>
 			       		</div>	
 		       		</c:forEach>
 		       		

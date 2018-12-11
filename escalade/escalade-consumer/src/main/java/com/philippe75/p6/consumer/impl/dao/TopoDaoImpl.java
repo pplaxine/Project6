@@ -1,7 +1,6 @@
 package com.philippe75.p6.consumer.impl.dao;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
@@ -14,13 +13,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.philippe75.p6.consumer.contract.DaoHandler;
 import com.philippe75.p6.consumer.contract.dao.TopoDao;
 import com.philippe75.p6.consumer.impl.rowmapper.LocationTopoRM;
 import com.philippe75.p6.consumer.impl.rowmapper.LocationTopoRMWithTopoName;
-import com.philippe75.p6.consumer.impl.rowmapper.SiteRM;
 import com.philippe75.p6.consumer.impl.rowmapper.TopoRM;
-import com.philippe75.p6.model.bean.site.Site;
 import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
 import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;

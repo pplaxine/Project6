@@ -12,8 +12,6 @@ import com.philippe75.p6.consumer.contract.dao.SecteurDao;
 import com.philippe75.p6.consumer.contract.dao.SiteDao;
 import com.philippe75.p6.consumer.contract.dao.TopoDao;
 import com.philippe75.p6.consumer.contract.dao.VoieDao;
-import com.philippe75.p6.model.bean.site.Dept;
-import com.philippe75.p6.model.bean.site.Secteur;
 
 @Named("daoHandler")
 public class DaoHandlerImpl implements DaoHandler{

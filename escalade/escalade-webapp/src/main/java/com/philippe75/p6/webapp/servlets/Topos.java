@@ -1,8 +1,6 @@
 package com.philippe75.p6.webapp.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,10 +15,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.philippe75.p6.business.contract.ManagerHandler;
 import com.philippe75.p6.consumer.contract.DaoHandler;
-import com.philippe75.p6.model.bean.site.Dept;
-import com.philippe75.p6.model.bean.site.Secteur;
-import com.philippe75.p6.model.bean.site.Site;
-import com.philippe75.p6.model.bean.site.Voie;
 import com.philippe75.p6.model.bean.topo.Topo;
 
 

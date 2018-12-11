@@ -3,7 +3,6 @@ package com.philippe75.p6.consumer.contract.dao;
 import java.util.List;
 import com.philippe75.p6.model.bean.topo.LocationTopo;
 import com.philippe75.p6.model.bean.topo.Topo;
-import com.philippe75.p6.model.bean.utilisateur.CompteUtilisateur;
 
 public interface TopoDao {
 
